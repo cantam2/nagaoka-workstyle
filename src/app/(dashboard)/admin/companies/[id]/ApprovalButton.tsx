@@ -23,6 +23,16 @@ export default function ApprovalButton({
       .from('companies')
       .update({ is_approved: !isApproved })
       .eq('id', companyId)
+
+    // 承認時のみメール通知
+    if (!isApproved) {
+      fetch('/api/notify/approved', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ companyId }),
+      }).catch(() => {})
+    }
+
     setLoading(false)
     router.refresh()
   }

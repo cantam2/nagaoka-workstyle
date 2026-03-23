@@ -30,6 +30,14 @@ export default function ApplicationStatusForm({
       .from('applications')
       .update({ status })
       .eq('id', applicationId)
+
+    // 求職者にメール通知
+    fetch('/api/notify/status', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ applicationId, status }),
+    }).catch(() => {})
+
     setSaving(false)
     router.refresh()
   }

@@ -39,19 +39,30 @@ export default function ApplyForm({
       .eq('id', jobseekerId)
 
     // 応募を作成
-    const { error: applyError } = await supabase.from('applications').insert({
-      jobseeker_id: jobseekerId,
-      job_listing_id: jobListingId ?? null,
-      internship_id: internshipId ?? null,
-      message: message || null,
-      status: 'pending',
-    })
+    const { data: newApp, error: applyError } = await supabase
+      .from('applications')
+      .insert({
+        jobseeker_id: jobseekerId,
+        job_listing_id: jobListingId ?? null,
+        internship_id: internshipId ?? null,
+        message: message || null,
+        status: 'pending',
+      })
+      .select()
+      .single()
 
     if (applyError) {
       setError('応募の送信に失敗しました。もう一度お試しください。')
       setSubmitting(false)
       return
     }
+
+    // 企業担当者にメール通知（失敗しても応募フローは止めない）
+    fetch('/api/notify/apply', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ applicationId: newApp.id }),
+    }).catch(() => {})
 
     router.push('/jobseeker/applications?applied=1')
   }
