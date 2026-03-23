@@ -1,0 +1,3881 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>長岡テクノロジーズ | 長岡ワークスタイル</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #2ea7c8;
+  --dark: #1a4d5e;
+  --accent: #e8841a;
+  --text: #2c2c2c;
+  --text-sub: #666;
+  --bg-light: #f5f7f9;
+  --bg-pale-cyan: #eaf6fa;
+  --radius: 10px;
+  --shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--text);
+  background: #fff;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+/* ===== TARGET VISIBILITY ===== */
+.for-hs, .for-nc, .for-tr, .for-ntr,
+.for-hs-flex, .for-nc-flex, .for-tr-flex, .for-ntr-flex,
+.for-hs-grid, .for-ntr-grid { display: none; }
+
+body.target-hs .for-hs { display: block; }
+body.target-nc .for-nc { display: block; }
+body.target-tr .for-tr { display: block; }
+body.target-nc .for-ntr { display: block; }
+body.target-tr .for-ntr { display: block; }
+
+body.target-hs .for-hs-flex { display: flex; }
+body.target-nc .for-nc-flex { display: flex; }
+body.target-tr .for-tr-flex { display: flex; }
+body.target-nc .for-ntr-flex { display: flex; }
+body.target-tr .for-ntr-flex { display: flex; }
+
+body.target-hs .for-hs-grid { display: grid; }
+body.target-nc .for-ntr-grid { display: grid; }
+body.target-tr .for-ntr-grid { display: grid; }
+
+/* ===== HEADER ===== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 60px;
+  background: #fff;
+  border-bottom: 1px solid #e0edf1;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 24px;
+  box-shadow: var(--shadow);
+}
+.header-logo {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--dark);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+  flex-shrink: 0;
+}
+.header-logo span { color: var(--primary); }
+.header-nav { display: flex; gap: 20px; margin-left: 16px; }
+.header-nav a {
+  text-decoration: none;
+  color: var(--text-sub);
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.header-nav a:hover { color: var(--primary); }
+.header-right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  color: var(--text-sub);
+  display: flex;
+  align-items: center;
+  transition: background 0.2s, color 0.2s;
+}
+.icon-btn:hover { background: var(--bg-pale-cyan); color: var(--primary); }
+
+/* ===== BREADCRUMB ===== */
+.breadcrumb {
+  background: var(--bg-light);
+  padding: 10px 24px;
+  font-size: 13px;
+  color: var(--text-sub);
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.breadcrumb a { color: var(--primary); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb-sep { color: #bbb; }
+
+/* ===== TARGET TABS BAR ===== */
+/* ===== CHANGE TARGET LINK ===== */
+.change-target-link {
+  font-size: 12px; color: var(--text-sub);
+  text-decoration: none; padding: 5px 12px;
+  border-radius: 20px; border: 1px solid #e0edf1;
+  transition: color 0.2s, border-color 0.2s; white-space: nowrap;
+}
+.change-target-link:hover { color: var(--primary); border-color: var(--primary); }
+
+/* ===== COMMON SECTION ===== */
+.section { padding: 60px 24px; }
+.section-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(to right, var(--primary), transparent);
+  margin-left: 8px;
+}
+.container { max-width: 1200px; margin: 0 auto; }
+
+/* ===== HERO SECTION ===== */
+.hero-section {
+  position: relative;
+  padding: 40px 24px 48px;
+  background: transparent;
+  margin-top: 0;
+  z-index: 2;
+}
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  background: var(--bg-pale-cyan);
+  border: 1.5px solid #b8e4f0;
+  border-radius: 18px;
+  padding: 28px 32px;
+  box-shadow: 0 4px 20px rgba(30,140,180,0.1);
+}
+.hero-video-col {
+  flex-shrink: 0;
+  width: 200px;
+}
+.vvideo-wrap { position: relative; }
+.article-cards-wrap { position: relative; }
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(255,255,255,0.88);
+  border: 1.5px solid rgba(200,221,228,0.8);
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  padding: 0;
+}
+.carousel-arrow:hover { background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.24); }
+.carousel-arrow-left { left: 6px; }
+.carousel-arrow-right { right: 6px; }
+.vvideo-carousel {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.vvideo-carousel::-webkit-scrollbar { display: none; }
+.vvideo-carousel .vertical-video {
+  flex: 0 0 200px;
+  scroll-snap-align: start;
+}
+.vertical-video {
+  width: 200px;
+  aspect-ratio: 9 / 16;
+  background: linear-gradient(160deg, #1a4d5e 0%, #0d2e38 60%, #2ea7c8 100%);
+  border-radius: 20px;
+  border: 3px solid #2ea7c8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(46,167,200,0.2);
+}
+.vertical-video::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,255,255,0.02) 20px, rgba(255,255,255,0.02) 21px);
+}
+.play-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  border: 2px solid rgba(255,255,255,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  transition: background 0.2s;
+}
+.play-btn:hover { background: rgba(46,167,200,0.4); }
+.play-btn svg { margin-left: 4px; }
+.video-label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 1px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+}
+.hero-info-col { flex: 1; min-width: 0; }
+.company-name {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+.company-name small {
+  display: block;
+  font-size: 13px;
+  color: var(--text-sub);
+  font-weight: 400;
+  margin-bottom: 4px;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+}
+.tag-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.tag-chip {
+  border: 1.5px solid var(--primary);
+  color: var(--primary);
+  border-radius: 20px;
+  padding: 3px 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.catchphrase {
+  font-size: 14px;
+  color: var(--text-sub);
+  font-style: italic;
+  margin-bottom: 20px;
+  padding-left: 12px;
+  border-left: 3px solid var(--primary);
+}
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.info-row svg { color: var(--primary); flex-shrink: 0; }
+.access-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 10px 0 14px; }
+.access-badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: #444;
+  background: var(--bg-light);
+  border-radius: 6px;
+  padding: 4px 10px;
+}
+.visit-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #e6f9ef;
+  color: #2a8a4a;
+  border: 1.5px solid #2a8a4a;
+  border-radius: 6px;
+  padding: 5px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.feature-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.feature-tag {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--bg-pale-cyan);
+  color: var(--dark);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 13px;
+}
+.salary-large {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.salary-large small { font-size: 14px; font-weight: 400; color: var(--text-sub); }
+.info-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.info-card-mini {
+  background: var(--bg-light);
+  border-radius: var(--radius);
+  padding: 12px;
+}
+.info-card-mini .label {
+  font-size: 11px;
+  color: var(--text-sub);
+  margin-bottom: 4px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.info-card-mini .value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark);
+}
+.stability-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.stability-chip {
+  background: #fff;
+  border: 1.5px solid #cde7ef;
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-size: 12px;
+  color: var(--dark);
+  font-weight: 500;
+}
+.welfare-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.welfare-chip {
+  background: #fff8f2;
+  border: 1.5px solid #f5c090;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  color: #b05010;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 13px 28px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.1s;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.btn-primary:hover { background: var(--dark); transform: translateY(-1px); }
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #fff;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  border-radius: var(--radius);
+  padding: 11px 24px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.btn-outline:hover { background: var(--bg-pale-cyan); }
+.cta-area { display: flex; flex-direction: column; gap: 12px; }
+.cta-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.cta-sub-actions { display: flex; gap: 16px; align-items: center; margin-top: 4px; }
+.sub-action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--text-sub);
+  padding: 0;
+  transition: color 0.2s;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.sub-action-btn:hover { color: var(--primary); }
+.recruit-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #e6f0ff;
+  color: #2255bb;
+  border: 1.5px solid #aac0ee;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* ===== HORIZONTAL VIDEO ===== */
+.horiz-video-section {
+  background: var(--dark);
+  padding: 36px 0 24px;
+}
+.horiz-video-label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 2px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.horiz-video-label::after {
+  content: '← swipe →';
+  font-size: 10px;
+  letter-spacing: 1px;
+  opacity: 0.5;
+}
+.hvideo-carousel {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 0 24px 20px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hvideo-carousel::-webkit-scrollbar { display: none; }
+.horiz-video-wrap {
+  flex: 0 0 min(88vw, 860px);
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, #0d2e38 0%, #1a4d5e 50%, #2ea7c8 100%);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  border: 2px solid rgba(46,167,200,0.3);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  scroll-snap-align: start;
+}
+.horiz-video-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.015) 40px, rgba(255,255,255,0.015) 41px);
+}
+.horiz-video-caption {
+  color: rgba(255,255,255,0.55);
+  font-size: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== TARGET HIGHLIGHT ===== */
+.highlight-section { background: var(--bg-light); }
+
+/* 案B: ポイントリスト */
+.point-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.point-item {
+  background: #fff;
+  border-radius: var(--radius);
+  border: 1.5px solid #cce8f2;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: var(--shadow);
+}
+.point-icon-wrap {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: var(--bg-pale-cyan);
+  border: 1.5px solid #b5d9e8;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.point-text { flex: 1; min-width: 0; }
+.point-heading {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.3;
+  margin-bottom: 3px;
+}
+.point-sub {
+  font-size: 11px;
+  color: var(--text-sub);
+  line-height: 1.5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tr-info-rows { display: flex; flex-direction: column; gap: 12px; }
+.tr-info-row {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: var(--shadow);
+}
+.tr-info-row .tr-label { font-size: 13px; color: var(--text-sub); width: 140px; flex-shrink: 0; }
+.tr-info-row .tr-value { font-size: 15px; font-weight: 600; color: var(--dark); }
+
+/* ===== JOB LISTINGS ===== */
+.job-section { background: #fff; }
+.job-cards { display: flex; flex-direction: column; gap: 12px; }
+.job-card {
+  border: 1.5px solid #dde8ec;
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.job-card:hover { border-color: var(--primary); }
+.job-card-header {
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  background: #fff;
+  user-select: none;
+}
+.job-card-header:hover { background: var(--bg-light); }
+.job-title { font-size: 16px; font-weight: 700; color: var(--dark); }
+.employment-badge {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.job-meta { font-size: 13px; color: var(--text-sub); flex: 1; }
+/* expand-icon replaced by expand-btn-label */
+.job-card-body {
+  display: none;
+  padding: 0 22px 22px;
+  border-top: 1px solid #e8f2f5;
+  background: #fafcfd;
+}
+.job-card.open .job-card-body { display: block; }
+.job-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.job-detail-item .jd-label {
+  font-size: 12px;
+  color: var(--text-sub);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.job-detail-item .jd-value { font-size: 14px; color: var(--text); }
+.job-card-footer { display: flex; justify-content: flex-end; margin-top: 12px; }
+
+/* ===== RECRUIT PARALLEL LAYOUT ===== */
+.recruit-split {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.recruit-split > section {
+  flex: 1 1 360px;
+  min-width: 0;
+}
+.recruit-split .job-section { order: 1; }
+.recruit-split .visit-section,
+.recruit-split .internship-section { order: 2; }
+.recruit-split > section > .container { max-width: none; }
+
+/* ===== ABOUT SECTION ===== */
+.about-section { background: #fff; }
+.about-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.about-text p { font-size: 14px; color: var(--text-sub); line-height: 1.9; margin-bottom: 14px; }
+.about-text h3 { font-size: 18px; color: var(--dark); margin-bottom: 16px; font-weight: 700; }
+.photo-collage { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.photo-placeholder {
+  border-radius: 10px;
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  position: relative;
+  overflow: hidden;
+}
+.photo-placeholder:first-child {
+  grid-column: 1 / -1;
+  aspect-ratio: 16/7;
+}
+.photo-placeholder.p1 { background: linear-gradient(135deg, #2ea7c8, #1a6d85); }
+.photo-placeholder.p2 { background: linear-gradient(135deg, #e8841a, #c0620d); }
+.photo-placeholder.p3 { background: linear-gradient(135deg, #2a8a4a, #1d5e33); }
+.photo-placeholder.p4 { background: linear-gradient(135deg, #7855c0, #5033a0); }
+
+/* ===== DAY IN LIFE ===== */
+.day-section { background: var(--bg-pale-cyan); }
+.timeline { display: flex; flex-direction: column; gap: 0; max-width: 680px; margin: 0 auto; }
+.timeline-item { display: flex; gap: 20px; position: relative; padding-bottom: 28px; }
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-left { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; }
+.timeline-time {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary);
+  white-space: nowrap;
+  width: 58px;
+  text-align: right;
+}
+.timeline-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 2px var(--primary);
+  margin: 4px 0 0 10px;
+}
+.timeline-line {
+  flex: 1;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--primary), #c5e8f5);
+  margin-left: 16px;
+  min-height: 28px;
+}
+.timeline-item:last-child .timeline-line { display: none; }
+.timeline-right { flex: 1; }
+.timeline-title { font-size: 15px; font-weight: 700; color: var(--dark); }
+.timeline-desc { font-size: 13px; color: var(--text-sub); margin-top: 3px; }
+
+/* ===== EMPLOYEE VOICES ===== */
+.voices-section { background: #fff; }
+.voice-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.voice-card {
+  border: 1.5px solid #e0edf1;
+  border-radius: var(--radius);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: var(--shadow);
+}
+.voice-avatar-row { display: flex; align-items: center; gap: 16px; }
+.voice-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #cde7ef, #2ea7c8);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 22px;
+}
+.voice-name { font-size: 15px; font-weight: 700; color: var(--dark); }
+.voice-meta { font-size: 12px; color: var(--text-sub); }
+.voice-quote {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.8;
+  border-left: 3px solid var(--primary);
+  padding-left: 14px;
+  font-style: italic;
+}
+
+/* ===== CLIENT VOICES ===== */
+.client-section { background: var(--bg-light); }
+.client-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.client-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+.client-name { font-size: 13px; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
+.client-quote { font-size: 14px; color: var(--text-sub); line-height: 1.8; }
+.quote-mark { font-size: 36px; color: var(--primary); line-height: 1; margin-bottom: 6px; font-family: Georgia, serif; }
+
+/* ===== NOTE ARTICLES ===== */
+.articles-section { background: #f5f8fa; }
+.article-cards {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding-bottom: 12px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.article-cards::-webkit-scrollbar { display: none; }
+.article-card {
+  flex: 0 0 280px;
+  scroll-snap-align: start;
+  border: 1.5px solid #e0edf1;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #fff;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+.article-card:hover { box-shadow: 0 6px 20px rgba(46,167,200,0.12); transform: translateY(-2px); }
+.article-thumb {
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.8);
+  font-weight: 600;
+}
+.article-thumb.t1 { background: linear-gradient(135deg, #1a4d5e, #2ea7c8); }
+.article-thumb.t2 { background: linear-gradient(135deg, #e8841a, #f5b05a); }
+.article-thumb.t3 { background: linear-gradient(135deg, #2a8a4a, #7dcf9a); }
+.article-body { padding: 16px; }
+.article-tag {
+  display: inline-block;
+  background: var(--bg-pale-cyan);
+  color: var(--primary);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.article-title { font-size: 14px; font-weight: 600; color: var(--dark); line-height: 1.5; margin-bottom: 8px; }
+.article-date { font-size: 12px; color: var(--text-sub); }
+
+/* ===== PHOTO GALLERY ===== */
+.gallery-section { background: #111e22; padding: 60px 24px; }
+.gallery-section .section-title { color: #fff; }
+.gallery-section .section-title::after { background: linear-gradient(to right, var(--primary), transparent); }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.gallery-item {
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 1;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  cursor: pointer;
+  background: var(--dark);
+}
+.gallery-item:nth-child(1) { background: linear-gradient(160deg, #1a4d5e 0%, #2ea7c8 100%); }
+.gallery-item:nth-child(2) { background: linear-gradient(160deg, #333, #666); }
+.gallery-item:nth-child(3) { background: linear-gradient(160deg, #e8841a, #c06210); }
+.gallery-item:nth-child(4) { background: linear-gradient(160deg, #2a5e2e, #4caf50); }
+.gallery-label {
+  width: 100%;
+  padding: 8px 10px;
+  background: rgba(0,0,0,0.45);
+  color: rgba(255,255,255,0.9);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ===== FAQ ===== */
+.faq-section { background: var(--bg-light); }
+.faq-list { display: flex; flex-direction: column; gap: 8px; max-width: 820px; margin: 0 auto; }
+.faq-item {
+  background: #fff;
+  border-radius: var(--radius);
+  border: 1.5px solid #dde8ec;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.faq-question {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--dark);
+  transition: background 0.2s;
+}
+.faq-question:hover { background: var(--bg-pale-cyan); }
+.faq-q-mark {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+.faq-arrow {
+  margin-left: auto;
+  color: var(--primary);
+  transition: transform 0.3s;
+}
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+.faq-answer {
+  display: none;
+  padding: 0 20px 16px 60px;
+  font-size: 14px;
+  color: var(--text-sub);
+  line-height: 1.8;
+  border-top: 1px solid #e8f2f5;
+  padding-top: 12px;
+}
+.faq-item.open .faq-answer { display: block; }
+
+/* ===== FINAL CTA ===== */
+.cta-hs-section {
+  padding: 72px 24px;
+  background: linear-gradient(135deg, #eaf6fa 0%, #d0eef8 100%);
+  text-align: center;
+}
+.cta-hs-title { font-size: 28px; font-weight: 700; color: var(--dark); margin-bottom: 12px; }
+.cta-hs-sub { font-size: 15px; color: var(--text-sub); margin-bottom: 32px; }
+.cta-hs-btns { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.btn-large { padding: 16px 40px; font-size: 17px; border-radius: 12px; }
+
+.cta-ntr-section {
+  padding: 72px 24px;
+  background: var(--accent);
+  text-align: center;
+}
+.cta-ntr-title { font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+.cta-ntr-sub { font-size: 15px; color: rgba(255,255,255,0.85); margin-bottom: 32px; }
+.btn-white {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #fff;
+  color: var(--accent);
+  border: none;
+  border-radius: 12px;
+  padding: 16px 48px;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: 'Noto Sans JP', sans-serif;
+  transition: background 0.2s, transform 0.1s;
+}
+.btn-white:hover { background: #fff9f5; transform: translateY(-1px); }
+.cta-note { color: rgba(255,255,255,0.7); font-size: 12px; margin-top: 14px; }
+
+/* ===== RELATED COMPANIES ===== */
+.related-section { background: var(--bg-light); }
+.related-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.related-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  border: 1.5px solid #e0edf1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.related-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+.related-industry {
+  font-size: 11px;
+  color: var(--primary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.related-name { font-size: 15px; font-weight: 700; color: var(--dark); }
+.related-meta { font-size: 12px; color: var(--text-sub); }
+.related-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.related-tag {
+  background: var(--bg-pale-cyan);
+  color: var(--primary);
+  border-radius: 4px;
+  padding: 2px 7px;
+  font-size: 11px;
+}
+
+/* ===== MODAL ===== */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.52);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px;
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.22);
+  position: relative;
+}
+.modal-box-wide { max-width: 700px; }
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--bg-pale-cyan);
+}
+.modal-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--text-sub);
+  line-height: 1;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+.modal-close:hover { background: var(--bg-light); color: var(--text); }
+
+/* ===== FORMS ===== */
+.form-group { margin-bottom: 14px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 5px;
+  letter-spacing: 0.3px;
+}
+.required {
+  color: #e03030;
+  font-size: 10px;
+  margin-left: 4px;
+  font-weight: 600;
+}
+.form-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid #dde8ec;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: #fff;
+}
+.form-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(46,167,200,0.1); }
+.form-textarea { min-height: 88px; resize: vertical; }
+.form-section-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin: 18px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--bg-pale-cyan);
+}
+.form-actions { display: flex; gap: 12px; margin-top: 20px; }
+.form-actions .btn-primary { flex: 1; }
+
+/* Prefill notice */
+.prefill-notice {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  background: #e6f9ef;
+  border: 1.5px solid #7dc9a0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: #1e6e40;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+.prefill-notice.show { display: flex; }
+
+/* Success toast */
+.success-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: #1a5e35;
+  color: #fff;
+  padding: 14px 24px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+  z-index: 2000;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+.success-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ===== COMPANY BANNER IMAGE ===== */
+.company-banner {
+  position: relative;
+  height: 520px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.company-banner img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.company-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(10,28,40,0.7) 0%, rgba(10,28,40,0.4) 45%, rgba(10,28,40,0.05) 100%);
+}
+.banner-catchphrase {
+  position: absolute;
+  left: 0; right: 0; bottom: 0; top: 0;
+  display: flex; flex-direction: column; justify-content: center;
+  text-align: left;
+  color: #fff;
+  z-index: 2;
+  padding: 0 48px;
+  max-width: 600px;
+}
+.banner-co-en {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin-bottom: 10px;
+}
+.banner-catch-text {
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 700;
+  line-height: 1.45;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.5);
+}
+
+/* ===== JOB CARD — EXPAND BUTTON ===== */
+.expand-btn-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-pale-cyan);
+  border: 1.5px solid var(--primary);
+  border-radius: 20px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary);
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.job-card-header:hover .expand-btn-label,
+.job-card.open .expand-btn-label {
+  background: var(--primary);
+  color: #fff;
+}
+.expand-chevron { transition: transform 0.3s; }
+.job-card.open .expand-chevron { transform: rotate(180deg); }
+
+/* ===== TIMELINE — BIGGER TYPOGRAPHY ===== */
+.timeline-time {
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.5px;
+}
+.timeline-title { font-size: 17px !important; font-weight: 700 !important; }
+.timeline-desc { font-size: 13px !important; margin-top: 5px; }
+
+/* ===== COMPACT VOICE CARDS ===== */
+.voice-cards-compact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.voice-card-compact {
+  border: 1.5px solid #e0edf1;
+  border-radius: var(--radius);
+  padding: 18px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  box-shadow: var(--shadow);
+}
+.voice-avatar-img {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid var(--bg-pale-cyan);
+}
+.voice-content { flex: 1; min-width: 0; }
+.voice-name-sm { font-size: 14px; font-weight: 700; color: var(--dark); }
+.voice-meta-sm { font-size: 11px; color: var(--text-sub); margin-bottom: 8px; }
+.voice-quote-sm {
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.75;
+  border-left: 3px solid var(--primary);
+  padding-left: 11px;
+  font-style: italic;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ===== COMPACT CLIENT CARDS ===== */
+.client-cards-compact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.client-card-compact {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.client-qmark {
+  font-size: 30px;
+  color: var(--primary);
+  line-height: 0.85;
+  font-family: Georgia, serif;
+  flex-shrink: 0;
+}
+.client-quote-sm { font-size: 13px; color: var(--text-sub); line-height: 1.75; }
+.client-name-sm { font-size: 12px; font-weight: 700; color: var(--dark); margin-top: 8px; }
+
+/* ===== ICON-ONLY ACCESS BADGES ===== */
+.access-badge-icon {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: var(--bg-light);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-sub);
+  min-width: 52px;
+}
+
+/* ===== COMPANY DATA TABLE ===== */
+.company-data-section { background: var(--bg-light); }
+.company-table {
+  width: 100%;
+  border-collapse: collapse;
+  max-width: 740px;
+  margin: 0 auto;
+  font-size: 14px;
+  background: #fff;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.company-table th {
+  width: 160px;
+  padding: 13px 18px;
+  text-align: left;
+  color: var(--text-sub);
+  font-weight: 600;
+  font-size: 12px;
+  background: var(--bg-light);
+  border-bottom: 1px solid #e8f2f5;
+  vertical-align: top;
+}
+.company-table td {
+  padding: 13px 18px;
+  color: var(--text);
+  border-bottom: 1px solid #e8f2f5;
+}
+.company-table tr:last-child th,
+.company-table tr:last-child td { border-bottom: none; }
+
+/* ===== WORKPLACE STATS BAR ===== */
+.stats-bar {
+  background: var(--dark);
+  padding: 32px 24px;
+}
+.stats-bar-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.stat-card {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.13);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.stat-icon-wrap {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  background: rgba(46,167,200,0.25);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 19px;
+}
+.stat-number {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+}
+.stat-number small { font-size: 12px; font-weight: 400; margin-left: 2px; }
+.stat-label {
+  font-size: 10px;
+  color: rgba(255,255,255,0.55);
+  margin-top: 3px;
+}
+
+/* ===== WELFARE ICON SECTION ===== */
+.welfare-full-section { background: #fff; padding-top: 40px; padding-bottom: 40px; }
+.welfare-inner { max-width: 860px; margin: 0 auto; }
+.welfare-category { margin-bottom: 14px; }
+.welfare-cat-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.welfare-cat-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #e0edf1;
+}
+.welfare-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+  gap: 8px;
+}
+.welfare-icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 4px 7px;
+  background: var(--bg-light);
+  border-radius: 8px;
+  border: 1px solid #e8f2f5;
+  cursor: default;
+  text-align: center;
+}
+.welfare-icon-circle {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1.5px solid #d5edf5;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px;
+}
+.welfare-icon-label {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--text-sub);
+  line-height: 1.3;
+  text-align: center;
+}
+
+
+/* ===== PHOTO SLIDER ===== */
+.photo-slider {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(26,77,94,0.12);
+  aspect-ratio: 4/3;
+}
+.photo-slider-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.photo-slide {
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+  flex-shrink: 0;
+}
+.photo-slide img { width:100%; height:100%; object-fit:cover; display:block; }
+.slide-caption {
+  position: absolute;
+  bottom:0; left:0; right:0;
+  background: linear-gradient(to top, rgba(26,77,94,0.6) 0%, transparent 100%);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 30px 14px 10px;
+}
+.slide-nav {
+  position: absolute;
+  top:50%; transform:translateY(-50%);
+  width:32px; height:32px;
+  background: rgba(255,255,255,0.82);
+  border: none; border-radius: 50%;
+  cursor: pointer;
+  display:flex; align-items:center; justify-content:center;
+  color: var(--dark);
+  font-size: 17px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.14);
+  transition: background 0.2s, transform 0.2s;
+  z-index: 3;
+  backdrop-filter: blur(4px);
+}
+.slide-nav:hover { background:#fff; transform:translateY(-50%) scale(1.1); }
+.slide-nav.prev { left:10px; }
+.slide-nav.next { right:10px; }
+.slide-dots {
+  position:absolute; bottom:10px; left:50%; transform:translateX(-50%);
+  display:flex; gap:6px; z-index:3;
+}
+.slide-dot {
+  width:7px; height:7px; border-radius:50%;
+  background:rgba(255,255,255,0.45); border:none; cursor:pointer; padding:0;
+  transition: background 0.25s, transform 0.25s;
+}
+.slide-dot.active { background:#fff; transform:scale(1.35); }
+
+/* ===== VISIT SECTION (高校生) ===== */
+.visit-section { background: var(--bg-pale-cyan); }
+.visit-flow {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.visit-step {
+  background: #fff;
+  border-radius: 12px;
+  padding: 18px 12px 14px;
+  text-align: center;
+  border: 1.5px solid #cce8f2;
+  position: relative;
+}
+.visit-step-num {
+  width:26px; height:26px; border-radius:50%;
+  background:var(--primary); color:#fff;
+  font-size:12px; font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+  margin: 0 auto 8px;
+}
+.visit-step-icon { font-size:24px; margin-bottom:7px; }
+.visit-step-title { font-size:12px; font-weight:700; color:var(--dark); margin-bottom:3px; }
+.visit-step-sub { font-size:10px; color:var(--text-sub); line-height:1.5; }
+.visit-step::after {
+  content:'›';
+  position:absolute; right:-9px; top:50%; transform:translateY(-50%);
+  color:var(--primary); font-size:18px; font-weight:700; z-index:1;
+}
+.visit-step:last-child::after { display:none; }
+.visit-meta-grid {
+  display:grid; grid-template-columns:repeat(2,1fr); gap:10px;
+}
+.visit-meta-item {
+  background:#fff; border-radius:10px; padding:13px 16px;
+  display:flex; align-items:center; gap:12px;
+  border:1px solid #cce8f2;
+}
+.visit-meta-icon {
+  width:38px; height:38px; border-radius:10px;
+  background:var(--bg-pale-cyan);
+  display:flex; align-items:center; justify-content:center;
+  font-size:19px; flex-shrink:0;
+}
+.visit-meta-label { font-size:10px; color:var(--text-sub); margin-bottom:2px; }
+.visit-meta-value { font-size:13px; font-weight:700; color:var(--dark); }
+
+/* ===== INTERNSHIP SECTION (新卒) ===== */
+.internship-section { background: #fff; }
+.intern-overview {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:12px;
+  margin-bottom:24px;
+}
+.intern-card {
+  background:var(--bg-light); border-radius:12px;
+  padding:18px 16px; border:1.5px solid #e0edf1;
+}
+.intern-card-icon { font-size:26px; margin-bottom:9px; }
+.intern-card-title { font-size:12px; font-weight:700; color:var(--dark); margin-bottom:5px; }
+.intern-card-body { font-size:11px; color:var(--text-sub); line-height:1.75; }
+.intern-program-list { display:flex; flex-direction:column; gap:9px; margin-bottom:22px; }
+.intern-program-item {
+  background:var(--bg-pale-cyan); border-radius:10px;
+  padding:12px 16px; display:flex; align-items:center; gap:14px;
+  border-left:4px solid var(--primary);
+}
+.intern-day { font-family:'Montserrat',sans-serif; font-size:12px; font-weight:700; color:var(--primary); min-width:46px; }
+.intern-content { font-size:13px; color:var(--dark); font-weight:600; margin-bottom:2px; }
+.intern-sub { font-size:11px; color:var(--text-sub); }
+.intern-cta {
+  background:var(--bg-pale-cyan); border-radius:12px;
+  padding:18px 22px; display:flex; align-items:center;
+  justify-content:space-between; gap:14px;
+  border:1.5px solid #b5d9e8;
+}
+.intern-cta-left { flex:1; }
+.intern-cta-title { font-size:14px; font-weight:700; color:var(--dark); margin-bottom:3px; }
+.intern-cta-sub { font-size:12px; color:var(--text-sub); }
+
+
+/* ===== PROGRAM TABS (見学 / インターン共通) ===== */
+.program-tabs-wrapper {
+  background: #fff;
+  border-radius: 16px;
+  border: 1.5px solid #dcedf3;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(26,77,94,0.09);
+}
+.program-tab-bar {
+  display: flex;
+  overflow-x: auto;
+  background: linear-gradient(135deg, #ddf0f7 0%, #c8e6f2 100%);
+  padding: 10px 12px;
+  gap: 6px;
+  scrollbar-width: none;
+}
+.program-tab-bar::-webkit-scrollbar { display: none; }
+.program-tab {
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--dark);
+  background: rgba(255,255,255,0.55);
+  border: 1.5px solid rgba(255,255,255,0.8);
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s, border-color 0.18s;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.program-tab:hover { background: rgba(255,255,255,0.85); color: var(--primary); border-color: rgba(46,167,200,0.4); }
+.program-tab.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+  box-shadow: 0 3px 10px rgba(46,167,200,0.35);
+}
+.program-panel { display: none; padding: 28px 30px 24px; }
+.program-panel.active { display: block; }
+.job-panel-header {
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e2eff4;
+}
+.job-appeal-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.job-appeal-tag {
+  display: inline-flex;
+  align-items: center;
+  background: #fff8e1;
+  color: #c05000;
+  border: 1.5px solid #ffc94d;
+  border-radius: 20px;
+  padding: 3px 11px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.job-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+.job-catchcopy {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--dark);
+  line-height: 1.6;
+  margin-bottom: 16px;
+  padding: 13px 18px;
+  background: linear-gradient(135deg, #eaf6fa 0%, #f5fbfd 100%);
+  border-left: 4px solid var(--primary);
+  border-radius: 0 8px 8px 0;
+}
+.program-panel-title {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--dark);
+  margin: 0 0 24px;
+  padding: 0 0 16px;
+  border-bottom: 3px solid var(--primary);
+  letter-spacing: -0.2px;
+}
+
+
+/* === PROGRAM ICON TAGS === */
+.prog-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e2eff4;
+}
+.prog-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--bg-pale-cyan);
+  border: 1.5px solid #b8dcea;
+  border-radius: 9px;
+  padding: 7px 13px 7px 10px;
+}
+.prog-tag-body { display: flex; flex-direction: column; gap: 1px; }
+.prog-tag-label { font-size: 10px; color: var(--text-sub); font-weight: 600; letter-spacing: 0.2px; line-height: 1.2; }
+.prog-tag-value { font-size: 12px; color: var(--dark); font-weight: 700; line-height: 1.3; }
+.prog-benefit {
+  margin-bottom: 16px;
+  background: #fffbf3;
+  border: 1.5px solid #f5c090;
+  border-radius: 10px;
+  padding: 11px 14px;
+}
+.prog-benefit-title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #b05010;
+  margin-bottom: 4px;
+}
+.prog-benefit p { font-size: 13px; color: var(--text); line-height: 1.75; margin: 0; }
+
+/* Info table */
+.program-info-table {
+  width: 100%;
+  border: 1px solid #dcedf3;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 22px;
+  font-size: 14px;
+}
+.pi-row { display: flex; border-bottom: 1px solid #dcedf3; }
+.pi-row:last-child { border-bottom: none; }
+.pi-label {
+  width: 148px; flex-shrink: 0;
+  background: #f5f7f9;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 16px;
+  font-size: 12px; font-weight: 700;
+  color: var(--text-sub);
+  border-right: 1px solid #dcedf3;
+}
+.pi-value {
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.75;
+}
+.pi-value strong { color: var(--dark); font-weight: 700; }
+.pi-value em { color: var(--accent); font-style: normal; font-weight: 700; }
+
+/* Description block */
+.program-desc { margin-bottom: 22px; }
+.program-desc h4 {
+  font-size: 13px; font-weight: 700; color: var(--dark);
+  margin-bottom: 10px; padding-bottom: 7px;
+  border-bottom: 1.5px solid #e0edf1;
+}
+.program-desc p { font-size: 13px; color: var(--text-sub); line-height: 1.85; margin-bottom: 8px; }
+.program-desc p:last-child { margin-bottom: 0; }
+
+/* Schedule list */
+.program-schedule { margin-bottom: 22px; }
+.program-schedule h4 {
+  font-size: 13px; font-weight: 700; color: var(--dark);
+  margin-bottom: 10px; padding-bottom: 7px;
+  border-bottom: 1.5px solid #e0edf1;
+}
+.schedule-list { display: flex; flex-direction: column; gap: 7px; }
+.schedule-item {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 10px 14px;
+  background: var(--bg-light);
+  border-radius: 7px;
+  border-left: 3px solid var(--primary);
+}
+.sch-time {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px; font-weight: 700;
+  color: var(--primary); min-width: 58px; flex-shrink: 0;
+  padding-top: 1px;
+}
+.sch-content { font-size: 13px; color: var(--text); line-height: 1.6; }
+.sch-sub { font-size: 11px; color: var(--text-sub); margin-top: 2px; }
+
+/* Note */
+.program-note {
+  background: var(--bg-pale-cyan);
+  border-radius: 8px; padding: 12px 16px;
+  font-size: 12px; color: var(--dark);
+  line-height: 1.75; margin-bottom: 20px;
+}
+
+/* CTA row */
+.program-cta-row {
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 16px;
+  padding: 16px 18px;
+  background: var(--bg-light);
+  border-radius: 9px; border: 1px solid #dcedf3;
+}
+.program-cta-info { font-size: 13px; color: var(--text-sub); line-height: 1.6; }
+.program-cta-info strong { color: #c0370a; font-size: 14px; display: block; }
+
+/* ===== FOOTER ===== */
+.site-footer {
+  background: #e2f2f8;
+  border-top: 2px solid #b8e4f0;
+  color: #555;
+  padding: 40px 24px 28px;
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.footer-logo {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+.footer-logo span { color: var(--primary); }
+.footer-desc { font-size: 13px; color: #555; max-width: 300px; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links a { color: #555; text-decoration: none; font-size: 13px; transition: color 0.2s; }
+.footer-links a:hover { color: #1d8ba8; }
+.footer-bottom {
+  max-width: 1200px;
+  margin: 28px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid #bdd8e2;
+  font-size: 12px;
+  color: #7a8a9a;
+  text-align: center;
+}
+
+/* ===== SELECTION FLOW SECTION ===== */
+.flow-section { background: var(--bg-light); }
+.flow-steps { display: flex; flex-direction: column; gap: 0; margin: 24px 0 20px; }
+.flow-step { display: flex; align-items: flex-start; gap: 14px; }
+.flow-step-num { flex-shrink: 0; width: 34px; height: 34px; background: var(--primary); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; }
+.flow-step-body { flex: 1; padding-bottom: 22px; border-left: 2px solid #c5e4ef; padding-left: 16px; margin-left: 3px; padding-top: 4px; }
+.flow-step:last-child .flow-step-body { border-left: 2px solid transparent; padding-bottom: 0; }
+.flow-step-title { font-weight: 700; font-size: 14px; color: var(--dark); margin-bottom: 2px; }
+.flow-step-desc { font-size: 12px; color: var(--text-sub); line-height: 1.5; }
+.flow-casual-box { background: #fffbf3; border: 1.5px solid #f5c090; border-radius: 10px; padding: 13px 15px; }
+.flow-casual-title { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; color: #b05010; margin-bottom: 4px; }
+.flow-casual-desc { font-size: 13px; color: var(--text); line-height: 1.7; margin: 0; }
+/* ===== ANNUAL INCOME DISPLAY ===== */
+.annual-income-row { display: flex; align-items: baseline; gap: 8px; margin: 3px 0 12px; }
+.annual-income-label { font-size: 11px; color: var(--text-sub); font-weight: 600; }
+.annual-income-value { font-size: 14px; font-weight: 700; color: var(--accent); }
+
+/* ===== LIKE BUTTON ===== */
+.like-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: #fff; border: 2px solid #e0edf1; border-radius: 24px;
+  padding: 9px 18px; font-size: 13px; font-weight: 700;
+  color: var(--text-sub); cursor: pointer;
+  font-family: 'Noto Sans JP', sans-serif;
+  transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.like-btn:hover { border-color: #f87171; color: #e05050; transform: scale(1.04); }
+.like-btn.liked { border-color: #f87171; background: #fff5f5; color: #e05050; }
+.like-btn.liked svg { fill: #f87171; stroke: #f87171; }
+.like-count { font-size: 11px; color: var(--text-sub); font-weight: 400; }
+.like-btn.liked .like-count { color: #e05050; }
+
+/* ===== COMPANY LOGO BOX ===== */
+.company-logo-box { margin-bottom: 12px; }
+.company-logo-placeholder {
+  width: 72px; height: 72px; border-radius: 14px;
+  background: var(--bg-pale-cyan); border: 2px solid #b5d9e8;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 8px rgba(46,167,200,0.1);
+}
+
+/* ===== こんな人におすすめ SECTION ===== */
+.recommend-section { background: var(--bg-light); }
+.recommend-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px; }
+.recommend-item {
+  background: #fff; border-radius: 14px; border: 1.5px solid #dcedf3;
+  padding: 20px 14px 16px; text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.recommend-icon { font-size: 32px; margin-bottom: 10px; }
+.recommend-label { font-size: 12px; font-weight: 700; color: var(--dark); line-height: 1.4; }
+
+/* ===== TIMELINE: CENTER ALTERNATING ===== */
+.timeline-v2-header {
+  display: flex;
+  justify-content: flex-end;
+  max-width: 820px;
+  margin: 0 auto 28px;
+}
+.timeline-v2-profile {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #fff;
+  border: 1px solid #dae8ee;
+  border-radius: 12px;
+  padding: 14px 22px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.timeline-v2-avatar {
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  background: var(--bg-pale-cyan);
+  border: 2px solid var(--primary);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px;
+  flex-shrink: 0;
+}
+.timeline-v2-profile-text { flex: 1; }
+.timeline-v2-dept {
+  font-size: 11px;
+  color: var(--primary);
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+.timeline-v2-pname {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.3;
+}
+.timeline-v2-prole {
+  font-size: 12px;
+  color: var(--text-sub);
+  margin-top: 1px;
+}
+.timeline-v2 {
+  position: relative;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0;
+}
+.timeline-v2-item {
+  position: relative;
+  padding-bottom: 12px;
+}
+.timeline-v2-item::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0; bottom: 0;
+  width: 1.5px;
+  background: #cddae0;
+  transform: translateX(-50%);
+}
+.timeline-v2-item:last-child::before {
+  display: none;
+}
+.timeline-v2-item:nth-child(odd) {
+  padding-right: calc(50% + 40px);
+}
+.timeline-v2-item:nth-child(even) {
+  padding-left: calc(50% + 40px);
+}
+.timeline-v2-time {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 24px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #4a5d68;
+  background: var(--bg-pale-cyan);
+  padding: 3px 10px;
+  z-index: 2;
+  line-height: 1;
+  letter-spacing: 0.5px;
+}
+.timeline-v2-item:nth-child(odd)::after {
+  content: '';
+  position: absolute;
+  top: 30px;
+  height: 1.5px;
+  background: #cddae0;
+  right: calc(50% + 10px);
+  width: 30px;
+}
+.timeline-v2-item:nth-child(even)::after {
+  content: '';
+  position: absolute;
+  top: 30px;
+  height: 1.5px;
+  background: #cddae0;
+  left: calc(50% + 10px);
+  width: 30px;
+}
+.timeline-v2-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 14px 18px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+}
+.timeline-v2-item:nth-child(odd) .timeline-v2-card {
+  border-right: 3px solid var(--primary);
+}
+.timeline-v2-item:nth-child(even) .timeline-v2-card {
+  border-left: 3px solid var(--primary);
+}
+.timeline-v2-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 5px;
+}
+.timeline-v2-desc {
+  font-size: 13px;
+  color: var(--text-sub);
+  line-height: 1.6;
+}
+</style>
+</head>
+<body class="target-nc">
+<script>(function(){var t=localStorage.getItem('nagaoka_target');if(t&&['hs','nc','tr'].indexOf(t)>=0)document.body.className='target-'+t;else window.location.replace('nagaoka-workstyle-gateway.html');}());</script>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <a href="index.html" class="header-logo">長岡<span>ワークスタイル</span></a>
+  <nav class="header-nav">
+    <a href="index.html">トップ</a>
+    <a href="nagaoka-workstyle-list.html">企業を探す</a>
+  </nav>
+  <div class="header-right">
+    <a href="nagaoka-workstyle-gateway.html" class="change-target-link">対象を変更</a>
+    <button class="icon-btn" title="ブックマーク" onclick="alert('ブックマークしました')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- ===== BREADCRUMB ===== -->
+<nav class="breadcrumb">
+  <a href="index.html">トップ</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="nagaoka-workstyle-list.html">企業を探す</a>
+  <span class="breadcrumb-sep">›</span>
+  <span>長岡テクノロジーズ</span>
+</nav>
+
+<!-- ===== COMPANY BANNER IMAGE ===== -->
+<div class="company-banner">
+  <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1400&h=480&fit=crop&crop=right" alt="長岡テクノロジーズ ITオフィス">
+  <div class="company-banner-overlay"></div>
+  <div class="banner-catchphrase">
+    <div class="banner-co-en">NAGAOKA TECHNOLOGIES</div>
+    <div class="banner-catch-text">テクノロジーで、<br>長岡の未来をつくる</div>
+  </div>
+</div>
+
+<!-- ===== HERO SECTION ===== -->
+<section class="hero-section">
+  <div class="hero-inner">
+    <!-- LEFT: Company logo + Vertical video -->
+    <div class="hero-video-col">
+      <!-- 会社ロゴ -->
+      <div class="company-logo-box">
+        <div class="company-logo-placeholder">
+          <span style="font-family:'Montserrat',sans-serif; font-weight:800; font-size:22px; color:var(--primary); letter-spacing:-1px;">N</span>
+        </div>
+      </div>
+      <!-- 縦型動画（スライド） -->
+      <div class="vvideo-wrap">
+        <button class="carousel-arrow carousel-arrow-left" onclick="slideVideo(-1)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="vvideo-carousel" id="vvideoCarousel">
+          <div class="vertical-video" onclick="alert('動画再生（デモ）')">
+            <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
+            <div class="video-label">職場紹介</div>
+          </div>
+          <div class="vertical-video" onclick="alert('動画再生（デモ）')" style="background:linear-gradient(160deg,#1e3a2e 0%,#0d2a1e 60%,#2ea87c 100%); border-color:#2ea87c;">
+            <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
+            <div class="video-label">エンジニアの声</div>
+          </div>
+          <div class="vertical-video" onclick="alert('動画再生（デモ）')" style="background:linear-gradient(160deg,#2e1e3a 0%,#1e0d2a 60%,#8c2ea8 100%); border-color:#8c2ea8;">
+            <div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
+            <div class="video-label">開発の現場</div>
+          </div>
+        </div>
+        <button class="carousel-arrow carousel-arrow-right" onclick="slideVideo(1)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- RIGHT: Company info -->
+    <div class="hero-info-col">
+      <h1 class="company-name">
+        <small>NAGAOKA TECHNOLOGIES</small>
+        長岡テクノロジーズ
+      </h1>
+      <div class="tag-chips">
+        <span class="tag-chip">地元密着</span>
+        <span class="tag-chip">IT・Web</span>
+        <span class="tag-chip">正社員</span>
+        <span class="tag-chip">リモート可</span>
+        <span class="tag-chip">フレックス</span>
+      </div>
+      <p class="catchphrase">テクノロジーで、長岡の未来をつくる</p>
+
+      <!-- HS VERSION -->
+      <div class="for-hs">
+        <!-- 勤務地 + 見学バッジ を横並び -->
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; flex-wrap:wrap;">
+          <div class="info-row" style="margin-bottom:0;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span style="font-size:13px;">長岡市大手通り</span>
+          </div>
+          <div class="visit-badge" style="margin-bottom:0;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            見学受付中
+          </div>
+        </div>
+        <!-- 通勤手段アイコン（テキスト最小化） -->
+        <div class="access-row">
+          <div class="access-badge" title="バス通勤可">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M7 18v2M17 18v2"/></svg>
+            バス
+          </div>
+          <div class="access-badge" title="自転車通勤可">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6a1 1 0 100-2 1 1 0 000 2zm-3 11.5V14l-3-3 4-3 2 3h2"/></svg>
+            自転車
+          </div>
+          <div class="access-badge" title="車通勤可・無料駐車場あり">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><rect x="1" y="8" width="22" height="12" rx="2"/><path d="M5 8V6a2 2 0 012-2h10a2 2 0 012 2v2"/><circle cx="7" cy="17" r="1.5"/><circle cx="17" cy="17" r="1.5"/></svg>
+            車（無料P）
+          </div>
+        </div>
+        <!-- 仕事の特徴アイコンタグ -->
+        <div class="feature-tags">
+          <span class="feature-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> プログラミング</span>
+          <span class="feature-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> 品質チェック</span>
+          <span class="feature-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg> チームワーク</span>
+          <span class="feature-tag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> PC作業</span>
+        </div>
+        <div class="cta-area">
+          <div class="cta-row">
+            <a href="#" class="btn-primary" onclick="openModal('visitModal'); return false;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              見学を申し込む
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- NC VERSION -->
+      <div class="for-nc">
+        <div class="recruit-badge">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          新卒採用 積極募集中
+        </div>
+        <div class="feature-tags" style="margin-bottom:12px;">
+          <span class="feature-tag">Webエンジニア</span>
+          <span class="feature-tag">UIデザイナー</span>
+          <span class="feature-tag">インフラエンジニア</span>
+        </div>
+        <div class="info-grid-2">
+          <div class="info-card-mini">
+            <div class="label">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              勤務地
+            </div>
+            <div class="value">長岡市大手通り</div>
+          </div>
+          <div class="info-card-mini">
+            <div class="label">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              給与
+            </div>
+            <div class="value">月給 240,000円〜</div>
+          </div>
+          <div class="info-card-mini">
+            <div class="label">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              休日
+            </div>
+            <div class="value">年間125日・完全週休2日</div>
+          </div>
+          <div class="info-card-mini">
+            <div class="label">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+              福利厚生
+            </div>
+            <div class="value">社宅・育休実績あり</div>
+          </div>
+        </div>
+        <div class="access-row" style="margin-bottom:10px;">
+          <div class="access-badge" title="チームワークな職場">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            チームワーク
+          </div>
+          <div class="access-badge" title="3ヶ月研修制度あり">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            研修6ヶ月
+          </div>
+          <div class="access-badge" title="20代社員30%・若手活躍中">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            若手活躍
+          </div>
+        </div>
+        <div class="cta-area" style="margin-top:14px;">
+          <div class="cta-row" style="gap:10px;">
+            <a href="#" class="btn-primary" style="flex:1; justify-content:center;" onclick="openModal('applyModal'); return false;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+              応募する
+            </a>
+            <a href="#" class="btn-outline" style="flex:1; justify-content:center; border-color:var(--accent); color:var(--accent);" onclick="alert('インターンシップ申込フォームへ移動します'); return false;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              インターンに応募
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- TR VERSION -->
+      <div class="for-tr">
+        <div class="salary-large">
+          月給 240,000 〜 420,000 円
+          <small>（経験・能力考慮）</small>
+        </div>
+        <div class="annual-income-row">
+          <span class="annual-income-label">年収目安</span>
+          <span class="annual-income-value">約360万〜620万円</span>
+        </div>
+        <div class="info-row">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>新潟県長岡市大手通り2丁目 ／ 車通勤可</span>
+        </div>
+        <div class="info-row">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span>年間125日・完全週休2日・夏季年末年始</span>
+        </div>
+        <div class="info-row">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>残業 月平均10時間 ／ フレックスあり</span>
+        </div>
+        <div class="welfare-chips">
+          <span class="welfare-chip">リモート可</span>
+          <span class="welfare-chip">スキルアップ支援</span>
+          <span class="welfare-chip">育休・産休実績</span>
+          <span class="welfare-chip">ストックオプション</span>
+        </div>
+        <div class="cta-area">
+          <div class="cta-row" style="gap:10px;">
+            <a href="#" class="btn-primary" style="flex:1; justify-content:center;" onclick="openModal('applyModal'); return false;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+              応募する
+            </a>
+            <a href="#" class="btn-outline" style="flex:1; justify-content:center;" onclick="alert('カジュアル面談の申込フォームへ移動します'); return false;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              カジュアル面談
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Common sub actions + いいね -->
+      <div class="cta-sub-actions" style="margin-top:12px; align-items:center;">
+        <button class="like-btn" id="likeBtn" onclick="toggleLike()" aria-label="いいね">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" id="likeIcon"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          <span id="likeTxt">気になる</span>
+          <span class="like-count" id="likeCount">63</span>
+        </button>
+        <button class="sub-action-btn" onclick="alert('ブックマークしました')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
+          ブックマーク
+        </button>
+        <button class="sub-action-btn" onclick="alert('シェアリンクをコピーしました')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          シェア
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HORIZONTAL VIDEO SECTION ===== -->
+<section class="horiz-video-section">
+  <div class="horiz-video-label">Company Videos</div>
+  <div class="hvideo-carousel">
+    <div class="horiz-video-wrap" onclick="alert('動画再生（デモ）')">
+      <div class="play-btn" style="width:64px; height:64px;"><svg width="28" height="28" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
+      <div style="font-size:15px; color:rgba(255,255,255,0.8); font-weight:600; font-family:'Noto Sans JP',sans-serif; position:relative; z-index:1;">会社紹介動画</div>
+      <div class="horiz-video-caption">オフィスとエンジニアの雰囲気</div>
+    </div>
+    <div class="horiz-video-wrap" onclick="alert('動画再生（デモ）')" style="background:linear-gradient(135deg,#0d1a2e 0%,#1a2e4a 50%,#2e6aa8 100%);">
+      <div class="play-btn" style="width:64px; height:64px;"><svg width="28" height="28" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
+      <div style="font-size:15px; color:rgba(255,255,255,0.8); font-weight:600; font-family:'Noto Sans JP',sans-serif; position:relative; z-index:1;">エンジニアインタビュー</div>
+      <div class="horiz-video-caption">技術と成長について語る</div>
+    </div>
+    <div class="horiz-video-wrap" onclick="alert('動画再生（デモ）')" style="background:linear-gradient(135deg,#1a0d2e 0%,#2e1a4a 50%,#6a2ea8 100%);">
+      <div class="play-btn" style="width:64px; height:64px;"><svg width="28" height="28" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
+      <div style="font-size:15px; color:rgba(255,255,255,0.8); font-weight:600; font-family:'Noto Sans JP',sans-serif; position:relative; z-index:1;">開発現場ツアー</div>
+      <div class="horiz-video-caption">実際の開発環境を紹介</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TARGET HIGHLIGHT SECTION ===== -->
+<section class="section highlight-section">
+  <div class="container">
+
+    <!-- HS -->
+    <div class="for-hs">
+      <h2 class="section-title">この会社はどんな職場？</h2>
+      <div class="point-list">
+      <div class="point-item">
+        <div class="point-icon-wrap">👀</div>
+        <div class="point-text">
+          <div class="point-heading">見学できます（受付中）</div>
+          <div class="point-sub">事前予約でOK・オフィスを案内します</div>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-icon-wrap">🚶</div>
+        <div class="point-text">
+          <div class="point-heading">駅前から徒歩3分</div>
+          <div class="point-sub">長岡駅からすぐ・バス・自転車も可</div>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-icon-wrap">💻</div>
+        <div class="point-text">
+          <div class="point-heading">こんな仕事</div>
+          <div class="point-sub">Webサイト・アプリ開発・PCメインの作業</div>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-icon-wrap">👤</div>
+        <div class="point-text">
+          <div class="point-heading">こんな人に向いてる</div>
+          <div class="point-sub">PC・ゲーム好き・論理的思考が得意な人</div>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-icon-wrap">📊</div>
+        <div class="point-text">
+          <div class="point-heading">若い年齢層が中心</div>
+          <div class="point-sub">20〜30代が多い・チームで協力しながら作業</div>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-icon-wrap">🎓</div>
+        <div class="point-text">
+          <div class="point-heading">入社後6ヶ月の研修あり</div>
+          <div class="point-sub">プログラミング基礎から教える・未経験でもOK</div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <!-- NC -->
+    <div class="for-nc">
+      <h2 class="section-title">新卒で選ぶ理由</h2>
+      <div class="point-list">
+      <div class="point-item">
+        <div class="point-icon-wrap">💻</div>
+        <div class="point-text">
+          <div class="point-heading">チームでつくる仕事</div>
+          <div class="point-sub">小規模チームで一人ひとりの裁量が大きい</div>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-icon-wrap">📈</div>
+        <div class="point-text">
+          <div class="point-heading">成長できる環境</div>
+          <div class="point-sub">スキルアップ支援・外部研修・書籍購入補助あり</div>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-icon-wrap">🚶</div>
+        <div class="point-text">
+          <div class="point-heading">駅前立地・フレックス勤務</div>
+          <div class="point-sub">長岡駅徒歩3分・フレックスで自分のペースで</div>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-icon-wrap">⭐</div>
+        <div class="point-text">
+          <div class="point-heading">若手エンジニアが活躍</div>
+          <div class="point-sub">入社2年でプロジェクトリーダーになった例も</div>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-icon-wrap">📚</div>
+        <div class="point-text">
+          <div class="point-heading">入社後6ヶ月の研修</div>
+          <div class="point-sub">プログラミング〜設計まで段階的に習得できる</div>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-icon-wrap">🚀</div>
+        <div class="point-text">
+          <div class="point-heading">多様なキャリアパス</div>
+          <div class="point-sub">エンジニア・マネージャー・技術士など幅広い選択肢</div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <!-- TR -->
+    <div class="for-tr">
+      <h2 class="section-title">転職するなら注目のポイント</h2>
+      <div class="point-list">
+      <div class="point-item">
+        <div class="point-icon-wrap">💰</div>
+        <div class="point-text">
+          <div class="point-heading">月給 240,000〜420,000円</div>
+          <div class="point-sub">スキル・経験を考慮して決定</div>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-icon-wrap">📅</div>
+        <div class="point-text">
+          <div class="point-heading">年間休日 125日</div>
+          <div class="point-sub">完全週休2日・祝日・夏季・年末年始</div>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-icon-wrap">⏱</div>
+        <div class="point-text">
+          <div class="point-heading">残業 月平均10時間</div>
+          <div class="point-sub">フレックスあり・ノー残業デーを設定</div>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-icon-wrap">🏠</div>
+        <div class="point-text">
+          <div class="point-heading">リモートワーク可</div>
+          <div class="point-sub">週2〜3日リモート・自宅作業環境補助あり</div>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-icon-wrap">🌴</div>
+        <div class="point-text">
+          <div class="point-heading">有給消化率 85%</div>
+          <div class="point-sub">取得推奨文化・気軽に取れる雰囲気</div>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-icon-wrap">📈</div>
+        <div class="point-text">
+          <div class="point-heading">即戦力エンジニア歓迎</div>
+          <div class="point-sub">前職スキルをすぐ活かせる少数精鋭チーム</div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== こんな人におすすめ SECTION ===== -->
+<section class="section recommend-section">
+  <div class="container">
+    <h2 class="section-title">こんな人におすすめ</h2>
+    <div class="recommend-grid">
+      <div class="recommend-item"><div class="recommend-icon">💻</div><div class="recommend-label">IT・プログラミングが好き</div></div>
+      <div class="recommend-item"><div class="recommend-icon">🏡</div><div class="recommend-label">地元・長岡でキャリアを積みたい</div></div>
+      <div class="recommend-item"><div class="recommend-icon">🚀</div><div class="recommend-label">スタートアップ的な環境で成長したい</div></div>
+      <div class="recommend-item"><div class="recommend-icon">🤝</div><div class="recommend-label">チームで課題を解決したい</div></div>
+      <div class="recommend-item"><div class="recommend-icon">📱</div><div class="recommend-label">リモートワークも活用したい</div></div>
+      <div class="recommend-item"><div class="recommend-icon">🎓</div><div class="recommend-label">新卒・インターンから始めたい</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="recruit-split">
+
+<!-- ===== VISIT INFO SECTION (高校生) ===== -->
+<section class="section visit-section for-hs" style="background:var(--bg-pale-cyan);">
+  <div class="container">
+    <h2 class="section-title">職場見学について</h2>
+    <div class="program-tabs-wrapper">
+  <div class="program-tab-bar">
+    <button class="program-tab active" onclick="switchProgram(this, 'tech-visit-v1')">オフィス見学（個人・少人数）</button>
+    <button class="program-tab " onclick="switchProgram(this, 'tech-visit-v2')">学校向け出張授業・見学</button>
+  </div>
+  <div class="program-panel active" id="tech-visit-v1">
+    <div class="prog-tags">
+      <div class="prog-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><div class="prog-tag-body"><span class="prog-tag-label">開催日時</span><span class="prog-tag-value">平日 13:00〜14:30（要予約）</span></div></div>
+      <div class="prog-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div class="prog-tag-body"><span class="prog-tag-label">所要時間</span><span class="prog-tag-value">約1.5時間</span></div></div>
+      <div class="prog-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><div class="prog-tag-body"><span class="prog-tag-label">場所</span><span class="prog-tag-value">長岡市大手通り（長岡駅 徒歩3分）</span></div></div>
+      <div class="prog-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg><div class="prog-tag-body"><span class="prog-tag-label">参加費</span><span class="prog-tag-value">無料</span></div></div>
+      <div class="prog-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg><div class="prog-tag-body"><span class="prog-tag-label">同伴</span><span class="prog-tag-value">保護者・先生 OK</span></div></div>
+      <div class="prog-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><div class="prog-tag-body"><span class="prog-tag-label">申込</span><span class="prog-tag-value">Webフォーム（3営業日前まで）</span></div></div>
+    </div>
+    <div class="program-desc">
+      <h4>仕事内容・プログラム概要</h4>
+      <p>開発フロア・ミーティングルーム・ラウンジを見学できます。実際にエンジニアが働いている環境をご覧いただきながら、「IT企業のリアル」を感じていただける内容です。</p><p>「プログラミングを勉強していないと来づらい？」という心配は不要です。IT業界への興味があれば誰でも歓迎します。</p>
+    </div>
+    <div class="program-schedule">
+      <h4>スケジュール</h4>
+      <div class="schedule-list">
+        <div class="schedule-item">
+          <div class="sch-time">13:00</div>
+          <div><div class="sch-content">受付・会社説明</div><div class="sch-sub">会社概要・ITの仕事をわかりやすく説明</div></div>
+        </div>
+        <div class="schedule-item">
+          <div class="sch-time">13:20</div>
+          <div><div class="sch-content">オフィス見学</div><div class="sch-sub">開発フロア・ミーティングルーム・ラウンジ</div></div>
+        </div>
+        <div class="schedule-item">
+          <div class="sch-time">13:50</div>
+          <div><div class="sch-content">エンジニアとのQ&Aタイム</div><div class="sch-sub">現役エンジニアに仕事・学生時代・スキルについて何でも質問</div></div>
+        </div>
+        <div class="schedule-item">
+          <div class="sch-time">14:20</div>
+          <div><div class="sch-content">クロージング・アンケート</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="program-note">💻 当日はPCを操作する場面はありません。服装も自由です。気軽にお越しください。</div>
+    <div class="prog-benefit">
+      <div class="prog-benefit-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#b05010" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>特典・優遇</div>
+      <p>見学後、エンジニアとの個別Q&Aタイムあり</p>
+    </div>
+    <div class="program-cta-row">
+      <div class="program-cta-info">申込締切：<strong>見学希望日の3営業日前</strong></div>
+      <a href="#" class="btn-primary" style="white-space:nowrap;flex-shrink:0;" onclick="openModal('visitModal'); return false;">
+        見学を申し込む
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="program-panel " id="tech-visit-v2">
+    <div class="prog-tags">
+      <div class="prog-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg><div class="prog-tag-body"><span class="prog-tag-label">開催形式</span><span class="prog-tag-value">来訪 or 出張授業（選択可）</span></div></div>
+      <div class="prog-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div class="prog-tag-body"><span class="prog-tag-label">所要時間</span><span class="prog-tag-value">90〜180分（調整可）</span></div></div>
+      <div class="prog-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><div class="prog-tag-body"><span class="prog-tag-label">場所</span><span class="prog-tag-value">本社オフィス or 学校（相談）</span></div></div>
+      <div class="prog-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg><div class="prog-tag-body"><span class="prog-tag-label">参加費</span><span class="prog-tag-value">無料</span></div></div>
+      <div class="prog-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><div class="prog-tag-body"><span class="prog-tag-label">申込</span><span class="prog-tag-value">先生から電話・メール</span></div></div>
+    </div>
+    <div class="program-desc">
+      <h4>仕事内容・プログラム概要</h4>
+      <p>IT業界への理解を深める授業・見学プログラムを学校のカリキュラムに合わせて柔軟に提供します。「プログラミングとは？」「IT企業での仕事は？」といった基礎的な疑問から、実際の開発現場の話まで対応可能です。</p>
+    </div>
+    <div class="program-note">📌 内容のカスタマイズはお気軽にご相談ください。学年・進路指導の状況に合わせて対応します。</div>
+    <div class="program-cta-row">
+      <div class="program-cta-info">まずはお気軽にご相談ください</div>
+      <a href="#" class="btn-primary" style="white-space:nowrap;flex-shrink:0;" onclick="openModal('visitModal'); return false;">
+        お問い合わせ
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+  </div>
+</section>
+
+
+<!-- ===== INTERNSHIP SECTION (新卒) ===== -->
+<section class="section internship-section for-nc" style="background:#fff;">
+  <div class="container">
+    <h2 class="section-title">インターンシップ</h2>
+    <div class="program-tabs-wrapper">
+  <div class="program-tab-bar">
+    <button class="program-tab active" onclick="switchProgram(this, 'tech-intern-i1')">1day エンジニア体験</button>
+    <button class="program-tab " onclick="switchProgram(this, 'tech-intern-i2')">短期インターン（2週間）</button>
+    <button class="program-tab " onclick="switchProgram(this, 'tech-intern-i3')">長期インターン（1ヶ月〜通年）</button>
+  </div>
+  <div class="program-panel active" id="tech-intern-i1">
+    <h3 class="program-panel-title">1day エンジニア体験</h3>
+    <div class="prog-tags">
+      <div class="prog-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><div class="prog-tag-body"><span class="prog-tag-label">開催時期</span><span class="prog-tag-value">年3〜4回（3・6・8・12月）</span></div></div>
+      <div class="prog-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div class="prog-tag-body"><span class="prog-tag-label">期間</span><span class="prog-tag-value">1日 10:00〜17:30</span></div></div>
+      <div class="prog-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><div class="prog-tag-body"><span class="prog-tag-label">場所</span><span class="prog-tag-value">長岡市大手通り（長岡駅 徒歩3分）</span></div></div>
+      <div class="prog-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg><div class="prog-tag-body"><span class="prog-tag-label">費用</span><span class="prog-tag-value">無料（交通費支給）</span></div></div>
+      <div class="prog-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg><div class="prog-tag-body"><span class="prog-tag-label">選考</span><span class="prog-tag-value">なし・先着順</span></div></div>
+    </div>
+    <div class="program-desc">
+      <h4>仕事内容・プログラム概要</h4>
+      <p>Webサービスを実際に作る1dayプログラムです。チームに分かれて簡単なWebページを作り、社内でデモ発表します。コードを一切書いたことがない方向けのチームと、経験者向けのチームに分かれて進めます。</p>
+    </div>
+    <div class="program-schedule">
+      <h4>スケジュール</h4>
+      <div class="schedule-list">
+        <div class="schedule-item">
+          <div class="sch-time">10:00</div>
+          <div><div class="sch-content">オリエンテーション・チーム分け</div><div class="sch-sub">会社説明・1日の流れ・チームメンバー紹介</div></div>
+        </div>
+        <div class="schedule-item">
+          <div class="sch-time">10:30</div>
+          <div><div class="sch-content">ミニ講義「Webはどう動いているか」</div><div class="sch-sub">図解でわかりやすく解説。質問OK</div></div>
+        </div>
+        <div class="schedule-item">
+          <div class="sch-time">11:00</div>
+          <div><div class="sch-content">チーム開発ワーク（前半）</div><div class="sch-sub">課題に沿ってHTMLとCSSを触る体験</div></div>
+        </div>
+        <div class="schedule-item">
+          <div class="sch-time">12:00</div>
+          <div><div class="sch-content">昼食（会社負担）</div><div class="sch-sub">社員と一緒に近くのカフェまたは社内ラウンジ</div></div>
+        </div>
+        <div class="schedule-item">
+          <div class="sch-time">13:00</div>
+          <div><div class="sch-content">チーム開発ワーク（後半）</div><div class="sch-sub">機能追加・デザイン改善・発表準備</div></div>
+        </div>
+        <div class="schedule-item">
+          <div class="sch-time">15:30</div>
+          <div><div class="sch-content">デモ発表</div><div class="sch-sub">チームごとに作ったものを発表。エンジニアからフィードバック</div></div>
+        </div>
+        <div class="schedule-item">
+          <div class="sch-time">16:30</div>
+          <div><div class="sch-content">先輩エンジニアとのQ&A</div><div class="sch-sub">仕事・キャリア・待遇など何でも質問</div></div>
+        </div>
+        <div class="schedule-item">
+          <div class="sch-time">17:30</div>
+          <div><div class="sch-content">解散</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="prog-benefit">
+      <div class="prog-benefit-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#b05010" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>特典・優遇</div>
+      <p>参加証明書を発行。採用本選考での参照あり（強制ではありません）</p>
+    </div>
+    <div class="program-cta-row">
+      <div class="program-cta-info">次回開催：<strong>2026年6月（詳細調整中）</strong></div>
+      <a href="#" class="btn-primary" style="white-space:nowrap;flex-shrink:0;" onclick="openModal('applyModal'); return false;">
+        参加を申し込む
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="program-panel " id="tech-intern-i2">
+    <h3 class="program-panel-title">短期インターン（2週間）</h3>
+    <div class="prog-tags">
+      <div class="prog-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><div class="prog-tag-body"><span class="prog-tag-label">開催時期</span><span class="prog-tag-value">8〜9月・2〜3月（年2回）</span></div></div>
+      <div class="prog-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div class="prog-tag-body"><span class="prog-tag-label">期間</span><span class="prog-tag-value">2週間（平日、フレックス相談可）</span></div></div>
+      <div class="prog-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><div class="prog-tag-body"><span class="prog-tag-label">場所</span><span class="prog-tag-value">本社オフィス ／ リモート可</span></div></div>
+      <div class="prog-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg><div class="prog-tag-body"><span class="prog-tag-label">費用</span><span class="prog-tag-value">無料（交通費・昼食支給）</span></div></div>
+      <div class="prog-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg><div class="prog-tag-body"><span class="prog-tag-label">選考</span><span class="prog-tag-value">ポートフォリオ ＋ Web面談</span></div></div>
+    </div>
+    <div class="program-desc">
+      <h4>仕事内容・プログラム概要</h4>
+      <p>実際のプロジェクトにメンバーとしてアサインされます。GitHubを使ったチーム開発・コードレビュー・毎朝のスタンドアップミーティングなど、現場と同じ環境で2週間働きます。</p><p>「コードが書けないと参加できない？」という心配はありません。デザイン・ドキュメント整理・テスト・調査など、コーディング以外の役割も豊富にあります。</p>
+    </div>
+    <div class="program-schedule">
+      <h4>スケジュール</h4>
+      <div class="schedule-list">
+        <div class="schedule-item">
+          <div class="sch-time">Week 1前半</div>
+          <div><div class="sch-content">環境構築・オンボーディング</div><div class="sch-sub">開発環境のセットアップ・チームへの参加・コードベースの把握</div></div>
+        </div>
+        <div class="schedule-item">
+          <div class="sch-time">Week 1後半</div>
+          <div><div class="sch-content">初タスクのアサイン・実装開始</div><div class="sch-sub">Issueから担当タスクを選び実装。レビューを受ける</div></div>
+        </div>
+        <div class="schedule-item">
+          <div class="sch-time">Week 2前半</div>
+          <div><div class="sch-content">継続開発・機能追加</div><div class="sch-sub">前週の続きまたは新しいタスク。自走できる部分を増やす</div></div>
+        </div>
+        <div class="schedule-item">
+          <div class="sch-time">Week 2後半</div>
+          <div><div class="sch-content">成果まとめ・社内発表</div><div class="sch-sub">2週間の取り組みをスライドにまとめて全社デモ発表</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="program-note">🌐 リモート参加の場合はSlack・Notionで全コミュニケーションを行います。地方からでも参加可能です。</div>
+    <div class="prog-benefit">
+      <div class="prog-benefit-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#b05010" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>特典・優遇</div>
+      <p>本選考での書類選考免除。修了証明書を発行</p>
+    </div>
+    <div class="program-cta-row">
+      <div class="program-cta-info">応募締切：<strong>開催3週間前まで</strong></div>
+      <a href="#" class="btn-primary" style="white-space:nowrap;flex-shrink:0;" onclick="openModal('applyModal'); return false;">
+        参加を申し込む
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="program-panel " id="tech-intern-i3">
+    <h3 class="program-panel-title">長期インターン（1ヶ月〜通年）</h3>
+    <div class="prog-tags">
+      <div class="prog-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><div class="prog-tag-body"><span class="prog-tag-label">開催時期</span><span class="prog-tag-value">通年受付（開始時期は相談）</span></div></div>
+      <div class="prog-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div class="prog-tag-body"><span class="prog-tag-label">期間</span><span class="prog-tag-value">1ヶ月〜（上限なし）</span></div></div>
+      <div class="prog-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><div class="prog-tag-body"><span class="prog-tag-label">場所</span><span class="prog-tag-value">本社オフィス ／ フルリモートも応相談</span></div></div>
+      <div class="prog-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg><div class="prog-tag-body"><span class="prog-tag-label">報酬</span><span class="prog-tag-value">有償（時給1,200円〜）</span></div></div>
+      <div class="prog-tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ea7c8" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg><div class="prog-tag-body"><span class="prog-tag-label">選考</span><span class="prog-tag-value">カジュアル面談 → 課題 → 最終面談</span></div></div>
+    </div>
+    <div class="program-desc">
+      <h4>仕事内容・プログラム概要</h4>
+      <p>長期インターンは「学生アルバイト」ではなく「正社員に近い立場でプロジェクトを担う」ポジションです。担当プロジェクトを持ち、コードレビュー・仕様検討・リリース判断まで責任を持って関わります。</p><p>過去の長期インターン生のほぼ全員がそのまま入社しています。「とにかく早く成長したい」「現場で揉まれたい」という学生を歓迎します。</p>
+    </div>
+    <div class="program-note">✅ 週10時間〜から参加可能。学業優先のスケジュールにも対応します。まずはカジュアル面談でお気軽にご相談ください。</div>
+    <div class="prog-benefit">
+      <div class="prog-benefit-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#b05010" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>特典・優遇</div>
+      <p>採用本選考の全工程免除。実質内定ルートとして機能</p>
+    </div>
+    <div class="program-cta-row">
+      <div class="program-cta-info">随時受付中</div>
+      <a href="#" class="btn-primary" style="white-space:nowrap;flex-shrink:0;" onclick="openModal('applyModal'); return false;">
+        カジュアル面談を申し込む
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+  </div>
+</section>
+
+
+<!-- ===== JOB LISTINGS SECTION ===== -->
+<section class="section job-section">
+  <div class="container">
+    <h2 class="section-title">募集中の職種</h2>
+    <div class="program-tabs-wrapper">
+      <div class="program-tab-bar">
+        <button class="program-tab active" onclick="switchProgram(this, 'nt-job-j1')">製造スタッフ｜未経験OK</button>
+        <button class="program-tab" onclick="switchProgram(this, 'nt-job-j2')">品質管理｜土日祝休み</button>
+        <button class="program-tab" onclick="switchProgram(this, 'nt-job-j3')">設備管理｜資格手当あり</button>
+      </div>
+
+      <!-- Job 1 -->
+      <div class="program-panel active" id="nt-job-j1">
+        <div class="job-panel-header">
+          <div class="job-catchcopy">未経験大歓迎！長岡から"ものづくり"のプロへ。充実した研修と資格支援で、入社初日から安心してスタートできます。</div>
+          <div class="job-appeal-tags">
+            <span class="job-appeal-tag">未経験OK</span>
+            <span class="job-appeal-tag">社宅完備</span>
+            <span class="job-appeal-tag">残業代全額支給</span>
+            <span class="job-appeal-tag">資格取得支援</span>
+          </div>
+          <div class="job-title-row">
+            <span class="employment-badge">正社員</span>
+            <div class="job-title">金属プレスオペレーター</div>
+          </div>
+          <div class="job-meta">月給 240,000円〜 ／ 長岡市大手通り</div>
+        </div>
+        <div class="job-detail-grid">
+          <div class="job-detail-item">
+            <div class="jd-label">仕事内容</div>
+            <div class="jd-value">プレス機による金属加工。セットアップから品質確認まで担当。未経験歓迎。</div>
+          </div>
+          <div class="job-detail-item">
+            <div class="jd-label">勤務時間</div>
+            <div class="jd-value">8:00〜17:00（休憩60分）</div>
+          </div>
+          <div class="job-detail-item">
+            <div class="jd-label">応募資格</div>
+            <div class="jd-value">高卒以上。普通自動車免許あれば尚可。</div>
+          </div>
+          <div class="job-detail-item">
+            <div class="jd-label">求める人材</div>
+            <div class="jd-value">ものづくりに興味がある、コツコツ取り組める方。</div>
+          </div>
+        </div>
+        <div class="job-card-footer">
+          <div class="for-ntr">
+            <a href="#" class="btn-primary" style="font-size:14px; padding:10px 22px;" onclick="openModal('applyModal'); return false;">応募する</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Job 2 -->
+      <div class="program-panel" id="nt-job-j2">
+        <div class="job-panel-header">
+          <div class="job-catchcopy">土日祝休み＆残業少なめ。プライベートも大切にしながら、品質管理のスペシャリストとして着実にキャリアを積めます。</div>
+          <div class="job-appeal-tags">
+            <span class="job-appeal-tag">土日祝休み</span>
+            <span class="job-appeal-tag">残業少なめ</span>
+            <span class="job-appeal-tag">資格手当あり</span>
+            <span class="job-appeal-tag">制服支給</span>
+          </div>
+          <div class="job-title-row">
+            <span class="employment-badge">正社員</span>
+            <div class="job-title">品質管理スタッフ</div>
+          </div>
+          <div class="job-meta">月給 220,000円〜 ／ 長岡市大手通り</div>
+        </div>
+        <div class="job-detail-grid">
+          <div class="job-detail-item">
+            <div class="jd-label">仕事内容</div>
+            <div class="jd-value">製品の寸法・外観検査、検査記録の作成・管理、品質改善提案など。</div>
+          </div>
+          <div class="job-detail-item">
+            <div class="jd-label">勤務時間</div>
+            <div class="jd-value">8:00〜17:00（休憩60分）</div>
+          </div>
+          <div class="job-detail-item">
+            <div class="jd-label">応募資格</div>
+            <div class="jd-value">高卒以上。品質管理経験者歓迎。QC検定保有者優遇。</div>
+          </div>
+          <div class="job-detail-item">
+            <div class="jd-label">求める人材</div>
+            <div class="jd-value">細かい作業が得意、責任感がある方。</div>
+          </div>
+        </div>
+        <div class="job-card-footer">
+          <div class="for-ntr">
+            <a href="#" class="btn-primary" style="font-size:14px; padding:10px 22px;" onclick="openModal('applyModal'); return false;">応募する</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Job 3 -->
+      <div class="program-panel" id="nt-job-j3">
+        <div class="job-panel-header">
+          <div class="job-catchcopy">あなたの技術力を正当に評価します。電気・機械のスキルを活かして、工場設備のプロとして長く活躍しませんか。</div>
+          <div class="job-appeal-tags">
+            <span class="job-appeal-tag">資格保有者優遇</span>
+            <span class="job-appeal-tag">資格手当あり</span>
+            <span class="job-appeal-tag">スキルアップ研修</span>
+            <span class="job-appeal-tag">手に職がつく</span>
+          </div>
+          <div class="job-title-row">
+            <span class="employment-badge">正社員</span>
+            <div class="job-title">設備メンテナンス</div>
+          </div>
+          <div class="job-meta">月給 240,000円〜 ／ 長岡市大手通り</div>
+        </div>
+        <div class="job-detail-grid">
+          <div class="job-detail-item">
+            <div class="jd-label">仕事内容</div>
+            <div class="jd-value">プレス機・搬送設備の定期点検・修理。設備改善の提案・実施も担当。</div>
+          </div>
+          <div class="job-detail-item">
+            <div class="jd-label">勤務時間</div>
+            <div class="jd-value">8:00〜17:30（休憩90分）</div>
+          </div>
+          <div class="job-detail-item">
+            <div class="jd-label">応募資格</div>
+            <div class="jd-value">電気・機械系の知識がある方。電気工事士資格保有者優遇。</div>
+          </div>
+          <div class="job-detail-item">
+            <div class="jd-label">求める人材</div>
+            <div class="jd-value">問題解決が好き、機械いじりが得意な方。</div>
+          </div>
+        </div>
+        <div class="job-card-footer">
+          <div class="for-ntr">
+            <a href="#" class="btn-primary" style="font-size:14px; padding:10px 22px;" onclick="openModal('applyModal'); return false;">応募する</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /recruit-split -->
+
+<!-- ===== SELECTION FLOW SECTION ===== -->
+<section class="section flow-section for-ntr">
+  <div class="container">
+    <h2 class="section-title">選考フロー</h2>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-step-num">1</div>
+        <div class="flow-step-body">
+          <div class="flow-step-title">エントリー</div>
+          <div class="flow-step-desc">ハローワーク・当サイトからご応募（所要5分程度）</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">2</div>
+        <div class="flow-step-body">
+          <div class="flow-step-title">書類選考</div>
+          <div class="flow-step-desc">履歴書・職務経歴書を確認（3〜5営業日以内に結果通知）</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">3</div>
+        <div class="flow-step-body">
+          <div class="flow-step-title">一次面接</div>
+          <div class="flow-step-desc">人事担当者との面接（オンライン可・約45分）</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">4</div>
+        <div class="flow-step-body">
+          <div class="flow-step-title">最終面接</div>
+          <div class="flow-step-desc">役職者との面接＋社内・工場見学（約60分）</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">5</div>
+        <div class="flow-step-body">
+          <div class="flow-step-title">内定・入社</div>
+          <div class="flow-step-desc">オファーレター送付 → 入社日・条件を確定</div>
+        </div>
+      </div>
+    </div>
+    <div class="flow-casual-box for-tr">
+      <div class="flow-casual-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b05010" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        まずはカジュアル面談から
+      </div>
+      <p class="flow-casual-desc">選考なし・服装自由のカジュアル面談を随時実施しています。転職活動中でなくてもOK。会社の雰囲気や仕事内容、気になることを何でも聞いてください。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT SECTION ===== -->
+<section class="section about-section">
+  <div class="container">
+    <h2 class="section-title">企業の魅力</h2>
+    <div class="about-inner">
+      <div class="about-text">
+        <h3>長岡テクノロジーズについて</h3>
+        <p>
+          長岡市を拠点に金属プレス加工を専門とするメーカーです。自動車部品から建設機械部品まで、幅広い産業を支える精密部品を製造しています。
+        </p>
+        <p>
+          「地域とともに成長する企業」を理念に、品質へのこだわりと迅速な対応力で、地元企業との信頼関係を大切にしています。社宅制度や資格取得支援、育休取得実績など、働きやすさを重視した職場環境です。
+        </p>
+        <p style="margin-bottom:0;">
+          ものづくりを通じて長岡の産業と暮らしを支えるという使命のもと、これからも地域とともに歩み続けます。
+        </p>
+      </div>
+      <div class="photo-slider" id="aboutSliderTech">
+  <div class="photo-slider-track">
+    <div class="photo-slide">
+      <img src="https://picsum.photos/seed/office-tech/800/600" alt="オフィス" loading="lazy">
+      <div class="slide-caption">オフィス</div>
+    </div>
+    <div class="photo-slide">
+      <img src="https://picsum.photos/seed/devoffice1/800/600" alt="開発フロア" loading="lazy">
+      <div class="slide-caption">開発フロア</div>
+    </div>
+    <div class="photo-slide">
+      <img src="https://picsum.photos/seed/meetingroom1/800/600" alt="ミーティングルーム" loading="lazy">
+      <div class="slide-caption">ミーティングルーム</div>
+    </div>
+    <div class="photo-slide">
+      <img src="https://picsum.photos/seed/lounge-tech/800/600" alt="ラウンジ" loading="lazy">
+      <div class="slide-caption">ラウンジ</div>
+    </div>
+    <div class="photo-slide">
+      <img src="https://picsum.photos/seed/building-tech/800/600" alt="建物外観" loading="lazy">
+      <div class="slide-caption">建物外観</div>
+    </div>
+  </div>
+  <button class="slide-nav prev">&#8249;</button>
+  <button class="slide-nav next">&#8250;</button>
+  <div class="slide-dots"><button class="slide-dot"></button><button class="slide-dot"></button><button class="slide-dot"></button><button class="slide-dot"></button><button class="slide-dot"></button></div>
+</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WORKPLACE STATS BAR ===== -->
+<div class="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="stat-card">
+      <div class="stat-icon-wrap">📅</div>
+      <div>
+        <div class="stat-number">78<small>%</small></div>
+        <div class="stat-label">有給消化率</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon-wrap">⏱</div>
+      <div>
+        <div class="stat-number">18<small>h/月</small></div>
+        <div class="stat-label">平均残業時間</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon-wrap">👶</div>
+      <div>
+        <div class="stat-number">100<small>%</small></div>
+        <div class="stat-label">育休取得率</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon-wrap">📊</div>
+      <div>
+        <div class="stat-number">8.2<small>年</small></div>
+        <div class="stat-label">平均勤続年数</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon-wrap">🔄</div>
+      <div>
+        <div class="stat-number">42<small>%</small></div>
+        <div class="stat-label">中途採用比率</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon-wrap">⭐</div>
+      <div>
+        <div class="stat-number">4.2<small>/5</small></div>
+        <div class="stat-label">社員満足度</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== WELFARE FULL SECTION ===== -->
+<section class="section welfare-full-section">
+  <div class="container welfare-inner">
+    <h2 class="section-title">福利厚生</h2>
+
+    <!-- 給与・手当 -->
+    <div class="welfare-category">
+      <div class="welfare-cat-label">💰 給与・手当</div>
+      <div class="welfare-icon-grid">
+        <div class="welfare-icon-item">
+          <div class="welfare-icon-circle">🚗</div>
+          <div class="welfare-icon-label">交通費<br>全額支給</div>
+        </div>
+        <div class="welfare-icon-item">
+          <div class="welfare-icon-circle">📜</div>
+          <div class="welfare-icon-label">資格<br>手当</div>
+        </div>
+        <div class="welfare-icon-item">
+          <div class="welfare-icon-circle">💴</div>
+          <div class="welfare-icon-label">残業代<br>全額支給</div>
+        </div>
+        <div class="welfare-icon-item">
+          <div class="welfare-icon-circle">🎁</div>
+          <div class="welfare-icon-label">賞与<br>年2回</div>
+        </div>
+        <div class="welfare-icon-item">
+          <div class="welfare-icon-circle">💸</div>
+          <div class="welfare-icon-label">退職金<br>制度</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 住居・生活 -->
+    <div class="welfare-category">
+      <div class="welfare-cat-label">🏠 住居・生活</div>
+      <div class="welfare-icon-grid">
+        <div class="welfare-icon-item">
+          <div class="welfare-icon-circle">🏠</div>
+          <div class="welfare-icon-label">社宅<br>あり</div>
+        </div>
+        <div class="welfare-icon-item">
+          <div class="welfare-icon-circle">🅿️</div>
+          <div class="welfare-icon-label">無料<br>駐車場</div>
+        </div>
+        <div class="welfare-icon-item">
+          <div class="welfare-icon-circle">🍱</div>
+          <div class="welfare-icon-label">社員<br>食堂</div>
+        </div>
+        <div class="welfare-icon-item">
+          <div class="welfare-icon-circle">☕</div>
+          <div class="welfare-icon-label">休憩室<br>完備</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 育児・家族 -->
+    <div class="welfare-category">
+      <div class="welfare-cat-label">👶 育児・家族</div>
+      <div class="welfare-icon-grid">
+        <div class="welfare-icon-item">
+          <div class="welfare-icon-circle">🍼</div>
+          <div class="welfare-icon-label">産休<br>育休OK</div>
+        </div>
+        <div class="welfare-icon-item">
+          <div class="welfare-icon-circle">⏰</div>
+          <div class="welfare-icon-label">短時間<br>勤務</div>
+        </div>
+        <div class="welfare-icon-item">
+          <div class="welfare-icon-circle">👨‍👩‍👧</div>
+          <div class="welfare-icon-label">家族<br>手当</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 教育・成長 -->
+    <div class="welfare-category">
+      <div class="welfare-cat-label">📚 教育・成長</div>
+      <div class="welfare-icon-grid">
+        <div class="welfare-icon-item">
+          <div class="welfare-icon-circle">🎓</div>
+          <div class="welfare-icon-label">入社<br>研修</div>
+        </div>
+        <div class="welfare-icon-item">
+          <div class="welfare-icon-circle">✏️</div>
+          <div class="welfare-icon-label">資格取得<br>支援</div>
+        </div>
+        <div class="welfare-icon-item">
+          <div class="welfare-icon-circle">📖</div>
+          <div class="welfare-icon-label">書籍<br>購入補助</div>
+        </div>
+        <div class="welfare-icon-item">
+          <div class="welfare-icon-circle">🌐</div>
+          <div class="welfare-icon-label">外部研修<br>参加OK</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 健康・安心 -->
+    <div class="welfare-category">
+      <div class="welfare-cat-label">🏥 健康・安心</div>
+      <div class="welfare-icon-grid">
+        <div class="welfare-icon-item">
+          <div class="welfare-icon-circle">💊</div>
+          <div class="welfare-icon-label">健康診断<br>年1回</div>
+        </div>
+        <div class="welfare-icon-item">
+          <div class="welfare-icon-circle">👩‍⚕️</div>
+          <div class="welfare-icon-label">産業医<br>在籍</div>
+        </div>
+        <div class="welfare-icon-item">
+          <div class="welfare-icon-circle">🛡️</div>
+          <div class="welfare-icon-label">社会保険<br>完備</div>
+        </div>
+        <div class="welfare-icon-item">
+          <div class="welfare-icon-circle">🧘</div>
+          <div class="welfare-icon-label">メンタル<br>サポート</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== DAY IN THE LIFE ===== -->
+<section class="section day-section">
+  <div class="container">
+    <h2 class="section-title">1日の流れ</h2>
+    <div class="timeline-v2-header">
+      <div class="timeline-v2-profile">
+        <div class="timeline-v2-avatar">👩‍💻</div>
+        <div class="timeline-v2-profile-text">
+          <div class="timeline-v2-dept">開発部</div>
+          <div class="timeline-v2-pname">佐藤 美咲</div>
+          <div class="timeline-v2-prole">入社2年目のエンジニア</div>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-v2">
+      <div class="timeline-v2-item">
+        <div class="timeline-v2-time">09:00</div>
+        <div class="timeline-v2-card">
+          <div class="timeline-v2-title">出社・スタンドアップ</div>
+          <div class="timeline-v2-desc">チームのデイリーミーティング（15分）。前日の進捗・今日のタスクを共有。</div>
+        </div>
+      </div>
+      <div class="timeline-v2-item">
+        <div class="timeline-v2-time">09:30</div>
+        <div class="timeline-v2-card">
+          <div class="timeline-v2-title">コーディング・開発</div>
+          <div class="timeline-v2-desc">担当プロジェクトの実装。集中できる時間を大切に。リモートワーク可。</div>
+        </div>
+      </div>
+      <div class="timeline-v2-item">
+        <div class="timeline-v2-time">12:00</div>
+        <div class="timeline-v2-card">
+          <div class="timeline-v2-title">昼休憩</div>
+          <div class="timeline-v2-desc">近隣のカフェや社内のランチスペースで。14時頃まで自由な時間帯も。</div>
+        </div>
+      </div>
+      <div class="timeline-v2-item">
+        <div class="timeline-v2-time">13:00</div>
+        <div class="timeline-v2-card">
+          <div class="timeline-v2-title">コードレビュー・相談</div>
+          <div class="timeline-v2-desc">PR レビュー・ペアプロ・設計相談。メンバーとの議論を大切にしています。</div>
+        </div>
+      </div>
+      <div class="timeline-v2-item">
+        <div class="timeline-v2-time">15:00</div>
+        <div class="timeline-v2-card">
+          <div class="timeline-v2-title">顧客打ち合わせ・仕様確認</div>
+          <div class="timeline-v2-desc">オンラインor対面で要件整理。翌日の実装に備えてドキュメントを更新します。</div>
+        </div>
+      </div>
+      <div class="timeline-v2-item">
+        <div class="timeline-v2-time">18:00</div>
+        <div class="timeline-v2-card">
+          <div class="timeline-v2-title">退社</div>
+          <div class="timeline-v2-desc">残業は月平均10時間以下。フレックスを活用して早めに切り上げる社員も多数。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EMPLOYEE VOICES ===== -->
+<section class="section voices-section">
+  <div class="container">
+    <h2 class="section-title">先輩社員の声</h2>
+    <div class="voice-cards-compact">
+      <div class="voice-card-compact">
+        <img class="voice-avatar-img" src="https://picsum.photos/seed/worker-man45/100/100" alt="山田 拓也">
+        <div class="voice-content">
+          <div class="voice-name-sm">山田 拓也</div>
+          <div class="voice-meta-sm">入社5年 ／ 製造部 主任</div>
+          <p class="voice-quote-sm">最初は不安でしたが、先輩たちが丁寧に教えてくれて現場に慣れました。今では後輩を指導する立場になり、地元・長岡で働けることにやりがいを感じています。</p>
+        </div>
+      </div>
+      <div class="voice-card-compact">
+        <img class="voice-avatar-img" src="https://picsum.photos/seed/worker-woman28/100/100" alt="佐藤 美穂">
+        <div class="voice-content">
+          <div class="voice-name-sm">佐藤 美穂</div>
+          <div class="voice-meta-sm">入社2年 ／ 品質管理部</div>
+          <p class="voice-quote-sm">育休から復帰しやすい環境が整っていて助かりました。時短勤務の制度もあり、子育て中でも安心して働けています。先輩ママ社員に相談しやすいのが心強いです。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CLIENT VOICES ===== -->
+<section class="section client-section for-ntr">
+  <div class="container">
+    <h2 class="section-title">取引先の声</h2>
+    <div class="client-cards-compact">
+      <div class="client-card-compact">
+        <div class="client-qmark">"</div>
+        <div>
+          <p class="client-quote-sm">品質が安定しており、納期も確実。急な仕様変更にも柔軟に対応いただいています。</p>
+          <div class="client-name-sm">— 長岡機械工業株式会社 様</div>
+        </div>
+      </div>
+      <div class="client-card-compact">
+        <div class="client-qmark">"</div>
+        <div>
+          <p class="client-quote-sm">細かい仕様にも柔軟に対応いただけます。担当者の対応が誠実で、長期的にお付き合いしたい企業です。</p>
+          <div class="client-name-sm">— 越後鉄工所 様</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NOTE ARTICLES SECTION ===== -->
+<section class="section articles-section">
+  <div class="container">
+    <h2 class="section-title">長岡ワークスタイルの記事</h2>
+    <div class="article-cards-wrap">
+      <button class="carousel-arrow carousel-arrow-left" onclick="slideArticles(-1)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="article-cards" id="articleCards">
+      <div class="article-card" onclick="alert('記事ページへ（デモ）')">
+        <div class="article-thumb t1">IT現場レポート</div>
+        <div class="article-body">
+          <div class="article-tag">現場レポート</div>
+          <div class="article-title">長岡発のIT企業 — 長岡テクノロジーズの開発現場</div>
+          <div class="article-date">2026年2月14日</div>
+        </div>
+      </div>
+      <div class="article-card" onclick="alert('記事ページへ（デモ）')">
+        <div class="article-thumb t2">エンジニアインタビュー</div>
+        <div class="article-body">
+          <div class="article-tag">社員インタビュー</div>
+          <div class="article-title">地方ITエンジニアの働き方: 長岡でキャリアを積む意味</div>
+          <div class="article-date">2026年1月22日</div>
+        </div>
+      </div>
+      <div class="article-card" onclick="alert('記事ページへ（デモ）')">
+        <div class="article-thumb t3">職場見学レポート</div>
+        <div class="article-body">
+          <div class="article-tag">見学レポート</div>
+          <div class="article-title">オフィス見学レポート: 長岡テクノロジーズの職場環境</div>
+          <div class="article-date">2025年12月10日</div>
+        </div>
+      </div>
+      <div class="article-card" onclick="alert('記事ページへ（デモ）')">
+        <div class="article-thumb" style="background:linear-gradient(135deg,#1a1a5e,#2e2eba);">リモートと出社</div>
+        <div class="article-body">
+          <div class="article-tag">働き方コラム</div>
+          <div class="article-title">リモートワークと出社のバランス — 長岡IT企業の本音</div>
+          <div class="article-date">2025年11月30日</div>
+        </div>
+      </div>
+      <div class="article-card" onclick="alert('記事ページへ（デモ）')">
+        <div class="article-thumb" style="background:linear-gradient(135deg,#1a3a5e,#2e6aa8);">新卒採用の実態</div>
+        <div class="article-body">
+          <div class="article-tag">採用コラム</div>
+          <div class="article-title">新卒でITエンジニアを目指す — 長岡就職という選択肢</div>
+          <div class="article-date">2025年11月5日</div>
+        </div>
+      </div>
+    </div>
+      <button class="carousel-arrow carousel-arrow-right" onclick="slideArticles(1)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ===== FAQ SECTION ===== -->
+<section class="section faq-section">
+  <div class="container">
+    <h2 class="section-title">よくある質問</h2>
+    <div class="faq-list">
+
+      <div class="faq-item for-hs" id="faq1">
+        <div class="faq-question" onclick="toggleFaq('faq1')">
+          <div class="faq-q-mark">Q</div>
+          <span>見学はいつでもできますか？（高校生の方へ）</span>
+          <div class="faq-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+        <div class="faq-answer">
+          はい、平日であればご都合に合わせて随時受け付けています。事前にお申し込みいただければ、担当者がご案内します。学校の進路担当の先生も一緒にお越しいただけます。
+        </div>
+      </div>
+
+      <div class="faq-item" id="faq2">
+        <div class="faq-question" onclick="toggleFaq('faq2')">
+          <div class="faq-q-mark">Q</div>
+          <span>未経験でも応募できますか？</span>
+          <div class="faq-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+        <div class="faq-answer">
+          はい、大歓迎です。入社後の研修制度が充実しており、未経験の方でも安心してスタートできます。現在在籍する社員の約40%が未経験からのスタートです。
+        </div>
+      </div>
+
+      <div class="faq-item for-ntr" id="faq3">
+        <div class="faq-question" onclick="toggleFaq('faq3')">
+          <div class="faq-q-mark">Q</div>
+          <span>研修期間はどのくらいですか？</span>
+          <div class="faq-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+        <div class="faq-answer">
+          入社後まず3ヶ月間、座学と実技を組み合わせた研修を行います。安全教育・機械操作・品質基準などを体系的に学んでいただきます。その後OJTに移行し、先輩社員がそれぞれのペースに合わせてサポートします。
+        </div>
+      </div>
+
+      <div class="faq-item for-tr" id="faq4">
+        <div class="faq-question" onclick="toggleFaq('faq4')">
+          <div class="faq-q-mark">Q</div>
+          <span>転勤はありますか？</span>
+          <div class="faq-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+        <div class="faq-answer">
+          現在のところ、工場は長岡市の1拠点のみのため、転勤はありません。長岡で腰を据えて働きたい方に最適な環境です。
+        </div>
+      </div>
+
+      <div class="faq-item" id="faq5">
+        <div class="faq-question" onclick="toggleFaq('faq5')">
+          <div class="faq-q-mark">Q</div>
+          <span>車通勤は可能ですか？</span>
+          <div class="faq-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+        <div class="faq-answer">
+          はい、可能です。工場敷地内に無料の駐車場を完備しています（100台以上）。バス通勤・自転車通勤も歓迎しており、交通費は規定に沿って支給されます。
+        </div>
+      </div>
+
+      <div class="faq-item for-nc" id="faq6">
+        <div class="faq-question" onclick="toggleFaq('faq6')">
+          <div class="faq-q-mark">Q</div>
+          <span>選考フローと期間を教えてください</span>
+          <div class="faq-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+        <div class="faq-answer">
+          書類選考 → 一次面接 → 最終面接の3ステップです。エントリーから内定まで約2〜3週間が目安です。一次面接はオンライン対応も可能です。
+        </div>
+      </div>
+
+      <div class="faq-item for-nc" id="faq7">
+        <div class="faq-question" onclick="toggleFaq('faq7')">
+          <div class="faq-q-mark">Q</div>
+          <span>4月入社を希望しています。いつ頃応募すればよいですか？</span>
+          <div class="faq-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+        <div class="faq-answer">
+          4月入社希望の場合は、前年10〜12月のエントリーをお勧めします。年度途中の入社も相談可能ですので、まずはお気軽にお問い合わせください。
+        </div>
+      </div>
+
+      <div class="faq-item for-tr" id="faq8">
+        <div class="faq-question" onclick="toggleFaq('faq8')">
+          <div class="faq-q-mark">Q</div>
+          <span>異業種からの転職でも大丈夫ですか？</span>
+          <div class="faq-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+        <div class="faq-answer">
+          もちろん大歓迎です。転職者の多くが前職は全く異なる業種です。入社後の実技研修＋OJTで基礎からしっかりサポートしますので、業界未経験の方も安心してご応募ください。
+        </div>
+      </div>
+
+      <div class="faq-item for-tr" id="faq9">
+        <div class="faq-question" onclick="toggleFaq('faq9')">
+          <div class="faq-q-mark">Q</div>
+          <span>まずはカジュアルに話を聞いてみたいのですが…</span>
+          <div class="faq-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+        <div class="faq-answer">
+          カジュアル面談を随時受け付けています。選考なし・服装自由でお気軽にどうぞ。仕事の内容・職場の雰囲気・待遇について人事担当者が丁寧にお話しします。
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA SECTION ===== -->
+<!-- HS CTA -->
+<section class="cta-hs-section for-hs">
+  <h2 class="cta-hs-title">この会社を見学してみよう</h2>
+  <p class="cta-hs-sub">気になったら、まず見てみることから始めよう！<br>スタッフが丁寧にご案内します。</p>
+  <div class="cta-hs-btns">
+    <a href="#" class="btn-primary btn-large" onclick="openModal('visitModal'); return false;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      見学を申し込む
+    </a>
+    <a href="#" class="btn-outline btn-large" onclick="openModal('visitModal'); return false;">
+      まずは話を聞く
+    </a>
+  </div>
+</section>
+
+<!-- NC/TR CTA -->
+<section class="cta-ntr-section for-ntr">
+  <h2 class="cta-ntr-title">この企業へ応募する</h2>
+  <p class="cta-ntr-sub">あなたの可能性を長岡で広げてみませんか</p>
+  <a href="#" class="btn-white" onclick="openModal('applyModal'); return false;">
+    応募フォームへ進む
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+  </a>
+  <p class="cta-note">書類選考あり / 面接2回 / 結果は2週間以内にご連絡</p>
+</section>
+
+<!-- ===== COMPANY DATA TABLE ===== -->
+<section class="section company-data-section">
+  <div class="container">
+    <h2 class="section-title">会社概要</h2>
+    <table class="company-table">
+      <tr>
+        <th>会社名</th>
+        <td>長岡テクノロジーズ</td>
+      </tr>
+      <tr>
+        <th>設立</th>
+        <td>1987年（創業37年）</td>
+      </tr>
+      <tr>
+        <th>従業員数</th>
+        <td>45名</td>
+      </tr>
+      <tr>
+        <th>所在地</th>
+        <td>新潟県長岡市大手通り2丁目 × × × <br><small style="color:var(--text-sub);">長岡駅より路線バス約20分、バス停から徒歩5分</small></td>
+      </tr>
+      <tr>
+        <th>事業内容</th>
+        <td>金属プレス加工・精密部品製造</td>
+      </tr>
+      <tr>
+        <th>資本金</th>
+        <td>2,000万円</td>
+      </tr>
+      <tr>
+        <th>主要取引先</th>
+        <td>長岡機械工業株式会社、越後鉄工所 ほか100社以上</td>
+      </tr>
+      <tr>
+        <th>採用実績校</th>
+        <td>長岡工業高校、長岡商業高校 ほか</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- ===== RELATED COMPANIES ===== -->
+<section class="section related-section">
+  <div class="container">
+    <h2 class="section-title">関連企業もチェック</h2>
+    <div class="related-cards">
+      <div class="related-card" onclick="alert('企業詳細ページへ（デモ）')">
+        <div class="related-industry">製造業 / 機械加工</div>
+        <div class="related-name">越後精機株式会社</div>
+        <div class="related-meta">長岡市蔵王 ／ 従業員 80名</div>
+        <div class="related-tags">
+          <span class="related-tag">正社員</span>
+          <span class="related-tag">地元密着</span>
+          <span class="related-tag">未経験歓迎</span>
+        </div>
+      </div>
+      <div class="related-card" onclick="alert('企業詳細ページへ（デモ）')">
+        <div class="related-industry">製造業 / 電子部品</div>
+        <div class="related-name">長岡エレクトロニクス工業</div>
+        <div class="related-meta">長岡市喜多町 ／ 従業員 250名</div>
+        <div class="related-tags">
+          <span class="related-tag">正社員</span>
+          <span class="related-tag">資格取得可</span>
+          <span class="related-tag">社宅あり</span>
+        </div>
+      </div>
+      <div class="related-card" onclick="alert('企業詳細ページへ（デモ）')">
+        <div class="related-industry">製造業 / 樹脂成形</div>
+        <div class="related-name">信越プラスチック工業</div>
+        <div class="related-meta">長岡市大積町 ／ 従業員 60名</div>
+        <div class="related-tags">
+          <span class="related-tag">正社員</span>
+          <span class="related-tag">育休実績</span>
+          <span class="related-tag">土日休み</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VISIT MODAL (高校生向け) ===== -->
+<div id="visitModal" class="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        見学を申し込む — 長岡テクノロジーズ
+      </div>
+      <button class="modal-close" onclick="closeModal('visitModal')">✕</button>
+    </div>
+    <div class="prefill-notice" id="visitPrefillNotice">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      ログイン情報から自動入力しました
+    </div>
+    <form onsubmit="submitVisit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">お名前 <span class="required">必須</span></label>
+          <input type="text" class="form-input" id="vis-name" placeholder="山田 太郎">
+        </div>
+        <div class="form-group">
+          <label class="form-label">学校名</label>
+          <input type="text" class="form-input" id="vis-school" placeholder="○○高校">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">メールアドレス <span class="required">必須</span></label>
+        <input type="email" class="form-input" id="vis-email" placeholder="taro@example.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">電話番号</label>
+        <input type="tel" class="form-input" id="vis-phone" placeholder="090-1234-5678">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">希望日 <span class="required">必須</span></label>
+          <input type="date" class="form-input" id="vis-date">
+        </div>
+        <div class="form-group">
+          <label class="form-label">希望時間帯</label>
+          <select class="form-input" id="vis-time">
+            <option value="">選択してください</option>
+            <option value="am">午前（9:00〜12:00）</option>
+            <option value="pm">午後（13:00〜17:00）</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">来場人数</label>
+        <select class="form-input" id="vis-count">
+          <option value="1">1名</option>
+          <option value="2">2名（担任の先生含む）</option>
+          <option value="other">その他</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">質問・メッセージ（任意）</label>
+        <textarea class="form-input form-textarea" id="vis-msg" placeholder="気になっていることや聞きたいことがあれば..."></textarea>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          申し込む
+        </button>
+        <button type="button" class="btn-outline" onclick="closeModal('visitModal')">キャンセル</button>
+      </div>
+      <p style="font-size:12px; color:var(--text-sub); text-align:center; margin-top:12px;">受付後、担当者より2営業日以内にご連絡します</p>
+    </form>
+  </div>
+</div>
+
+<!-- ===== APPLY MODAL (新卒・転職向け) ===== -->
+<div id="applyModal" class="modal-overlay">
+  <div class="modal-box modal-box-wide">
+    <div class="modal-header">
+      <div class="modal-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        応募フォーム — 長岡テクノロジーズ
+      </div>
+      <button class="modal-close" onclick="closeModal('applyModal')">✕</button>
+    </div>
+    <div class="prefill-notice" id="applyPrefillNotice">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      ログイン情報から自動入力しました
+    </div>
+    <form onsubmit="submitApply(event)">
+      <div class="form-section-title">基本情報</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">お名前 <span class="required">必須</span></label>
+          <input type="text" class="form-input" id="app-name" placeholder="山田 太郎">
+        </div>
+        <div class="form-group">
+          <label class="form-label">フリガナ</label>
+          <input type="text" class="form-input" id="app-kana" placeholder="ヤマダ タロウ">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">メールアドレス <span class="required">必須</span></label>
+          <input type="email" class="form-input" id="app-email" placeholder="taro@example.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">電話番号</label>
+          <input type="tel" class="form-input" id="app-phone" placeholder="090-1234-5678">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">現住所</label>
+        <input type="text" class="form-input" id="app-address" placeholder="新潟県長岡市...">
+      </div>
+
+      <div class="form-section-title">応募情報</div>
+      <div class="form-group">
+        <label class="form-label">志望職種 <span class="required">必須</span></label>
+        <select class="form-input" id="app-job">
+          <option value="">選択してください</option>
+          <option value="press">金属プレスオペレーター</option>
+          <option value="quality">品質管理スタッフ</option>
+          <option value="maint">設備メンテナンス</option>
+        </select>
+      </div>
+      <!-- 新卒向け -->
+      <div class="form-row for-nc">
+        <div class="form-group" style="display:block;">
+          <label class="form-label">卒業予定年月</label>
+          <input type="text" class="form-input" id="app-graduation" placeholder="2026年3月">
+        </div>
+        <div class="form-group" style="display:block;">
+          <label class="form-label">専攻・学科</label>
+          <input type="text" class="form-input" id="app-major" placeholder="機械工学科">
+        </div>
+      </div>
+      <!-- 転職向け -->
+      <div class="form-row for-tr">
+        <div class="form-group" style="display:block;">
+          <label class="form-label">現在の職業・会社名</label>
+          <input type="text" class="form-input" id="app-current" placeholder="株式会社○○">
+        </div>
+        <div class="form-group" style="display:block;">
+          <label class="form-label">経験年数</label>
+          <select class="form-input" id="app-exp">
+            <option value="">選択してください</option>
+            <option value="1-3">1〜3年</option>
+            <option value="3-5">3〜5年</option>
+            <option value="5-10">5〜10年</option>
+            <option value="10+">10年以上</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">希望入社時期</label>
+        <select class="form-input" id="app-timing">
+          <option value="asap">なるべく早く</option>
+          <option value="1month">1ヶ月以内</option>
+          <option value="3month">3ヶ月以内</option>
+          <option value="flexible">相談可</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">自己PR・志望動機 <span class="required">必須</span></label>
+        <textarea class="form-input form-textarea" id="app-pr" placeholder="ものづくりに興味があり..."></textarea>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn-primary">
+          応募する
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <button type="button" class="btn-outline" onclick="closeModal('applyModal')">キャンセル</button>
+      </div>
+      <p style="font-size:12px; color:var(--text-sub); text-align:center; margin-top:12px;">書類選考あり / 面接2回 / 結果は2週間以内にご連絡</p>
+    </form>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">長岡<span>ワークスタイル</span></div>
+      <p class="footer-desc">長岡市の仕事と暮らしをつなぐ、地域密着型の求人情報サービス。高校生・新卒・転職者それぞれに向けた情報をお届けします。</p>
+    </div>
+    <div class="footer-links">
+      <a href="#">長岡市公式サイト</a>
+      <a href="#">Instagram</a>
+      <a href="#">サイトについて</a>
+      <a href="#">プライバシーポリシー</a>
+      <a href="#">お問い合わせ</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2025 長岡ワークスタイル. All rights reserved.
+  </div>
+</footer>
+
+<script>
+// ===== DEMO USER (ログイン済みユーザー想定) =====
+var demoUser = {
+  loggedIn: true,
+  name: '山田 太郎',
+  kana: 'ヤマダ タロウ',
+  email: 'taro.yamada@example.com',
+  phone: '090-1234-5678',
+  address: '新潟県長岡市大手通1-1-1',
+  school: '長岡商業高校',
+  graduation: '2026年3月',
+  major: '商業科',
+  currentJob: '株式会社越後機工',
+  experience: '3-5'
+};
+
+// ===== INIT: target from localStorage =====
+(function() {
+  var t = localStorage.getItem('nagaoka_target');
+  if (!t || ['hs', 'nc', 'tr'].indexOf(t) < 0) {
+    window.location.replace('nagaoka-workstyle-gateway.html');
+    return;
+  }
+  document.body.className = 'target-' + t;
+})();
+
+// ===== LIKE BUTTON =====
+var likeActive = false;
+function toggleLike() {
+  likeActive = !likeActive;
+  var btn = document.getElementById('likeBtn');
+  var txt = document.getElementById('likeTxt');
+  var count = document.getElementById('likeCount');
+  var icon = document.getElementById('likeIcon');
+  if (likeActive) { btn.classList.add('liked'); txt.textContent = '気になっている'; count.textContent = '64'; icon.setAttribute('fill', '#f87171'); }
+  else { btn.classList.remove('liked'); txt.textContent = '気になる'; count.textContent = '63'; icon.setAttribute('fill', 'none'); }
+}
+
+// ===== MODAL OPEN / CLOSE =====
+function openModal(id) {
+  var overlay = document.getElementById(id);
+  if (!overlay) return;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  if (id === 'visitModal') prefillVisitForm();
+  if (id === 'applyModal') prefillApplyForm();
+}
+
+function closeModal(id) {
+  var overlay = document.getElementById(id);
+  if (!overlay) return;
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Close on overlay background click
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('modal-overlay')) closeModal(e.target.id);
+});
+// Close on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay.open').forEach(function(el) { closeModal(el.id); });
+  }
+});
+
+// ===== PRE-FILL FORMS =====
+function prefillVisitForm() {
+  if (!demoUser.loggedIn) return;
+  var map = { 'vis-name': demoUser.name, 'vis-email': demoUser.email, 'vis-phone': demoUser.phone, 'vis-school': demoUser.school };
+  Object.keys(map).forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el && map[id]) el.value = map[id];
+  });
+  var notice = document.getElementById('visitPrefillNotice');
+  if (notice) notice.classList.add('show');
+}
+
+function prefillApplyForm() {
+  if (!demoUser.loggedIn) return;
+  var map = {
+    'app-name': demoUser.name, 'app-kana': demoUser.kana,
+    'app-email': demoUser.email, 'app-phone': demoUser.phone,
+    'app-address': demoUser.address, 'app-graduation': demoUser.graduation,
+    'app-major': demoUser.major, 'app-current': demoUser.currentJob
+  };
+  Object.keys(map).forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el && map[id]) el.value = map[id];
+  });
+  var expEl = document.getElementById('app-exp');
+  if (expEl) expEl.value = demoUser.experience;
+  var notice = document.getElementById('applyPrefillNotice');
+  if (notice) notice.classList.add('show');
+}
+
+// ===== FORM SUBMIT =====
+function submitVisit(e) {
+  e.preventDefault();
+  closeModal('visitModal');
+  showToast('見学の申し込みが完了しました！担当者より2営業日以内にご連絡します。');
+}
+
+function submitApply(e) {
+  e.preventDefault();
+  closeModal('applyModal');
+  showToast('応募が完了しました！書類選考の結果は2週間以内にご連絡します。');
+}
+
+// ===== TOAST =====
+function showToast(msg) {
+  var t = document.createElement('div');
+  t.className = 'success-toast';
+  t.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>' + msg;
+  document.body.appendChild(t);
+  setTimeout(function() { t.classList.add('show'); }, 10);
+  setTimeout(function() { t.classList.remove('show'); setTimeout(function() { t.remove(); }, 400); }, 5000);
+}
+
+// ===== FAQ ACCORDION =====
+function toggleFaq(id) {
+  var item = document.getElementById(id);
+  if (!item) return;
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(el) { el.classList.remove('open'); });
+  if (!isOpen) item.classList.add('open');
+}
+
+// ===== JOB CARD ACCORDION =====
+function toggleJob(id) {
+  var card = document.getElementById(id);
+  if (!card) return;
+  card.classList.toggle('open');
+}
+
+// ===== PHOTO SLIDER =====
+function initPhotoSlider(sliderId) {
+  var slider = document.getElementById(sliderId);
+  if (!slider) return;
+  var track  = slider.querySelector('.photo-slider-track');
+  var slides = slider.querySelectorAll('.photo-slide');
+  var dots   = slider.querySelectorAll('.slide-dot');
+  var current = 0, timer;
+  function goTo(n) {
+    current = (n + slides.length) % slides.length;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    dots.forEach(function(d,i){ d.classList.toggle('active', i===current); });
+  }
+  function start() { clearInterval(timer); timer = setInterval(function(){ goTo(current+1); }, 5000); }
+  slider.querySelector('.slide-nav.prev').addEventListener('click', function(){ goTo(current-1); start(); });
+  slider.querySelector('.slide-nav.next').addEventListener('click', function(){ goTo(current+1); start(); });
+  dots.forEach(function(d,i){ d.addEventListener('click', function(){ goTo(i); start(); }); });
+  goTo(0); start();
+}
+
+  initPhotoSlider("aboutSliderTech");
+
+// ===== PROGRAM TABS =====
+function switchProgram(tabEl, panelId) {
+  var wrapper = tabEl.closest('.program-tabs-wrapper');
+  wrapper.querySelectorAll('.program-tab').forEach(function(t){ t.classList.remove('active'); });
+  wrapper.querySelectorAll('.program-panel').forEach(function(p){ p.classList.remove('active'); });
+  tabEl.classList.add('active');
+  var panel = wrapper.querySelector('#' + panelId);
+  if (panel) panel.classList.add('active');
+}
+
+function enableDragScroll(el) {
+  if (!el) return;
+  var isDown = false, startX, scrollLeft;
+  el.style.cursor = 'grab';
+  el.addEventListener('mousedown', function(e) {
+    isDown = true; el.style.cursor = 'grabbing';
+    startX = e.pageX - el.getBoundingClientRect().left;
+    scrollLeft = el.scrollLeft; e.preventDefault();
+  });
+  document.addEventListener('mouseup', function() {
+    if (isDown) { isDown = false; el.style.cursor = 'grab'; }
+  });
+  el.addEventListener('mousemove', function(e) {
+    if (!isDown) return;
+    el.scrollLeft = scrollLeft - (e.pageX - el.getBoundingClientRect().left - startX) * 1.2;
+  });
+}
+enableDragScroll(document.querySelector('.vvideo-carousel'));
+enableDragScroll(document.getElementById('articleCards'));
+
+function slideVideo(dir) {
+  var el = document.getElementById('vvideoCarousel');
+  if (!el) return;
+  el.scrollBy({ left: dir * 210, behavior: 'smooth' });
+}
+
+function slideArticles(dir) {
+  var el = document.getElementById('articleCards');
+  if (!el) return;
+  var card = el.querySelector('.article-card');
+  el.scrollBy({ left: dir * ((card ? card.offsetWidth : 280) + 16), behavior: 'smooth' });
+}
+</script>
+
+<script>
+// ===== Nagaoka Workstyle App 連携 =====
+var COMPANY_SLUG = 'nagaoka-tech';
+
+// 応募モーダル → Next.js応募ページへリダイレクト
+var _origOpenModal = openModal;
+openModal = function(id) {
+  if (id === 'applyModal') {
+    window.location.href = '/apply/company/' + COMPANY_SLUG;
+  } else {
+    _origOpenModal(id);
+  }
+};
+
+// インターンシップボタンを更新
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('a[onclick*="\u30A4\u30F3\u30BF\u30FC\u30F3"]').forEach(function(el) {
+    el.removeAttribute('onclick');
+    el.href = '/apply/company/' + COMPANY_SLUG + '?type=intern';
+  });
+});
+</script>
+</body>
+</html>

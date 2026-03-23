@@ -1,0 +1,1889 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>長岡ワークスタイル - 長岡市の求人・企業情報ポータル</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: #edf7fb;
+    color: #2d2d2d;
+    line-height: 1.8;
+    font-weight: 400;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  :root {
+    --primary: #2ea7c8;
+    --primary-dark: #1d8ba8;
+    --primary-light: #4fc0d8;
+    --primary-pale: #b8e4f0;
+    --accent: #e8841a;
+    --accent-dark: #d0740f;
+    --dark: #1a4d5e;
+    --dark-deep: #163d4d;
+    --pale: #e2f2f8;
+    --pale-warm: #edf7fb;
+    --border: #bdd8e2;
+    --text: #2d2d2d;
+    --text-sub: #555555;
+    --text-faint: #7a8a9a;
+    --white: #ffffff;
+    --radius: 10px;
+    --section-gap: 72px;
+    --shadow-card: 0 2px 12px rgba(30,140,180,0.08);
+    --shadow-card-hover: 0 6px 24px rgba(30,140,180,0.12);
+    --shadow-float: 0 8px 32px rgba(30,140,180,0.14);
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-mark {
+    width: 38px; height: 38px;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .logo-mark svg { width: 38px; height: 38px; }
+  .logo-text {
+    display: flex; flex-direction: column; line-height: 1.15;
+  }
+  .logo-text-en {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px; font-weight: 800;
+    color: var(--dark); letter-spacing: 1px;
+  }
+  .logo-text-en span { color: var(--primary); }
+  .logo-text-ja {
+    font-size: 10px; font-weight: 500;
+    color: var(--text-sub); letter-spacing: 2px;
+  }
+  .nav { display: flex; gap: 24px; }
+  .nav a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-sub);
+    transition: color 0.2s;
+  }
+  .nav a:hover { color: var(--primary); }
+  .header-actions { display: flex; gap: 10px; align-items: center; }
+  .btn-outline {
+    font-size: 13px; font-weight: 500; color: var(--text-sub);
+    border: 1px solid var(--border); padding: 7px 18px;
+    border-radius: 6px; transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+  .btn-fill {
+    font-size: 13px; font-weight: 600; color: var(--white);
+    background: var(--accent); padding: 7px 20px;
+    border-radius: 6px; transition: all 0.2s;
+  }
+  .btn-fill:hover { background: var(--accent-dark); }
+
+  /* ── CHANGE TARGET LINK ── */
+  .change-target-link {
+    font-size: 12px; color: var(--text-sub);
+    text-decoration: none; padding: 5px 12px;
+    border-radius: 20px; border: 1px solid var(--border);
+    transition: color 0.2s, border-color 0.2s; white-space: nowrap;
+  }
+  .change-target-link:hover { color: var(--primary); border-color: var(--primary); }
+
+  /* ── UTILITIES ── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+  .spacer-lg { height: 64px; }
+  .spacer-md { height: 40px; }
+
+  .sec-head { text-align: center; margin-bottom: 36px; }
+  .sec-head-en {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--primary-dark);
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+  .sec-head-ja {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-sub);
+    margin-top: 4px;
+    letter-spacing: 1px;
+  }
+  .sec-head-left { text-align: left; }
+  .sec-head-left .sec-head-en { font-size: 22px; }
+
+  .section-desc {
+    font-size: 14px;
+    color: var(--text-sub);
+    margin-top: 4px;
+  }
+  .link-more {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 13px; font-weight: 600; color: var(--primary-dark);
+    transition: gap 0.2s;
+  }
+  .link-more:hover { gap: 8px; }
+  .link-more::after { content: '→'; }
+
+  /* ── HERO ── */
+  .hero {
+    background:
+      linear-gradient(160deg, rgba(22,110,150,0.78) 0%, rgba(36,150,190,0.65) 40%, rgba(46,167,200,0.55) 100%),
+      url('https://picsum.photos/seed/nagaoka-niigata/1600/720') center/cover no-repeat;
+    color: var(--white);
+    padding: 72px 28px 110px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 90% 70% at 50% 25%, rgba(180,230,245,0.35) 0%, transparent 65%),
+      radial-gradient(ellipse 60% 50% at 80% 80%, rgba(46,167,200,0.2) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -1px; left: 0; right: 0;
+    height: 60px;
+    background: var(--pale-warm);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+
+  .hero-content { position: relative; z-index: 2; }
+  .hero-logo-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-bottom: 16px;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(8px);
+    padding: 6px 18px 6px 8px;
+    border-radius: 24px;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+  .hero-logo-badge svg { width: 28px; height: 28px; }
+  .hero-logo-badge span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 1.5px; color: #fff; text-shadow: 0 1px 4px rgba(0,40,60,0.2);
+  }
+  .hero-sub {
+    font-size: 14px; font-weight: 500; opacity: 1;
+    letter-spacing: 2.5px; margin-bottom: 12px;
+    text-shadow: 0 1px 6px rgba(0,40,60,0.3);
+  }
+  .hero h1 {
+    font-size: clamp(34px, 5vw, 52px);
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+    text-shadow: 0 2px 12px rgba(0,40,60,0.45), 0 0 40px rgba(0,40,60,0.15);
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: #fde68a;
+    text-shadow: 0 2px 8px rgba(253,230,138,0.35);
+  }
+  .hero-catch {
+    font-size: 16px;
+    font-weight: 500;
+    opacity: 1;
+    margin-bottom: 20px;
+    text-shadow: 0 1px 8px rgba(0,40,60,0.35);
+  }
+  /* 長岡キーワード帯 */
+  .hero-keywords {
+    display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+  .hero-kw {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 12px; font-weight: 500;
+    color: rgba(255,255,255,0.95);
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(6px);
+    padding: 5px 14px; border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.25);
+    transition: all 0.2s;
+  }
+  .hero-kw:hover { background: rgba(255,255,255,0.3); transform: translateY(-1px); }
+  .hero-kw svg { width: 14px; height: 14px; fill: rgba(255,255,255,0.8); }
+
+  .search-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 28px 32px;
+    max-width: 860px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 8px 40px rgba(30,140,180,0.15);
+    text-align: left;
+  }
+  .search-mode {
+    display: flex; gap: 0;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 20px;
+  }
+  .search-mode-tab {
+    padding: 8px 20px; font-size: 13px; font-weight: 500;
+    color: var(--text-faint); cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px; transition: all 0.2s;
+  }
+  .search-mode-tab.active { color: var(--dark); border-bottom-color: var(--primary); }
+  .search-mode-tab:hover { color: var(--text); }
+  .search-fields { display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap; }
+  .field { flex: 1; min-width: 170px; }
+  .field label {
+    display: block; font-size: 12px; font-weight: 600;
+    color: var(--text-sub); margin-bottom: 4px;
+  }
+  .field select, .field input {
+    width: 100%; padding: 10px 14px;
+    border: 1px solid var(--border); border-radius: 6px;
+    font-size: 14px; font-family: inherit; color: var(--text);
+    background: var(--white); transition: border-color 0.2s;
+  }
+  .field select:focus, .field input:focus { border-color: var(--primary); outline: none; }
+  .btn-search {
+    background: var(--accent); color: var(--white);
+    border: none; padding: 12px 40px; border-radius: 8px;
+    font-size: 14px; font-weight: 700; font-family: inherit;
+    cursor: pointer; transition: all 0.25s; white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(232,132,26,0.3);
+  }
+  .btn-search:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(232,132,26,0.35); }
+  .kodawari { margin-top: 18px; }
+  .kodawari-btn {
+    font-size: 13px; font-weight: 500; color: var(--primary);
+    cursor: pointer; display: inline-flex; align-items: center; gap: 4px;
+    user-select: none;
+  }
+  .kodawari-btn:hover { text-decoration: underline; }
+  .kodawari-panel {
+    margin-top: 14px; padding: 20px;
+    background: var(--pale); border-radius: var(--radius);
+    display: none;
+  }
+  .kodawari-group { margin-bottom: 16px; }
+  .kodawari-group:last-child { margin-bottom: 0; }
+  .kodawari-group-title {
+    font-size: 12px; font-weight: 600; color: var(--text-sub);
+    margin-bottom: 8px;
+  }
+  .checks { display: flex; flex-wrap: wrap; gap: 6px; }
+  .check {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 13px; color: var(--text);
+    padding: 5px 12px; border-radius: 20px;
+    border: 1px solid var(--border); background: var(--white);
+    cursor: pointer; transition: all 0.15s; user-select: none;
+  }
+  .check:hover { border-color: var(--primary); }
+  .check input { width: 14px; height: 14px; accent-color: var(--primary); cursor: pointer; }
+  .check:has(input:checked) { border-color: var(--primary); background: #e0f3f8; color: var(--dark); }
+  .search-keywords {
+    margin-top: 14px; font-size: 12px; color: var(--text-faint);
+  }
+  .search-keywords a {
+    display: inline-block; margin: 2px 3px;
+    padding: 2px 10px; border-radius: 10px;
+    background: var(--pale); color: var(--text);
+    font-size: 12px; font-weight: 500; transition: background 0.15s;
+  }
+  .search-keywords a:hover { background: #c8e6ef; }
+
+  /* ── 職種 + 地図 ── */
+  .dual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .panel {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: var(--shadow-card);
+  }
+  .panel h3 { font-size: 16px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+  .panel .sub { font-size: 13px; color: var(--text-sub); margin-bottom: 18px; }
+  .job-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .job-item {
+    text-align: center; padding: 14px 6px 10px;
+    border-radius: 8px; cursor: pointer;
+    transition: all 0.2s; border: 1px solid transparent;
+  }
+  .job-item:hover { background: var(--pale); border-color: #a8d4e0; transform: translateY(-2px); }
+  .job-icon {
+    width: 48px; height: 48px; margin: 0 auto 8px;
+    border-radius: 50%; display: flex;
+    align-items: center; justify-content: center; font-size: 22px;
+  }
+  .job-icon.a { background: #dbeafe; }
+  .job-icon.b { background: #ede9fe; }
+  .job-icon.c { background: #fce7f3; }
+  .job-icon.d { background: #fef9c3; }
+  .job-icon.e { background: #d1fae5; }
+  .job-icon.f { background: #ffe4e6; }
+  .job-icon.g { background: #ffedd5; }
+  .job-icon.h { background: #dcfce7; }
+  .job-icon.i { background: #e0f2fe; }
+  .job-name { font-size: 12px; font-weight: 500; color: var(--text); }
+  .job-count { font-size: 11px; color: var(--text-faint); }
+  .map-input { margin-bottom: 14px; }
+  .map-input label { display: block; font-size: 12px; font-weight: 600; color: var(--text-sub); margin-bottom: 4px; }
+  .map-input input, .map-input select {
+    width: 100%; padding: 9px 14px;
+    border: 1px solid var(--border); border-radius: 6px;
+    font-size: 14px; font-family: inherit;
+  }
+  .map-input input:focus, .map-input select:focus { border-color: var(--primary); outline: none; }
+  .radius-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+  .pill {
+    padding: 5px 14px; border-radius: 4px;
+    font-size: 12px; font-weight: 500;
+    border: 1px solid var(--border); color: var(--text-sub);
+    cursor: pointer; transition: all 0.15s;
+  }
+  .pill:hover, .pill.on { border-color: var(--primary); background: #e0f3f8; color: var(--dark); }
+  .map-actions { display: flex; gap: 10px; align-items: center; margin-top: 14px; }
+  .map-actions button {
+    flex: 1; padding: 10px; background: var(--primary); color: var(--white);
+    border: none; border-radius: 6px; font-size: 13px; font-weight: 600;
+    font-family: inherit; cursor: pointer; transition: background 0.2s;
+  }
+  .map-actions button:hover { background: var(--primary-dark); }
+  .map-actions .gps { font-size: 12px; color: var(--primary); font-weight: 500; cursor: pointer; white-space: nowrap; }
+  .map-area {
+    margin-top: 14px; background: #e0f3f8; border-radius: var(--radius);
+    height: 180px; display: flex; align-items: center; justify-content: center;
+    color: var(--primary-dark); font-size: 13px;
+    border: 1px dashed #90c8d8;
+  }
+
+  /* ── 注目企業 + 新着情報（2カラム） ── */
+  .featured-news-section {
+    background: var(--pale);
+    border-top: 1px solid var(--border);
+    padding: 64px 0;
+  }
+  .featured-news-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* 左: 注目企業 3Dカルーセル */
+  .featured-col { min-width: 0; }
+  .featured-col-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 20px;
+  }
+
+  /* ── 共通ピークカルーセル（重なりデッキ型） ── */
+  .coverflow {
+    position: relative;
+    height: 320px;
+    overflow: hidden;               /* 両端でクリップ */
+  }
+  .coverflow-stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  /* カード基本：中央に重ねて配置 */
+  .coverflow-item {
+    position: absolute;
+    top: 0; left: 50%;
+    width: 200px;
+    margin-left: -100px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--white);
+    box-shadow: var(--shadow-card);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity   0.5s ease,
+                box-shadow 0.5s ease,
+                filter 0.5s ease;
+    cursor: pointer;
+  }
+  /* 中央（アクティブ） */
+  .coverflow-item.active {
+    transform: translateX(0) scale(1);
+    opacity: 1; z-index: 4;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.20);
+    filter: brightness(1);
+  }
+  /* 左隣：中央の後ろからちら見せ */
+  .coverflow-item.prev {
+    transform: translateX(-58%) scale(0.88);
+    opacity: 1; z-index: 3;
+    filter: brightness(0.92);
+  }
+  /* 右隣 */
+  .coverflow-item.next {
+    transform: translateX(58%) scale(0.88);
+    opacity: 1; z-index: 3;
+    filter: brightness(0.92);
+  }
+  /* さらに左 */
+  .coverflow-item.far-prev {
+    transform: translateX(-90%) scale(0.78);
+    opacity: 0.5; z-index: 2;
+    pointer-events: none;
+    filter: brightness(0.85);
+  }
+  /* さらに右 */
+  .coverflow-item.far-next {
+    transform: translateX(90%) scale(0.78);
+    opacity: 0.5; z-index: 2;
+    pointer-events: none;
+    filter: brightness(0.85);
+  }
+  /* 非表示 */
+  .coverflow-item.hidden {
+    transform: translateX(0) scale(0.65);
+    opacity: 0; z-index: 1;
+    pointer-events: none;
+  }
+  .coverflow-nav {
+    display: flex; gap: 10px; justify-content: center;
+    margin-top: 16px; align-items: center;
+  }
+  .coverflow-btn {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--white); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 13px; color: var(--text-sub);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    transition: all 0.2s;
+  }
+  .coverflow-btn:hover { border-color: var(--primary); color: var(--primary); background: var(--pale); }
+  .coverflow-dots { display: flex; align-items: center; gap: 6px; }
+  .coverflow-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--border); border: none;
+    cursor: pointer; transition: all 0.3s; padding: 0;
+  }
+  .coverflow-dot.active { background: var(--primary); width: 18px; border-radius: 4px; }
+
+  /* 企業カード */
+  .company-card {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+  }
+  .company-video-thumb {
+    height: 190px; position: relative;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .company-video-thumb.v1 { background: linear-gradient(160deg, #0f3040 0%, #1d7a9a 50%, #3cc0e0 100%); }
+  .company-video-thumb.v2 { background: linear-gradient(160deg, #1a2040 0%, #3a5a90 50%, #6a8ec0 100%); }
+  .company-video-thumb.v3 { background: linear-gradient(160deg, #3a2010 0%, #8a5a2a 50%, #c89050 100%); }
+  .company-video-thumb.v4 { background: linear-gradient(160deg, #2a1535 0%, #6a3a8a 50%, #a060c0 100%); }
+  .company-video-thumb.v5 { background: linear-gradient(160deg, #3a1515 0%, #9a4040 50%, #d06060 100%); }
+  .video-play-btn {
+    width: 40px; height: 40px; background: rgba(255,255,255,0.15);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 16px; backdrop-filter: blur(8px);
+    border: 2px solid rgba(255,255,255,0.3); color: white;
+    transition: all 0.25s;
+  }
+  .coverflow-item.active .video-play-btn { background: rgba(255,255,255,0.25); }
+  .coverflow-item.active:hover .video-play-btn { transform: scale(1.12); background: rgba(255,255,255,0.35); }
+  .company-video-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 40px 14px 14px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+    color: white;
+  }
+  .company-video-name { font-size: 13px; font-weight: 700; letter-spacing: 0.3px; }
+  .company-video-sub { font-size: 11px; opacity: 0.7; margin-top: 3px; }
+  .company-target-badge {
+    position: absolute; top: 10px; left: 10px;
+    font-size: 10px; font-weight: 700; padding: 3px 8px;
+    border-radius: 4px; color: white;
+    backdrop-filter: blur(4px);
+  }
+  .company-target-badge.hs { background: rgba(232,132,26,0.85); }
+  .company-target-badge.nc { background: rgba(46,167,200,0.85); }
+  .company-target-badge.tr { background: rgba(74,111,165,0.85); }
+  .company-info {
+    padding: 12px 14px 14px;
+    background: var(--white);
+    flex: 1;
+  }
+  .company-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; }
+  .company-tag {
+    font-size: 10px; font-weight: 500; padding: 2px 8px;
+    border-radius: 10px; background: var(--pale); color: var(--primary-dark);
+  }
+  .company-name { font-size: 13px; font-weight: 700; color: var(--dark); margin-bottom: 3px; }
+  .company-catch { font-size: 11px; color: var(--text-sub); line-height: 1.5; }
+  .company-meta { font-size: 10px; color: var(--text-faint); margin-top: 4px; }
+
+  /* 右: 新着情報 */
+  .news-col { min-width: 0; }
+  .news-col-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 20px;
+  }
+  .news-list { display: flex; flex-direction: column; gap: 0; }
+  .news-item {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer; transition: background 0.15s;
+  }
+  .news-item:first-child { padding-top: 0; }
+  .news-item:last-child { border-bottom: none; }
+  .news-item:hover { background: var(--pale); margin-left: -8px; margin-right: -8px; padding-left: 8px; padding-right: 8px; border-radius: 6px; }
+  .news-date { font-size: 11px; color: var(--text-faint); white-space: nowrap; min-width: 70px; padding-top: 2px; }
+  .news-tag-sm {
+    font-size: 10px; font-weight: 700; padding: 1px 6px;
+    border-radius: 3px; margin-right: 6px; white-space: nowrap;
+  }
+  .news-tag-sm.red { background: #fee2e2; color: #dc2626; }
+  .news-tag-sm.blue { background: #dbeafe; color: #2563eb; }
+  .news-tag-sm.green { background: #d1fae5; color: #059669; }
+  .news-tag-sm.yellow { background: #fef9c3; color: #ca8a04; }
+  .news-text {
+    font-size: 13px; font-weight: 600; color: var(--text);
+    line-height: 1.6;
+    display: -webkit-box; -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; overflow: hidden;
+  }
+
+  /* ── note 記事（3Dカルーセル） ── */
+  .note-bg { background: var(--pale); }
+  .note-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 28px; }
+  .coverflow.note-coverflow { height: 330px; }
+  .coverflow.note-coverflow .coverflow-item { width: 260px; margin-left: -130px; }
+  .note-card {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    background: var(--white); border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+  .note-img {
+    height: 150px; display: flex; align-items: center; justify-content: center;
+    font-size: 12px; color: var(--text-faint); position: relative;
+  }
+  .note-img.c1 { background: #d8eef5; }
+  .note-img.c2 { background: #e8e0f5; }
+  .note-img.c3 { background: #fef0d5; }
+  .note-img.c4 { background: #c8e6ef; }
+  .note-badge {
+    position: absolute; bottom: 8px; right: 8px;
+    background: rgba(255,255,255,0.9); padding: 2px 8px;
+    border-radius: 3px; font-size: 10px; font-weight: 700; color: var(--primary);
+  }
+  .note-body { padding: 14px; flex: 1; }
+  .note-company { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+  .note-avatar {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--pale); display: flex;
+    align-items: center; justify-content: center;
+    font-size: 9px; font-weight: 700; color: var(--dark);
+  }
+  .note-company-name { font-size: 11px; color: var(--text-sub); }
+  .note-title {
+    font-size: 13px; font-weight: 500; color: var(--text);
+    line-height: 1.5; margin-bottom: 8px;
+    display: -webkit-box; -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .note-footer { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-faint); }
+  .note-like { color: #ec4899; }
+
+  /* ── イベント ── */
+  .ev-layout { display: grid; grid-template-columns: 250px 1fr; gap: 24px; }
+  .cal {
+    background: var(--white); border-radius: 12px;
+    border: 1px solid var(--border); padding: 20px; align-self: start;
+    box-shadow: var(--shadow-card);
+  }
+  .cal-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .cal-top h4 { font-size: 14px; font-weight: 700; color: var(--dark); }
+  .cal-top span { cursor: pointer; color: var(--text-faint); }
+  .cal-top span:hover { color: var(--primary); }
+  .cal-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 1px; text-align: center; font-size: 12px; }
+  .cal-dh { font-size: 10px; color: var(--text-faint); padding: 4px; font-weight: 500; }
+  .cal-d { padding: 6px 2px; border-radius: 4px; cursor: pointer; transition: background 0.15s; }
+  .cal-d:hover { background: var(--pale); }
+  .cal-d.ev { background: #e0f3f8; color: var(--primary-dark); font-weight: 700; }
+  .cal-d.ev::after { content: ''; display: block; width: 4px; height: 4px; background: var(--accent); border-radius: 50%; margin: 1px auto 0; }
+  .cal-d.now { background: var(--primary); color: var(--white); font-weight: 700; }
+  .ev-list { display: flex; flex-direction: column; gap: 10px; flex-wrap: wrap; }
+  .ev-card {
+    background: var(--white); border-radius: var(--radius);
+    border: 1px solid var(--border); border-left: 4px solid var(--primary);
+    padding: 16px 20px; display: flex; gap: 16px; align-items: center;
+    cursor: pointer; transition: all 0.25s;
+  }
+  .ev-card:hover { box-shadow: var(--shadow-card-hover); transform: translateX(4px); border-color: transparent; border-left-width: 4px; }
+  .ev-card:nth-child(2) { border-left-color: var(--accent); }
+  .ev-card:nth-child(3) { border-left-color: #4a6fa5; }
+  .ev-card:nth-child(4) { border-left-color: #a855f7; }
+  .ev-date { text-align: center; min-width: 44px; }
+  .ev-date .m { font-size: 10px; color: var(--text-faint); }
+  .ev-date .d { font-size: 20px; font-weight: 700; color: var(--dark); line-height: 1.1; }
+  .ev-date .w { font-size: 10px; color: var(--text-faint); }
+  .ev-info h4 { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+  .ev-info p { font-size: 12px; color: var(--text); }
+  .ev-tags { display: flex; gap: 4px; margin-top: 4px; }
+  .ev-tag { font-size: 10px; font-weight: 500; padding: 2px 8px; border-radius: 4px; }
+  .ev-tag.t1 { background: #e0f3f8; color: var(--primary-dark); }
+  .ev-tag.t2 { background: #fef0d5; color: #b45309; }
+  .ev-tag.t3 { background: #e0e8f5; color: #3b5998; }
+
+  /* ── お役立ち ── */
+  .useful-bg { background: var(--pale-warm); border-top: 1px solid var(--border); }
+  .useful-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .useful-item {
+    padding: 20px 18px 16px; border-radius: var(--radius);
+    border: 1px solid var(--border); cursor: pointer;
+    transition: all 0.25s; text-align: left;
+    background: var(--white);
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .useful-item:hover { border-color: var(--primary); background: var(--pale); box-shadow: var(--shadow-card); transform: translateY(-2px); }
+  .useful-item.accent { border-color: var(--accent); background: #fef8f0; }
+  .useful-item.accent:hover { box-shadow: 0 2px 12px rgba(232,132,26,0.1); }
+  .useful-item-icon { width: 42px; height: 42px; margin: 0 0 10px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .useful-item-icon.m { background: #fef3c7; }
+  .useful-item-icon.w { background: #dbeafe; }
+  .useful-item-icon.v { background: #ede9fe; }
+  .useful-item-icon.h { background: #d1fae5; }
+  .useful-item-icon.s { background: #fce7f3; }
+  .useful-item-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 8px; line-height: 1.4; }
+  .useful-item-desc {
+    margin-top: auto;
+    padding: 8px 10px;
+    background: var(--pale);
+    border-radius: 6px;
+    font-size: 11.5px;
+    color: var(--text);
+    line-height: 1.65;
+  }
+  .useful-item.accent .useful-item-desc { background: #fdefd8; }
+
+  /* ── CTA ── */
+  .cta {
+    background: linear-gradient(135deg, #2495b5 0%, #2ea7c8 40%, #4fc0d8 100%);
+    border-radius: 16px;
+    padding: 56px 40px;
+    text-align: center; color: var(--white);
+    position: relative; overflow: hidden;
+  }
+  .cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Ccircle cx='20' cy='20' r='1.5'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  .cta h2 { color: var(--white); font-size: 22px; font-weight: 700; margin-bottom: 10px; position: relative; text-shadow: 0 1px 6px rgba(0,40,60,0.25); }
+  .cta p { font-size: 14px; opacity: 1; font-weight: 500; margin-bottom: 28px; position: relative; text-shadow: 0 1px 4px rgba(0,40,60,0.2); }
+  .cta-buttons { display: flex; gap: 14px; justify-content: center; position: relative; }
+  .cta-a {
+    padding: 14px 36px; border-radius: 8px;
+    font-size: 14px; font-weight: 700;
+    cursor: pointer; transition: all 0.25s; border: 2px solid var(--white);
+    font-family: inherit;
+  }
+  .cta-a.fill { background: var(--accent); color: white; border-color: var(--accent); box-shadow: 0 4px 16px rgba(232,132,26,0.35); }
+  .cta-a.fill:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(232,132,26,0.4); }
+  .cta-a.ghost { background: rgba(255,255,255,0.08); color: var(--white); backdrop-filter: blur(4px); }
+  .cta-a.ghost:hover { background: rgba(255,255,255,0.18); transform: translateY(-2px); }
+
+  /* ── FAQ ── */
+  .faq-list { max-width: 700px; margin: 0 auto; }
+  .faq-item { border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.15s; }
+  .faq-item:hover { background: var(--pale); margin: 0 -12px; padding: 0 12px; border-radius: 8px; }
+  .faq-q {
+    padding: 20px 0;
+    display: flex; align-items: center; gap: 14px;
+    font-size: 15px; font-weight: 500; color: var(--text);
+  }
+  .faq-marker {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--primary); color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; flex-shrink: 0;
+  }
+  .faq-text { flex: 1; }
+  .faq-toggle { color: var(--text-faint); font-size: 18px; transition: transform 0.3s; flex-shrink: 0; }
+  .faq-item.open .faq-toggle { transform: rotate(45deg); color: var(--primary); }
+  .faq-a { display: none; padding: 0 0 18px 42px; font-size: 14px; color: var(--text); line-height: 1.9; }
+  .faq-item.open .faq-a { display: block; }
+
+  /* ── 相談窓口 ── */
+  .consult-bg { background: var(--pale); }
+  .consult-split {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 36px;
+    align-items: start;
+  }
+  .consult-form-col {
+    background: var(--white); border-radius: 16px;
+    border: 1px solid var(--border); padding: 28px 28px;
+    box-shadow: var(--shadow-card);
+  }
+  .consult-form-title {
+    font-size: 16px; font-weight: 700; color: var(--dark);
+    margin-bottom: 18px;
+  }
+  .cf-group { margin-bottom: 14px; }
+  .cf-label { display: block; font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 5px; }
+  .cf-input {
+    width: 100%; padding: 9px 12px; border: 1.5px solid var(--border);
+    border-radius: 7px; font-size: 14px; font-family: inherit;
+    background: #f9fbfc; color: var(--text); transition: border-color 0.2s;
+  }
+  .cf-input:focus { outline: none; border-color: var(--primary); background: #fff; }
+  .cf-textarea { min-height: 100px; resize: vertical; line-height: 1.6; }
+  .cf-submit {
+    width: 100%; padding: 12px; background: var(--primary); color: #fff;
+    border: none; border-radius: 8px; font-size: 15px; font-weight: 700;
+    font-family: inherit; cursor: pointer; transition: background 0.2s;
+  }
+  .cf-submit:hover { background: var(--primary-dark); }
+  .cf-note { font-size: 11px; color: var(--text-faint); text-align: center; margin-top: 8px; }
+  .consult-right-col { display: flex; flex-direction: column; gap: 12px; }
+  .line-card {
+    background: linear-gradient(135deg, #06c755 0%, #05a847 100%);
+    border-radius: 16px; padding: 28px; color: #fff;
+    flex: 1; display: flex; flex-direction: column;
+  }
+  .line-card-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    opacity: 0.85; margin-bottom: 16px;
+  }
+  .line-body { display: flex; align-items: center; gap: 18px; }
+  .line-qr-wrap {
+    flex-shrink: 0; background: #fff; border-radius: 10px; padding: 8px;
+  }
+  .line-qr-name { font-size: 16px; font-weight: 700; margin-bottom: 5px; }
+  .line-qr-sub { font-size: 12px; opacity: 0.9; line-height: 1.6; margin-bottom: 14px; }
+  .line-add-btn {
+    display: inline-block; background: #fff; color: #06c755;
+    font-size: 13px; font-weight: 700; padding: 10px 22px;
+    border-radius: 24px; cursor: pointer; transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .line-add-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,0.15); }
+  .line-merit-list {
+    margin-top: 18px; padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.25);
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .line-merit {
+    font-size: 13px; font-weight: 500; opacity: 0.95;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .line-merit::before {
+    content: '✓'; font-size: 11px; font-weight: 700;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: rgba(255,255,255,0.25); display: flex;
+    align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .consult-list { display: flex; flex-direction: column; gap: 8px; }
+  .consult-card {
+    background: var(--white); border-radius: 10px;
+    border: 1px solid var(--border); padding: 12px 16px;
+    display: flex; align-items: center; gap: 12px;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .consult-card:hover { border-color: var(--primary); box-shadow: var(--shadow-card-hover); }
+  .consult-icon { width: 38px; height: 38px; flex-shrink: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 17px; }
+  .consult-icon.ph { background: #dbeafe; }
+  .consult-icon.em { background: #fce7f3; }
+  .consult-icon.vi { background: #fef9c3; }
+  .consult-text { flex: 1; }
+  .consult-name { font-size: 14px; font-weight: 600; color: var(--text); }
+  .consult-desc { font-size: 11px; color: var(--text-sub); line-height: 1.5; margin-top: 1px; }
+  .consult-arrow { color: var(--primary); font-weight: 700; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--pale); border-top: 2px solid var(--primary-pale); color: var(--text-sub); padding: 56px 28px 28px; }
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 32px; padding-bottom: 32px;
+  }
+  .footer-logo-wrap { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .footer-logo-wrap svg { width: 30px; height: 30px; }
+  .footer-logo-text {
+    display: flex; flex-direction: column; line-height: 1.15;
+  }
+  .footer-logo-text .fl-en {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px; font-weight: 800; color: var(--dark); letter-spacing: 1px;
+  }
+  .footer-logo-text .fl-en span { color: var(--primary); }
+  .footer-logo-text .fl-ja { font-size: 9px; color: var(--text-sub); letter-spacing: 2px; }
+  .footer p { font-size: 13px; line-height: 1.7; color: var(--text-sub); }
+  .footer h5 { font-size: 12px; font-weight: 700; color: var(--primary-dark); margin-bottom: 10px; }
+  .footer a { display: block; font-size: 13px; padding: 2px 0; color: var(--text-sub); transition: color 0.15s; }
+  .footer a:hover { color: var(--primary-dark); }
+  .footer-bottom {
+    max-width: 1100px; margin: 0 auto;
+    padding-top: 20px; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; color: var(--text-faint);
+  }
+  .footer-sns { display: flex; gap: 8px; }
+  .footer-sns a {
+    width: 34px; height: 34px; background: var(--white); border: 1px solid var(--border); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; padding: 0; color: var(--text-sub); transition: all 0.2s;
+  }
+  .footer-sns a:hover { background: var(--primary); color: var(--white); border-color: var(--primary); transform: translateY(-2px); }
+
+  /* ── TARGET SWITCHING ── */
+  /* body にクラス target-hs / target-nc / target-tr を付与して切替 */
+  .for-hs, .for-nc, .for-tr { display: none; }
+  body.target-hs .for-hs { display: block; }
+  body.target-nc .for-nc { display: block; }
+  body.target-tr .for-tr { display: block; }
+  /* inline 要素用 */
+  body.target-hs .for-hs-inline { display: inline; }
+  body.target-nc .for-nc-inline { display: inline; }
+  body.target-tr .for-tr-inline { display: inline; }
+  .for-hs-inline, .for-nc-inline, .for-tr-inline { display: none; }
+  /* flex 要素用 */
+  body.target-hs .for-hs-flex { display: flex; }
+  body.target-nc .for-nc-flex { display: flex; }
+  body.target-tr .for-tr-flex { display: flex; }
+  .for-hs-flex, .for-nc-flex, .for-tr-flex { display: none; }
+  /* grid 要素用 */
+  body.target-hs .for-hs-grid { display: grid; }
+  body.target-nc .for-nc-grid { display: grid; }
+  body.target-tr .for-tr-grid { display: grid; }
+  .for-hs-grid, .for-nc-grid, .for-tr-grid { display: none; }
+  /* イベント薄くする */
+  .ev-card.ev-dimmed { opacity: 0.4; order: 99; }
+  .ev-card { transition: opacity 0.3s, order 0s; }
+  /* ターゲット別職種セレクト */
+  .job-select-hs, .job-select-nc, .job-select-tr { display: none; }
+  body.target-hs .job-select-hs { display: block; }
+  body.target-nc .job-select-nc { display: block; }
+  body.target-tr .job-select-tr { display: block; }
+  /* 年収フィールド */
+  .field-salary { display: none; }
+  body.target-tr .field-salary { display: block; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .dual-grid { grid-template-columns: 1fr; }
+    .useful-grid { grid-template-columns: repeat(2, 1fr); }
+    .consult-split { grid-template-columns: 1fr; }
+    .featured-news-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .nav { display: none; }
+    .hero h1 { font-size: 22px; }
+    .hero-hanabi svg { width: 120px; height: 120px; }
+    .hero-rice { display: none; }
+    .search-fields { flex-direction: column; }
+    .ev-layout { grid-template-columns: 1fr; }
+    .useful-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .consult-split { grid-template-columns: 1fr; }
+    .sec-head-en { font-size: 24px; }
+    .coverflow { height: 270px; }
+    .coverflow-item { width: 170px; margin-left: -85px; }
+    .coverflow-item.prev { transform: translateX(-52%) scale(0.88); }
+    .coverflow-item.next { transform: translateX(52%) scale(0.88); }
+    .coverflow-item.far-prev { transform: translateX(-82%) scale(0.76); opacity: 0.4; }
+    .coverflow-item.far-next { transform: translateX(82%) scale(0.76); opacity: 0.4; }
+    .company-video-thumb { height: 140px; }
+    .coverflow.note-coverflow { height: 270px; }
+    .coverflow.note-coverflow .coverflow-item { width: 200px; margin-left: -100px; }
+    .hero-keywords { gap: 8px; }
+  }
+</style>
+</head>
+<body class="target-hs">
+<script>(function(){var t=localStorage.getItem('nagaoka_target');if(t&&['hs','nc','tr'].indexOf(t)>=0)document.body.className='target-'+t;else window.location.replace('nagaoka-workstyle-gateway.html');}());</script>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="40" height="40" rx="8" fill="#2ea7c8"/>
+          <path d="M8 28L14 12h2.5l3.5 10.5L23.5 12H26l6 16h-3.2l-4.2-12-3.8 12h-2.4l-3.8-12-4.2 12H8z" fill="white"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <div class="logo-text-en">NAGAOKA <span>WORKSTYLE</span></div>
+        <div class="logo-text-ja">長岡ワークスタイル</div>
+      </div>
+    </a>
+    <nav class="nav">
+      <a href="#">企業を探す</a>
+      <a href="#">職種から探す</a>
+      <a href="#">地図から探す</a>
+      <a href="#">イベント</a>
+      <a href="#">お役立ち情報</a>
+      <a href="#">よくある質問</a>
+    </nav>
+    <div class="header-actions">
+      <a href="nagaoka-workstyle-gateway.html" class="change-target-link">対象を変更</a>
+      <a href="#" class="btn-outline">お問い合わせ</a>
+      <a href="#" class="btn-fill">ログイン</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <!-- ポスター風ロゴバッジ -->
+    <div class="hero-logo-badge">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="40" height="40" rx="8" fill="rgba(255,255,255,0.2)"/>
+        <path d="M8 28L14 12h2.5l3.5 10.5L23.5 12H26l6 16h-3.2l-4.2-12-3.8 12h-2.4l-3.8-12-4.2 12H8z" fill="white"/>
+      </svg>
+      <span>NAGAOKA WORKSTYLE</span>
+    </div>
+    <p class="hero-sub">新潟県長岡市の求人・企業情報ポータル</p>
+
+    <!-- ターゲット別ヒーロー見出し -->
+    <h1 class="for-hs">将来の仕事、<em>のぞいて</em>みよう！</h1>
+    <h1 class="for-nc"><em>長岡</em>で見つける、<em>最初のキャリア</em></h1>
+    <h1 class="for-tr"><em>長岡</em>で始める、<em>新しい働き方</em></h1>
+
+    <!-- ターゲット別キャッチ -->
+    <p class="hero-catch for-hs">工場見学・職場体験の情報がいっぱい！ 仕事のウラガワを大公開</p>
+    <p class="hero-catch for-nc">インターンから本選考まで、長岡の企業をまるごと大公開！</p>
+    <p class="hero-catch for-tr">UIターン・移住の情報も充実。次のキャリアを長岡で。</p>
+
+    <!-- 長岡らしさキーワード帯 -->
+    <div class="hero-keywords">
+      <span class="hero-kw">
+        <svg viewBox="0 0 16 16"><circle cx="8" cy="4" r="1.5" fill="currentColor"/><line x1="8" y1="4" x2="8" y2="1" stroke="currentColor" stroke-width="1"/><line x1="8" y1="4" x2="11" y2="1.5" stroke="currentColor" stroke-width="1"/><line x1="8" y1="4" x2="5" y2="1.5" stroke="currentColor" stroke-width="1"/><line x1="8" y1="4" x2="12" y2="5" stroke="currentColor" stroke-width="1"/><line x1="8" y1="4" x2="4" y2="5" stroke="currentColor" stroke-width="1"/></svg>
+        長岡花火のまち
+      </span>
+      <span class="hero-kw">🌾 米どころ新潟</span>
+      <span class="hero-kw">🏔️ 自然と暮らす</span>
+      <span class="hero-kw">🏭 ものづくり</span>
+      <span class="hero-kw">🎓 学園都市</span>
+    </div>
+
+    <div class="search-card">
+      <div class="search-mode">
+        <div class="search-mode-tab active">条件で探す</div>
+        <div class="search-mode-tab">フリーワードで探す</div>
+      </div>
+      <div class="search-fields">
+        <div class="field"><label>職種</label>
+          <!-- 高校生向け：平易な表現 -->
+          <select class="job-select-hs"><option>すべてのお仕事</option><option>工場ではたらく</option><option>パソコンを使う仕事</option><option>お店・接客</option><option>ものを届ける・運ぶ</option><option>建物をつくる</option><option>医療・介護</option><option>食べ物をつくる</option><option>事務・オフィスワーク</option></select>
+          <!-- 新卒向け -->
+          <select class="job-select-nc"><option>すべての職種</option><option>製造・ものづくり</option><option>IT・エンジニア</option><option>事務・管理</option><option>営業・販売</option><option>医療・福祉</option><option>飲食・サービス</option><option>建設・土木</option><option>農業・食品</option><option>教育・保育</option></select>
+          <!-- 転職向け -->
+          <select class="job-select-tr"><option>すべての職種</option><option>製造・ものづくり</option><option>IT・エンジニア</option><option>事務・管理</option><option>営業・販売</option><option>医療・福祉</option><option>飲食・サービス</option><option>建設・土木</option><option>農業・食品</option><option>教育・保育</option></select>
+        </div>
+        <div class="field"><label>エリア</label>
+          <select><option>長岡市全域</option><option>長岡駅周辺</option><option>川東エリア</option><option>川西エリア</option><option>栃尾エリア</option><option>中之島・見附方面</option></select>
+        </div>
+        <!-- 転職者のみ：年収レンジ -->
+        <div class="field field-salary"><label>年収</label>
+          <select><option>指定なし</option><option>300万円〜</option><option>400万円〜</option><option>500万円〜</option><option>600万円〜</option></select>
+        </div>
+        <button class="btn-search" onclick="goToList()">検索する</button>
+      </div>
+      <div class="kodawari">
+        <div class="kodawari-btn" onclick="toggleKodawari(this)">
+          こだわり条件で絞り込む ▼
+        </div>
+        <!-- 高校生向けこだわり条件 -->
+        <div class="kodawari-panel kodawari-hs">
+          <div class="kodawari-group">
+            <div class="kodawari-group-title">こんな会社がいい！</div>
+            <div class="checks">
+              <label class="check"><input type="checkbox"> 高卒採用あり</label>
+              <label class="check"><input type="checkbox"> 未経験OK</label>
+              <label class="check"><input type="checkbox"> 職場見学できる</label>
+              <label class="check"><input type="checkbox"> 研修がしっかりある</label>
+              <label class="check"><input type="checkbox"> 資格が取れる</label>
+              <label class="check"><input type="checkbox"> 制服・作業着あり</label>
+            </div>
+          </div>
+          <div class="kodawari-group">
+            <div class="kodawari-group-title">はたらき方</div>
+            <div class="checks">
+              <label class="check"><input type="checkbox"> 土日休み</label>
+              <label class="check"><input type="checkbox"> 寮あり</label>
+              <label class="check"><input type="checkbox"> 女性が活躍中</label>
+              <label class="check"><input type="checkbox"> 先輩がやさしい</label>
+            </div>
+          </div>
+        </div>
+        <!-- 新卒向けこだわり条件 -->
+        <div class="kodawari-panel kodawari-nc">
+          <div class="kodawari-group">
+            <div class="kodawari-group-title">募集対象</div>
+            <div class="checks">
+              <label class="check"><input type="checkbox"> 新卒採用あり</label>
+              <label class="check"><input type="checkbox"> インターン受付中</label>
+              <label class="check"><input type="checkbox"> 未経験OK</label>
+              <label class="check"><input type="checkbox"> 文系歓迎</label>
+            </div>
+          </div>
+          <div class="kodawari-group">
+            <div class="kodawari-group-title">働き方・待遇</div>
+            <div class="checks">
+              <label class="check"><input type="checkbox"> リモート可</label>
+              <label class="check"><input type="checkbox"> 土日祝休み</label>
+              <label class="check"><input type="checkbox"> 年間休日120日以上</label>
+              <label class="check"><input type="checkbox"> 職場見学可</label>
+              <label class="check"><input type="checkbox"> 資格取得支援</label>
+              <label class="check"><input type="checkbox"> 研修制度充実</label>
+            </div>
+          </div>
+          <div class="kodawari-group">
+            <div class="kodawari-group-title">会社の特徴</div>
+            <div class="checks">
+              <label class="check"><input type="checkbox"> 設立30年以上</label>
+              <label class="check"><input type="checkbox"> 従業員50人以上</label>
+              <label class="check"><input type="checkbox"> 女性活躍中</label>
+            </div>
+          </div>
+        </div>
+        <!-- 転職者向けこだわり条件 -->
+        <div class="kodawari-panel kodawari-tr">
+          <div class="kodawari-group">
+            <div class="kodawari-group-title">募集対象</div>
+            <div class="checks">
+              <label class="check"><input type="checkbox"> 中途歓迎</label>
+              <label class="check"><input type="checkbox"> 未経験OK</label>
+              <label class="check"><input type="checkbox"> 経験者優遇</label>
+              <label class="check"><input type="checkbox"> 管理職候補</label>
+            </div>
+          </div>
+          <div class="kodawari-group">
+            <div class="kodawari-group-title">働き方・待遇</div>
+            <div class="checks">
+              <label class="check"><input type="checkbox"> リモート・在宅可</label>
+              <label class="check"><input type="checkbox"> フレックスタイム</label>
+              <label class="check"><input type="checkbox"> 土日祝休み</label>
+              <label class="check"><input type="checkbox"> 年間休日120日以上</label>
+              <label class="check"><input type="checkbox"> 移住支援金対象</label>
+              <label class="check"><input type="checkbox"> 寮・社宅あり</label>
+            </div>
+          </div>
+          <div class="kodawari-group">
+            <div class="kodawari-group-title">会社の特徴</div>
+            <div class="checks">
+              <label class="check"><input type="checkbox"> 設立30年以上</label>
+              <label class="check"><input type="checkbox"> 従業員50人以上</label>
+              <label class="check"><input type="checkbox"> 女性活躍中</label>
+              <label class="check"><input type="checkbox"> 副業OK</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="search-keywords for-hs">
+        人気のキーワード：<a href="nagaoka-workstyle-list.html?keyword=職場見学">職場見学</a><a href="nagaoka-workstyle-list.html?keyword=高卒採用">高卒採用</a><a href="nagaoka-workstyle-list.html?keyword=製造業">製造業</a><a href="nagaoka-workstyle-list.html?keyword=未経験OK">未経験OK</a><a href="nagaoka-workstyle-list.html?keyword=土日休み">土日休み</a>
+      </div>
+      <div class="search-keywords for-nc">
+        人気のキーワード：<a href="nagaoka-workstyle-list.html?keyword=インターン">インターン</a><a href="nagaoka-workstyle-list.html?keyword=新卒採用">新卒採用</a><a href="nagaoka-workstyle-list.html?keyword=リモート可">リモート可</a><a href="nagaoka-workstyle-list.html?keyword=研修充実">研修充実</a><a href="nagaoka-workstyle-list.html?keyword=IT">IT</a>
+      </div>
+      <div class="search-keywords for-tr">
+        人気のキーワード：<a href="nagaoka-workstyle-list.html?keyword=UIターン">UIターン</a><a href="nagaoka-workstyle-list.html?keyword=リモート可">リモート可</a><a href="nagaoka-workstyle-list.html?keyword=移住支援">移住支援</a><a href="nagaoka-workstyle-list.html?keyword=年収400万">年収400万〜</a><a href="nagaoka-workstyle-list.html?keyword=経験者優遇">経験者優遇</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 職種 + 地図 -->
+<div class="spacer-lg"></div>
+<div class="container">
+  <div class="sec-head">
+    <div class="sec-head-en">Job Search</div>
+    <div class="sec-head-ja">お仕事を探す</div>
+  </div>
+  <div class="dual-grid">
+    <div class="panel">
+      <h3>職種から探す</h3>
+      <p class="sub">気になる職種をタップして求人を見てみよう</p>
+      <div class="job-grid">
+        <div class="job-item"><div class="job-icon a">🏭</div><div class="job-name">製造・ものづくり</div><div class="job-count">42件</div></div>
+        <div class="job-item"><div class="job-icon b">💻</div><div class="job-name">IT・エンジニア</div><div class="job-count">18件</div></div>
+        <div class="job-item"><div class="job-icon c">📋</div><div class="job-name">事務・管理</div><div class="job-count">24件</div></div>
+        <div class="job-item"><div class="job-icon d">🤝</div><div class="job-name">営業・販売</div><div class="job-count">31件</div></div>
+        <div class="job-item"><div class="job-icon e">🏥</div><div class="job-name">医療・福祉</div><div class="job-count">27件</div></div>
+        <div class="job-item"><div class="job-icon f">🍽️</div><div class="job-name">飲食・サービス</div><div class="job-count">19件</div></div>
+        <div class="job-item"><div class="job-icon g">🏗️</div><div class="job-name">建設・土木</div><div class="job-count">15件</div></div>
+        <div class="job-item"><div class="job-icon h">🌾</div><div class="job-name">農業・食品</div><div class="job-count">12件</div></div>
+        <div class="job-item"><div class="job-icon i">📚</div><div class="job-name">教育・保育</div><div class="job-count">16件</div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>地図から探す</h3>
+      <p class="sub">住所を入力して、近くの求人を見つけよう</p>
+      <div class="map-input"><label>住所・施設名・駅名</label><input type="text" placeholder="例：長岡駅、宮内町、大手通…"></div>
+      <div class="map-input"><label>範囲</label>
+        <div class="radius-pills">
+          <span class="pill">1km</span><span class="pill">3km</span>
+          <span class="pill on">5km</span><span class="pill">10km</span><span class="pill">20km</span>
+        </div>
+      </div>
+      <div class="map-actions">
+        <button>この条件で探す</button>
+        <span class="gps">📍 現在地から</span>
+      </div>
+      <div class="map-area">Google Maps 埋め込みエリア</div>
+    </div>
+  </div>
+</div>
+
+<!-- 注目企業（左）+ 新着情報（右）2カラム -->
+<div class="spacer-lg"></div>
+<section class="featured-news-section">
+  <div class="featured-news-grid">
+    <!-- 左: 注目企業 カルーセル -->
+    <div class="featured-col">
+      <div class="featured-col-header">
+        <div class="sec-head-left">
+          <div class="sec-head-en">Companies</div>
+          <div class="sec-head-ja">注目企業 ─ 動画で雰囲気をチェック</div>
+        </div>
+        <a href="#" class="link-more">企業一覧</a>
+      </div>
+      <div class="coverflow" id="companyCoverflow">
+        <div class="coverflow-stage">
+          <div class="coverflow-item" data-target="hs">
+            <div class="company-card">
+              <div class="company-video-thumb v1">
+                <div class="video-play-btn">▶</div>
+                <div class="company-target-badge hs">高校生向け</div>
+                <div class="company-video-label">
+                  <div class="company-video-name">製造ラインの1日密着</div>
+                  <div class="company-video-sub">社員インタビューあり</div>
+                </div>
+              </div>
+              <div class="company-info">
+                <div class="company-tags"><span class="company-tag">製造</span><span class="company-tag">高卒採用あり</span></div>
+                <div class="company-name">株式会社サンプル製作所</div>
+                <div class="company-catch">精密部品で世界を支える長岡の企業</div>
+                <div class="company-meta">従業員120名 ｜ 設立1985年</div>
+              </div>
+            </div>
+          </div>
+          <div class="coverflow-item" data-target="nc">
+            <div class="company-card">
+              <div class="company-video-thumb v2">
+                <div class="video-play-btn">▶</div>
+                <div class="company-target-badge nc">新卒向け</div>
+                <div class="company-video-label">
+                  <div class="company-video-name">オフィスツアー・若手座談会</div>
+                  <div class="company-video-sub">入社1〜3年目が語る</div>
+                </div>
+              </div>
+              <div class="company-info">
+                <div class="company-tags"><span class="company-tag">IT</span><span class="company-tag">リモート可</span></div>
+                <div class="company-name">長岡テクノロジーズ株式会社</div>
+                <div class="company-catch">長岡発のITで地域と世界をつなぐ</div>
+                <div class="company-meta">従業員45名 ｜ 設立2015年</div>
+              </div>
+            </div>
+          </div>
+          <div class="coverflow-item" data-target="tr">
+            <div class="company-card">
+              <div class="company-video-thumb v3">
+                <div class="video-play-btn">▶</div>
+                <div class="company-target-badge tr">転職向け</div>
+                <div class="company-video-label">
+                  <div class="company-video-name">Uターン転職者インタビュー</div>
+                  <div class="company-video-sub">東京から長岡へ戻った理由</div>
+                </div>
+              </div>
+              <div class="company-info">
+                <div class="company-tags"><span class="company-tag">食品</span><span class="company-tag">移住支援</span></div>
+                <div class="company-name">越後フーズ株式会社</div>
+                <div class="company-catch">地元の「食」を守り育てるメーカー</div>
+                <div class="company-meta">従業員230名 ｜ 設立1972年</div>
+              </div>
+            </div>
+          </div>
+          <div class="coverflow-item" data-target="nc">
+            <div class="company-card">
+              <div class="company-video-thumb v4">
+                <div class="video-play-btn">▶</div>
+                <div class="company-target-badge nc">新卒向け</div>
+                <div class="company-video-label">
+                  <div class="company-video-name">インターン体験記</div>
+                  <div class="company-video-sub">実際に1日働いてみた</div>
+                </div>
+              </div>
+              <div class="company-info">
+                <div class="company-tags"><span class="company-tag">医療・福祉</span><span class="company-tag">未経験OK</span></div>
+                <div class="company-name">長岡ケアサービス株式会社</div>
+                <div class="company-catch">毎日が誰かの笑顔につながる</div>
+                <div class="company-meta">従業員85名 ｜ 設立2003年</div>
+              </div>
+            </div>
+          </div>
+          <div class="coverflow-item" data-target="hs">
+            <div class="company-card">
+              <div class="company-video-thumb v5">
+                <div class="video-play-btn">▶</div>
+                <div class="company-target-badge hs">高校生向け</div>
+                <div class="company-video-label">
+                  <div class="company-video-name">女性現場監督の1日</div>
+                  <div class="company-video-sub">建設業のイメージが変わる</div>
+                </div>
+              </div>
+              <div class="company-info">
+                <div class="company-tags"><span class="company-tag">建設</span><span class="company-tag">女性活躍中</span></div>
+                <div class="company-name">信濃川建設株式会社</div>
+                <div class="company-catch">長岡の街と暮らしを50年支える</div>
+                <div class="company-meta">従業員68名 ｜ 設立1974年</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="coverflow-nav">
+          <button class="coverflow-btn" onclick="coverflowPrev('companyCoverflow')">◀</button>
+          <div class="coverflow-dots" id="companyCoverflow-dots"></div>
+          <button class="coverflow-btn" onclick="coverflowNext('companyCoverflow')">▶</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右: 新着情報 -->
+    <div class="news-col">
+      <div class="news-col-header">
+        <div class="sec-head-left">
+          <div class="sec-head-en">News</div>
+          <div class="sec-head-ja">新着情報</div>
+        </div>
+        <a href="#" class="link-more">一覧</a>
+      </div>
+      <div class="news-list">
+        <div class="news-item">
+          <div class="news-date">2026.03.15</div>
+          <div>
+            <span class="news-tag-sm red">重要</span>
+            <span class="news-text">【参加企業募集中】2026年度 長岡合同企業説明会の開催が決定しました</span>
+          </div>
+        </div>
+        <div class="news-item">
+          <div class="news-date">2026.03.10</div>
+          <div>
+            <span class="news-tag-sm blue">イベント</span>
+            <span class="news-text">3/25 IT企業インターンシップ説明会 @NaDeC BASE</span>
+          </div>
+        </div>
+        <div class="news-item">
+          <div class="news-date">2026.03.01</div>
+          <div>
+            <span class="news-tag-sm green">お知らせ</span>
+            <span class="news-text">移住支援金の申請受付が始まりました（2026年度）</span>
+          </div>
+        </div>
+        <div class="news-item">
+          <div class="news-date">2026.02.25</div>
+          <div>
+            <span class="news-tag-sm yellow">NEW</span>
+            <span class="news-text">サイトリニューアルのお知らせ</span>
+          </div>
+        </div>
+        <div class="news-item">
+          <div class="news-date">2026.02.18</div>
+          <div>
+            <span class="news-tag-sm blue">イベント</span>
+            <span class="news-text">春の長岡 職場見学ウィーク 参加企業を公開しました</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- イベント（Stories の前に表示） -->
+<div class="container" style="padding-top: 72px; padding-bottom: 72px;">
+  <div class="sec-head">
+    <div class="sec-head-en">Events</div>
+    <div class="sec-head-ja">イベント・説明会</div>
+  </div>
+  <div class="ev-layout">
+    <div class="cal">
+      <div class="cal-top"><span>◀</span><h4>2026年 3月</h4><span>▶</span></div>
+      <div class="cal-grid">
+        <div class="cal-dh">日</div><div class="cal-dh">月</div><div class="cal-dh">火</div><div class="cal-dh">水</div><div class="cal-dh">木</div><div class="cal-dh">金</div><div class="cal-dh">土</div>
+        <div class="cal-d">1</div><div class="cal-d">2</div><div class="cal-d">3</div><div class="cal-d">4</div><div class="cal-d ev">5</div><div class="cal-d">6</div><div class="cal-d">7</div>
+        <div class="cal-d">8</div><div class="cal-d">9</div><div class="cal-d">10</div><div class="cal-d">11</div><div class="cal-d ev">12</div><div class="cal-d">13</div><div class="cal-d">14</div>
+        <div class="cal-d">15</div><div class="cal-d">16</div><div class="cal-d">17</div><div class="cal-d">18</div><div class="cal-d now">19</div><div class="cal-d">20</div><div class="cal-d">21</div>
+        <div class="cal-d">22</div><div class="cal-d">23</div><div class="cal-d">24</div><div class="cal-d ev">25</div><div class="cal-d">26</div><div class="cal-d">27</div><div class="cal-d">28</div>
+        <div class="cal-d">29</div><div class="cal-d ev">30</div><div class="cal-d">31</div>
+      </div>
+    </div>
+    <div class="ev-list" id="evList">
+      <div class="ev-card" data-ev-target="hs nc"><div class="ev-date"><div class="m">3月</div><div class="d">5</div><div class="w">木</div></div><div class="ev-info"><h4>長岡ものづくり企業 合同説明会</h4><p>アオーレ長岡 ｜ 13:00〜17:00</p><div class="ev-tags"><span class="ev-tag t1">高校生</span><span class="ev-tag t2">大学生</span></div></div></div>
+      <div class="ev-card" data-ev-target="tr"><div class="ev-date"><div class="m">3月</div><div class="d">12</div><div class="w">木</div></div><div class="ev-info"><h4>UIターン希望者向け オンライン相談会</h4><p>オンライン（Zoom）｜ 19:00〜21:00</p><div class="ev-tags"><span class="ev-tag t3">転職者</span></div></div></div>
+      <div class="ev-card" data-ev-target="nc"><div class="ev-date"><div class="m">3月</div><div class="d">25</div><div class="w">水</div></div><div class="ev-info"><h4>IT企業インターンシップ説明会</h4><p>NaDeC BASE ｜ 14:00〜16:00</p><div class="ev-tags"><span class="ev-tag t2">大学生</span></div></div></div>
+      <div class="ev-card" data-ev-target="hs nc tr"><div class="ev-date"><div class="m">3月</div><div class="d">30</div><div class="w">月</div></div><div class="ev-info"><h4>春の長岡 職場見学ウィーク</h4><p>市内各企業 ｜ 要予約</p><div class="ev-tags"><span class="ev-tag t1">高校生</span><span class="ev-tag t2">大学生</span><span class="ev-tag t3">転職者</span></div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- note 記事 -->
+<section class="note-bg" style="margin-top: 0;">
+  <div class="container" style="padding-top: 72px; padding-bottom: 72px;">
+    <div class="note-header">
+      <div class="sec-head-left">
+        <div class="sec-head-en">Stories</div>
+        <div class="sec-head-ja">企業をもっと知る ─ note記事</div>
+      </div>
+      <a href="#" class="link-more">記事一覧を見る</a>
+    </div>
+    <div class="coverflow note-coverflow" id="noteCoverflow">
+      <div class="coverflow-stage">
+        <div class="coverflow-item" data-target="hs">
+          <div class="note-card">
+            <div class="note-img c1">記事カバー画像<span class="note-badge">note</span><span class="company-target-badge hs" style="top:auto;bottom:auto;left:8px;top:8px;">高校生向け</span></div>
+            <div class="note-body">
+              <div class="note-company"><div class="note-avatar">S</div><span class="note-company-name">株式会社サンプル製作所</span></div>
+              <div class="note-title">入社3年目の本音。ものづくりの現場で感じたやりがいと成長</div>
+              <div class="note-footer"><span>2026.03.12</span><span class="note-like">♡ 24</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="coverflow-item" data-target="tr">
+          <div class="note-card">
+            <div class="note-img c2">記事カバー画像<span class="note-badge">note</span><span class="company-target-badge tr" style="top:auto;bottom:auto;left:8px;top:8px;">転職向け</span></div>
+            <div class="note-body">
+              <div class="note-company"><div class="note-avatar">長</div><span class="note-company-name">長岡テクノロジーズ</span></div>
+              <div class="note-title">長岡でフルリモート。東京の仕事を新潟で続ける私の1日</div>
+              <div class="note-footer"><span>2026.03.08</span><span class="note-like">♡ 41</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="coverflow-item" data-target="tr">
+          <div class="note-card">
+            <div class="note-img c3">記事カバー画像<span class="note-badge">note</span><span class="company-target-badge tr" style="top:auto;bottom:auto;left:8px;top:8px;">転職向け</span></div>
+            <div class="note-body">
+              <div class="note-company"><div class="note-avatar">越</div><span class="note-company-name">越後フーズ株式会社</span></div>
+              <div class="note-title">Uターンして地元の食品メーカーに転職。決め手は「食」への想い</div>
+              <div class="note-footer"><span>2026.03.01</span><span class="note-like">♡ 33</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="coverflow-item" data-target="hs">
+          <div class="note-card">
+            <div class="note-img c4">記事カバー画像<span class="note-badge">note</span><span class="company-target-badge hs" style="top:auto;bottom:auto;left:8px;top:8px;">高校生向け</span></div>
+            <div class="note-body">
+              <div class="note-company"><div class="note-avatar">信</div><span class="note-company-name">信濃川建設株式会社</span></div>
+              <div class="note-title">建設業のイメージが変わった。女性現場監督のリアルな毎日</div>
+              <div class="note-footer"><span>2026.02.22</span><span class="note-like">♡ 56</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="coverflow-item" data-target="nc">
+          <div class="note-card">
+            <div class="note-img c1">記事カバー画像<span class="note-badge">note</span><span class="company-target-badge nc" style="top:auto;bottom:auto;left:8px;top:8px;">新卒向け</span></div>
+            <div class="note-body">
+              <div class="note-company"><div class="note-avatar">栃</div><span class="note-company-name">栃尾てまり工房</span></div>
+              <div class="note-title">伝統工芸×若手デザイナー。長岡の手仕事が海外で評価されるまで</div>
+              <div class="note-footer"><span>2026.02.15</span><span class="note-like">♡ 48</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="coverflow-item" data-target="nc">
+          <div class="note-card">
+            <div class="note-img c2">記事カバー画像<span class="note-badge">note</span><span class="company-target-badge nc" style="top:auto;bottom:auto;left:8px;top:8px;">新卒向け</span></div>
+            <div class="note-body">
+              <div class="note-company"><div class="note-avatar">N</div><span class="note-company-name">NaDeC BASE</span></div>
+              <div class="note-title">長岡駅前のコワーキングで起業。学生と地域をつなぐ場づくりの裏側</div>
+              <div class="note-footer"><span>2026.02.08</span><span class="note-like">♡ 37</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="coverflow-item" data-target="hs">
+          <div class="note-card">
+            <div class="note-img c3">記事カバー画像<span class="note-badge">note</span><span class="company-target-badge hs" style="top:auto;bottom:auto;left:8px;top:8px;">高校生向け</span></div>
+            <div class="note-body">
+              <div class="note-company"><div class="note-avatar">雪</div><span class="note-company-name">越後雪国農園</span></div>
+              <div class="note-title">雪国だからこそできる農業。冬の仕事と春の喜びを語る</div>
+              <div class="note-footer"><span>2026.01.30</span><span class="note-like">♡ 29</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="coverflow-nav">
+        <button class="coverflow-btn" onclick="coverflowPrev('noteCoverflow')">◀</button>
+        <div class="coverflow-dots" id="noteCoverflow-dots"></div>
+        <button class="coverflow-btn" onclick="coverflowNext('noteCoverflow')">▶</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- お役立ち情報 -->
+<section class="useful-bg">
+  <div class="container" style="padding-top: 52px; padding-bottom: 52px;">
+    <div class="sec-head">
+      <div class="sec-head-en">Resources</div>
+      <div class="sec-head-ja">お役立ち情報</div>
+    </div>
+    <!-- 高校生向け -->
+    <div class="useful-grid for-hs-grid">
+      <div class="useful-item accent">
+        <div class="useful-item-icon s">🎒</div>
+        <div class="useful-item-title">高校生の就活入門</div>
+        <div class="useful-item-desc">就職活動の流れを0から解説。学校の先生に聞けないことも確認できます。</div>
+      </div>
+      <div class="useful-item">
+        <div class="useful-item-icon v">🎤</div>
+        <div class="useful-item-title">面接対策</div>
+        <div class="useful-item-desc">よく聞かれる質問と答え方のポイントを、具体的な例文つきで紹介。</div>
+      </div>
+      <div class="useful-item">
+        <div class="useful-item-icon w">📝</div>
+        <div class="useful-item-title">履歴書の書き方</div>
+        <div class="useful-item-desc">見本つきで丁寧に解説。工場・事務・販売など職種別の書き方も掲載。</div>
+      </div>
+      <div class="useful-item">
+        <div class="useful-item-icon h">🏭</div>
+        <div class="useful-item-title">職場見学ガイド</div>
+        <div class="useful-item-desc">見学当日の流れ・服装・持ち物・よくある質問をまとめました。</div>
+      </div>
+      <div class="useful-item">
+        <div class="useful-item-icon m">💡</div>
+        <div class="useful-item-title">働くってどんなこと？</div>
+        <div class="useful-item-desc">お金のしくみ・社会保険・有給など、働き始める前に知っておきたい基礎知識。</div>
+      </div>
+    </div>
+    <!-- 新卒向け -->
+    <div class="useful-grid for-nc-grid">
+      <div class="useful-item accent">
+        <div class="useful-item-icon w">📝</div>
+        <div class="useful-item-title">履歴書・ES の書き方</div>
+        <div class="useful-item-desc">新卒向けの書き方ガイド。企業が実際に見るポイントも解説します。</div>
+      </div>
+      <div class="useful-item">
+        <div class="useful-item-icon v">🎤</div>
+        <div class="useful-item-title">面接対策</div>
+        <div class="useful-item-desc">よく聞かれる質問と答え方のポイントを、具体的な例文つきで紹介。</div>
+      </div>
+      <div class="useful-item">
+        <div class="useful-item-icon s">📊</div>
+        <div class="useful-item-title">自己分析ツール</div>
+        <div class="useful-item-desc">価値観・強み・仕事スタイルを整理できる無料チェックシートを提供。</div>
+      </div>
+      <div class="useful-item">
+        <div class="useful-item-icon m">💰</div>
+        <div class="useful-item-title">移住支援金のご案内</div>
+        <div class="useful-item-desc">県外から長岡に移住した場合、最大100万円の支援を受けられます。</div>
+      </div>
+      <div class="useful-item">
+        <div class="useful-item-icon h">🏠</div>
+        <div class="useful-item-title">長岡暮らしガイド</div>
+        <div class="useful-item-desc">住まい・保育・交通・子育てなど、長岡生活を始めるための基本情報。</div>
+      </div>
+    </div>
+    <!-- 転職者向け -->
+    <div class="useful-grid for-tr-grid">
+      <div class="useful-item accent">
+        <div class="useful-item-icon m">💰</div>
+        <div class="useful-item-title">移住支援金のご案内</div>
+        <div class="useful-item-desc">長岡市への移住で最大100万円支援。申請条件・方法を詳しく解説。</div>
+      </div>
+      <div class="useful-item">
+        <div class="useful-item-icon h">🏠</div>
+        <div class="useful-item-title">移住ガイド</div>
+        <div class="useful-item-desc">住まい探し・家賃相場・移住者インタビューなど、実際の声を掲載。</div>
+      </div>
+      <div class="useful-item">
+        <div class="useful-item-icon w">💼</div>
+        <div class="useful-item-title">転職成功ノウハウ</div>
+        <div class="useful-item-desc">業種変更・年収交渉・退職タイミングなど転職のリアルを解説。</div>
+      </div>
+      <div class="useful-item">
+        <div class="useful-item-icon v">🎤</div>
+        <div class="useful-item-title">面接対策（転職者向け）</div>
+        <div class="useful-item-desc">退職理由の伝え方・スキルのアピール方法など転職者特有の対策を紹介。</div>
+      </div>
+      <div class="useful-item">
+        <div class="useful-item-icon s">👨‍👩‍👧</div>
+        <div class="useful-item-title">子育て・生活情報</div>
+        <div class="useful-item-desc">長岡市の保育所・学校・医療・地域コミュニティの情報をまとめました。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="container" style="padding-top: 72px; padding-bottom: 72px;">
+  <!-- 高校生向けCTA -->
+  <div class="cta for-hs">
+    <h2>気になる会社、見学してみよう！</h2>
+    <p>職場見学に参加して、実際の仕事の雰囲気を体感しよう</p>
+    <div class="cta-buttons">
+      <button class="cta-a fill">職場見学をチェック</button>
+      <button class="cta-a ghost">先生・保護者向け情報</button>
+    </div>
+  </div>
+  <!-- 新卒向けCTA -->
+  <div class="cta for-nc">
+    <h2>あなたに合った企業が見つかるかも？</h2>
+    <p>プロフィールを登録すると、長岡市内の企業からスカウトが届きます</p>
+    <div class="cta-buttons">
+      <button class="cta-a fill">スカウト登録する（無料）</button>
+      <button class="cta-a ghost">詳しく見る</button>
+    </div>
+  </div>
+  <!-- 転職者向けCTA -->
+  <div class="cta for-tr">
+    <h2>長岡での新生活、相談してみませんか？</h2>
+    <p>UIターン・移住の不安や疑問、専門スタッフがお答えします</p>
+    <div class="cta-buttons">
+      <button class="cta-a fill">UIターン相談する</button>
+      <button class="cta-a ghost">移住支援金を確認</button>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="container" style="padding-bottom: 72px;">
+  <div class="sec-head">
+    <div class="sec-head-en">FAQ</div>
+    <div class="sec-head-ja">よくある質問</div>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item open" onclick="this.classList.toggle('open')"><div class="faq-q"><span class="faq-marker">Q</span><span class="faq-text">サイトの利用に費用はかかりますか？</span><span class="faq-toggle">＋</span></div><div class="faq-a">いいえ、求職者の方はすべて無料でご利用いただけます。企業情報の閲覧、イベント参加、スカウト登録などすべて無料です。</div></div>
+    <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q"><span class="faq-marker">Q</span><span class="faq-text">高校生でも利用できますか？</span><span class="faq-toggle">＋</span></div><div class="faq-a">はい、もちろんです。高校生向けの企業紹介や職場見学情報を掲載しています。実際の応募はハローワークや学校を通じて行っていただきますが、企業を知る情報源としてお使いください。</div></div>
+    <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q"><span class="faq-marker">Q</span><span class="faq-text">長岡市外に住んでいても使えますか？</span><span class="faq-toggle">＋</span></div><div class="faq-a">はい。UIターンを検討されている方も大歓迎です。移住支援情報やオンライン相談会も掲載しています。</div></div>
+    <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q"><span class="faq-marker">Q</span><span class="faq-text">企業として掲載するにはどうすれば良いですか？</span><span class="faq-toggle">＋</span></div><div class="faq-a">「お問い合わせ」ボタンから掲載のご相談が可能です。長岡市内に事業所をお持ちの企業様であればお申し込みいただけます。</div></div>
+    <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q"><span class="faq-marker">Q</span><span class="faq-text">スカウト登録をすると何が届きますか？</span><span class="faq-toggle">＋</span></div><div class="faq-a">プロフィールに合った企業から説明会の案内や選考のお誘いが届きます。登録情報は企業に直接公開されず、興味がなければ無視して問題ありません。</div></div>
+  </div>
+</div>
+
+<!-- 相談窓口 -->
+<section class="consult-bg">
+  <div class="container" style="padding-top: 52px; padding-bottom: 56px;">
+    <div class="sec-head">
+      <div class="sec-head-en">Support</div>
+      <div class="sec-head-ja">相談窓口</div>
+    </div>
+    <p class="section-desc" style="text-align:center; margin-top: -20px; margin-bottom: 32px;">就活や転職のこと、ひとりで悩まないでください</p>
+    <div class="consult-split">
+      <!-- LEFT: Web form -->
+      <div class="consult-form-col">
+        <div class="consult-form-title">📝 Webからお気軽にご相談</div>
+        <form onsubmit="alert('送信しました（デモ）'); return false;">
+          <div class="cf-group">
+            <label class="cf-label">お名前</label>
+            <input type="text" class="cf-input" placeholder="例：長岡 太郎">
+          </div>
+          <div class="cf-group">
+            <label class="cf-label">メールアドレス</label>
+            <input type="email" id="consultEmail" class="cf-input" placeholder="例：taro@example.com">
+          </div>
+          <div class="cf-group">
+            <label class="cf-label">ご相談の種類</label>
+            <select class="cf-input">
+              <option>就職・就活について</option>
+              <option>インターンシップについて</option>
+              <option>転職・UIターンについて</option>
+              <option>移住・生活環境について</option>
+              <option>企業掲載について</option>
+              <option>その他</option>
+            </select>
+          </div>
+          <div class="cf-group">
+            <label class="cf-label">ご質問・ご相談内容</label>
+            <textarea class="cf-input cf-textarea" placeholder="どんな些細なことでも大丈夫です。お気軽にどうぞ。"></textarea>
+          </div>
+          <button type="submit" class="cf-submit">送信する →</button>
+          <p class="cf-note">個人情報は相談対応以外の目的には使用しません。</p>
+        </form>
+      </div>
+      <!-- RIGHT: LINE + other contacts -->
+      <div class="consult-right-col">
+        <!-- LINE card with QR -->
+        <div class="line-card">
+          <div class="line-card-label">LINEでも気軽に相談できます</div>
+          <div class="line-body">
+            <div class="line-qr-wrap">
+              <!-- Dummy QR code SVG -->
+              <svg width="110" height="110" viewBox="0 0 90 90">
+                <rect width="90" height="90" fill="white"/>
+                <rect x="6" y="6" width="22" height="22" rx="2" fill="black"/>
+                <rect x="9" y="9" width="16" height="16" rx="1" fill="white"/>
+                <rect x="12" y="12" width="10" height="10" rx="1" fill="black"/>
+                <rect x="62" y="6" width="22" height="22" rx="2" fill="black"/>
+                <rect x="65" y="9" width="16" height="16" rx="1" fill="white"/>
+                <rect x="68" y="12" width="10" height="10" rx="1" fill="black"/>
+                <rect x="6" y="62" width="22" height="22" rx="2" fill="black"/>
+                <rect x="9" y="65" width="16" height="16" rx="1" fill="white"/>
+                <rect x="12" y="68" width="10" height="10" rx="1" fill="black"/>
+                <rect x="34" y="6" width="5" height="5" fill="black"/>
+                <rect x="41" y="6" width="5" height="5" fill="black"/>
+                <rect x="34" y="13" width="5" height="5" fill="black"/>
+                <rect x="48" y="13" width="5" height="5" fill="black"/>
+                <rect x="41" y="20" width="5" height="5" fill="black"/>
+                <rect x="6" y="34" width="5" height="5" fill="black"/>
+                <rect x="13" y="34" width="5" height="5" fill="black"/>
+                <rect x="34" y="34" width="5" height="5" fill="black"/>
+                <rect x="48" y="34" width="5" height="5" fill="black"/>
+                <rect x="62" y="34" width="5" height="5" fill="black"/>
+                <rect x="76" y="34" width="5" height="5" fill="black"/>
+                <rect x="6" y="41" width="5" height="5" fill="black"/>
+                <rect x="20" y="41" width="5" height="5" fill="black"/>
+                <rect x="41" y="41" width="5" height="5" fill="black"/>
+                <rect x="55" y="41" width="5" height="5" fill="black"/>
+                <rect x="69" y="41" width="5" height="5" fill="black"/>
+                <rect x="6" y="48" width="5" height="5" fill="black"/>
+                <rect x="13" y="48" width="5" height="5" fill="black"/>
+                <rect x="27" y="48" width="5" height="5" fill="black"/>
+                <rect x="34" y="48" width="5" height="5" fill="black"/>
+                <rect x="55" y="48" width="5" height="5" fill="black"/>
+                <rect x="76" y="48" width="5" height="5" fill="black"/>
+                <rect x="13" y="55" width="5" height="5" fill="black"/>
+                <rect x="27" y="55" width="5" height="5" fill="black"/>
+                <rect x="41" y="55" width="5" height="5" fill="black"/>
+                <rect x="62" y="55" width="5" height="5" fill="black"/>
+                <rect x="34" y="62" width="5" height="5" fill="black"/>
+                <rect x="48" y="62" width="5" height="5" fill="black"/>
+                <rect x="69" y="62" width="5" height="5" fill="black"/>
+                <rect x="34" y="69" width="5" height="5" fill="black"/>
+                <rect x="41" y="69" width="5" height="5" fill="black"/>
+                <rect x="55" y="69" width="5" height="5" fill="black"/>
+                <rect x="76" y="69" width="5" height="5" fill="black"/>
+                <rect x="41" y="76" width="5" height="5" fill="black"/>
+                <rect x="62" y="76" width="5" height="5" fill="black"/>
+              </svg>
+            </div>
+            <div>
+              <div class="line-qr-name">長岡ワークスタイル 公式LINE</div>
+              <div class="line-qr-sub">QRコードをスキャンするか<br>ボタンから友だち追加！</div>
+              <span class="line-add-btn" onclick="alert('LINE友だち追加（デモ）')">友だち追加する</span>
+            </div>
+          </div>
+          <div class="line-merit-list">
+            <div class="line-merit">チャットで気軽に相談OK</div>
+            <div class="line-merit">新着求人・イベント情報をお届け</div>
+            <div class="line-merit">1対1トークで安心</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo-wrap">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="40" height="40" rx="8" fill="#2ea7c8"/>
+          <path d="M8 28L14 12h2.5l3.5 10.5L23.5 12H26l6 16h-3.2l-4.2-12-3.8 12h-2.4l-3.8-12-4.2 12H8z" fill="white"/>
+        </svg>
+        <div class="footer-logo-text">
+          <div class="fl-en">NAGAOKA <span>WORKSTYLE</span></div>
+          <div class="fl-ja">長岡ワークスタイル</div>
+        </div>
+      </div>
+      <p>新潟県長岡市の企業・仕事情報ポータルサイト。<br>あなたの「働く」を応援します。</p>
+    </div>
+    <div><h5>求職者の方</h5><a href="#">企業を探す</a><a href="#">職種から探す</a><a href="#">地図から探す</a><a href="#">イベント情報</a><a href="#">スカウト登録</a></div>
+    <div><h5>企業の方</h5><a href="#">掲載のご案内</a><a href="#">企業ログイン</a><a href="#">掲載の流れ</a><a href="#">お問い合わせ</a></div>
+    <div><h5>サイトについて</h5><a href="#">運営者情報</a><a href="#">プライバシーポリシー</a><a href="#">利用規約</a><a href="#">よくある質問</a></div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 NAGAOKA WORKSTYLE / 長岡ワークスタイル</span>
+    <div class="footer-sns">
+      <a href="https://www.instagram.com/nagaoka_workstyle/">📷</a>
+      <a href="#">𝕏</a>
+      <a href="#">💬</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── カルーセル ──
+function initCoverflow(id) {
+  var el = document.getElementById(id);
+  var items = el.querySelectorAll('.coverflow-item');
+  var n = items.length;
+  var current = 0;
+  var dotsWrap = document.getElementById(id + '-dots');
+
+  function rebuildDots() {
+    dotsWrap.innerHTML = '';
+    for (var i = 0; i < n; i++) {
+      var dot = document.createElement('button');
+      dot.className = 'coverflow-dot' + (i === current ? ' active' : '');
+      dot.setAttribute('data-i', i);
+      dot.onclick = function() { goTo(parseInt(this.getAttribute('data-i'))); };
+      dotsWrap.appendChild(dot);
+    }
+  }
+  rebuildDots();
+
+  function cls(offset) {
+    if (offset === 0) return 'active';
+    if (offset === 1) return 'next';
+    if (offset === -1) return 'prev';
+    if (offset === 2) return 'far-next';
+    if (offset === -2) return 'far-prev';
+    return 'hidden';
+  }
+
+  function update() {
+    for (var i = 0; i < n; i++) {
+      var diff = i - current;
+      if (diff > Math.floor(n / 2)) diff -= n;
+      if (diff < -Math.floor(n / 2)) diff += n;
+      items[i].className = 'coverflow-item ' + cls(diff);
+    }
+    var dots = dotsWrap.querySelectorAll('.coverflow-dot');
+    for (var j = 0; j < dots.length; j++) {
+      dots[j].className = 'coverflow-dot' + (j === current ? ' active' : '');
+    }
+  }
+
+  function goTo(i) { current = i; update(); }
+
+  el._next = function() { current = (current + 1) % n; update(); };
+  el._prev = function() { current = (current - 1 + n) % n; update(); };
+  el._goTo = goTo;
+  el._reorder = function(targetKey) {
+    // ターゲットに合致するカードを先頭に並べ替え
+    var stage = el.querySelector('.coverflow-stage');
+    var allItems = Array.from(stage.querySelectorAll('.coverflow-item'));
+    var matched = allItems.filter(function(it) { return it.getAttribute('data-target') === targetKey; });
+    var others = allItems.filter(function(it) { return it.getAttribute('data-target') !== targetKey; });
+    var sorted = matched.concat(others);
+    sorted.forEach(function(it) { stage.appendChild(it); });
+    // 再取得
+    items = el.querySelectorAll('.coverflow-item');
+    n = items.length;
+    current = 0;
+    rebuildDots();
+    // クリックイベント再設定
+    items.forEach(function(item, i) {
+      item.onclick = function() { if (!item.classList.contains('active')) goTo(i); };
+    });
+    update();
+  };
+
+  items.forEach(function(item, i) {
+    item.addEventListener('click', function() {
+      if (!item.classList.contains('active')) goTo(i);
+    });
+  });
+
+  update();
+}
+
+function coverflowNext(id) { document.getElementById(id)._next(); }
+function coverflowPrev(id) { document.getElementById(id)._prev(); }
+
+// ── こだわり条件パネル ──
+function toggleKodawari(btn) {
+  var target = document.body.className.replace('target-', '');
+  // 全パネルを閉じる
+  btn.parentElement.querySelectorAll('.kodawari-panel').forEach(function(p) { p.style.display = 'none'; });
+  // 該当ターゲットのパネルをトグル
+  var panel = btn.parentElement.querySelector('.kodawari-' + target);
+  if (panel) {
+    var isHidden = !panel.style.display || panel.style.display === 'none';
+    panel.style.display = isHidden ? 'block' : 'none';
+  }
+}
+
+// ── 検索：一覧ページへ遷移 ──
+function goToList(keyword) {
+  var kw  = keyword || document.querySelector('.search-card input[type="text"]')?.value || '';
+  var job = document.querySelector('.search-card select.job-select-hs, .search-card select.job-select-nc, .search-card select.job-select-tr')
+              ? (function(){
+                  var target = document.body.className.replace('target-', '');
+                  var sel = document.querySelector('.search-card select.job-select-' + target);
+                  return sel ? sel.value : '';
+                })()
+              : '';
+  var params = new URLSearchParams();
+  if (kw)  params.set('keyword', kw);
+  if (job) params.set('job_type', job);
+  window.location.href = 'nagaoka-workstyle-list.html?' + params.toString();
+}
+
+// ── 初期化 ──
+initCoverflow('companyCoverflow');
+initCoverflow('noteCoverflow');
+
+// ── INIT: target from localStorage ──
+(function() {
+  var t = localStorage.getItem('nagaoka_target');
+  if (!t || ['hs', 'nc', 'tr'].indexOf(t) < 0) {
+    window.location.replace('nagaoka-workstyle-gateway.html');
+    return;
+  }
+  document.body.className = 'target-' + t;
+  var cc = document.getElementById('companyCoverflow');
+  var nc = document.getElementById('noteCoverflow');
+  if (cc && cc._reorder) cc._reorder(t);
+  if (nc && nc._reorder) nc._reorder(t);
+  document.querySelectorAll('#evList .ev-card').forEach(function(card) {
+    var targets = (card.getAttribute('data-ev-target') || '').split(' ');
+    if (targets.indexOf(t) >= 0) {
+      card.classList.remove('ev-dimmed');
+      card.style.order = '0';
+    } else {
+      card.classList.add('ev-dimmed');
+      card.style.order = '99';
+    }
+  });
+
+  // ログイン中ならメールアドレスを自動入力
+  var userEmail = localStorage.getItem('nagaoka_user_email');
+  if (userEmail) {
+    var emailField = document.getElementById('consultEmail');
+    if (emailField) emailField.value = userEmail;
+  }
+})();
+</script>
+</body>
+</html>

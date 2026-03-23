@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>企業・求人を探す — 長岡ワークスタイル</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: #edf7fb;
+  color: #2d2d2d;
+  line-height: 1.6;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+
+:root {
+  --primary: #2ea7c8;
+  --primary-dark: #1d8ba8;
+  --primary-light: #4fc0d8;
+  --primary-pale: #b8e4f0;
+  --accent: #e8841a;
+  --accent-dark: #d0740f;
+  --dark: #1a4d5e;
+  --dark-deep: #163d4d;
+  --pale: #e2f2f8;
+  --pale-warm: #edf7fb;
+  --border: #bdd8e2;
+  --text: #2d2d2d;
+  --text-sub: #555555;
+  --text-faint: #7a8a9a;
+  --white: #ffffff;
+  --radius: 10px;
+  --shadow: 0 2px 8px rgba(30,140,180,0.08);
+  --shadow-hover: 0 8px 28px rgba(30,140,180,0.12);
+}
+
+/* ── HEADER ── */
+.header {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 200;
+  box-shadow: 0 1px 8px rgba(30,140,180,0.06);
+}
+.header-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding: 0 24px; height: 60px;
+  display: flex; align-items: center; gap: 20px;
+}
+.logo { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.logo-mark svg { width: 32px; height: 32px; display: block; }
+.logo-text-en {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px; font-weight: 800;
+  color: var(--dark); letter-spacing: 0.5px;
+}
+.logo-text-en span { color: var(--primary); }
+.logo-text-ja { font-size: 9px; color: var(--text-faint); letter-spacing: 1px; }
+.nav { display: flex; gap: 20px; margin-left: auto; font-size: 13px; color: var(--text-sub); }
+.nav a:hover { color: var(--primary); }
+.nav a.active { color: var(--primary); font-weight: 600; }
+.header-actions { display: flex; gap: 8px; margin-left: 12px; }
+.btn-outline {
+  font-size: 12px; font-weight: 600; color: var(--primary);
+  border: 1px solid var(--primary); padding: 6px 14px;
+  border-radius: 6px; transition: all 0.2s;
+}
+.btn-outline:hover { background: var(--pale); }
+.btn-fill {
+  font-size: 12px; font-weight: 600; color: var(--white);
+  background: var(--accent); padding: 6px 14px;
+  border-radius: 6px; transition: all 0.2s;
+}
+.btn-fill:hover { background: var(--accent-dark); }
+
+/* ── SEARCH TOP BAR ── */
+.search-bar-wrap {
+  background: var(--pale);
+  border-bottom: 2px solid var(--primary-pale);
+  padding: 18px 0 16px;
+}
+.search-bar-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.search-bar-row { display: flex; gap: 8px; align-items: flex-end; }
+.sb-field { display: flex; flex-direction: column; gap: 3px; flex: 1; min-width: 0; }
+.sb-field label {
+  font-size: 10px; font-weight: 700; color: var(--primary-dark);
+  letter-spacing: 0.5px;
+}
+.sb-field select,
+.sb-field input[type="text"] {
+  padding: 9px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  font-size: 13px; font-family: inherit;
+  background: var(--white);
+  color: var(--text);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: none; -webkit-appearance: none;
+  height: 38px;
+}
+.sb-field select option { color: var(--text); background: var(--white); }
+.sb-field input::placeholder { color: var(--text-faint); }
+.sb-field select:focus,
+.sb-field input:focus {
+  outline: none; border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(46,167,200,0.15);
+}
+
+/* 住所＋スライダー */
+.sb-field-loc { flex: 0 0 260px; }
+.loc-input {
+  padding: 9px 12px; height: 38px;
+  border: 1.5px solid var(--border);
+  border-radius: 6px 6px 0 0; border-bottom: none;
+  font-size: 13px; font-family: inherit;
+  background: var(--white); color: var(--text);
+  width: 100%;
+}
+.loc-input::placeholder { color: var(--text-faint); }
+.loc-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(46,167,200,0.15); }
+.slider-wrap {
+  background: var(--white);
+  border: 1.5px solid var(--border); border-top: 1px solid #e0eef3;
+  border-radius: 0 0 6px 6px;
+  padding: 8px 12px;
+  display: flex; align-items: center; gap: 10px;
+}
+.slider-val {
+  font-size: 12px; font-weight: 700; color: var(--primary-dark);
+  white-space: nowrap; min-width: 68px;
+}
+input[type="range"] {
+  flex: 1; height: 5px;
+  -webkit-appearance: none; appearance: none;
+  background: linear-gradient(90deg, var(--primary-pale) 0%, var(--pale) 100%);
+  border-radius: 3px; outline: none; cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--primary); border: 3px solid var(--white);
+  box-shadow: 0 1px 6px rgba(30,140,180,0.3);
+}
+.slider-max { font-size: 10px; color: var(--text-faint); white-space: nowrap; }
+
+.btn-search-bar {
+  align-self: flex-end; height: 38px;
+  padding: 0 28px; border-radius: 6px;
+  background: var(--accent); color: var(--white);
+  border: none; font-size: 13px; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 3px 10px rgba(232,132,26,0.3);
+  white-space: nowrap; flex-shrink: 0;
+}
+.btn-search-bar:hover { background: var(--accent-dark); transform: translateY(-1px); }
+
+.search-tags {
+  display: flex; gap: 6px; flex-wrap: wrap;
+  margin-top: 10px; align-items: center;
+}
+.search-tags span { font-size: 11px; color: var(--text-faint); }
+.search-tags a {
+  font-size: 11px; color: var(--primary-dark); font-weight: 500;
+  background: var(--white);
+  padding: 2px 10px; border-radius: 10px;
+  border: 1px solid var(--border);
+  transition: all 0.15s;
+}
+.search-tags a:hover { background: var(--primary); color: var(--white); border-color: var(--primary); }
+
+/* ── FILTER BAR（上部・白帯） ── */
+.filter-bar-wrap {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  position: sticky; top: 60px; z-index: 100;
+}
+.filter-bar-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+  display: flex; align-items: center; gap: 0;
+  overflow-x: auto;
+}
+/* フィルタグループ（ドロップダウン方式） */
+.filter-group { position: relative; flex-shrink: 0; }
+.filter-group-btn {
+  display: flex; align-items: center; gap: 5px;
+  padding: 14px 16px;
+  font-size: 13px; font-weight: 500; color: var(--text-sub);
+  border: none; background: none; cursor: pointer;
+  font-family: inherit;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+.filter-group-btn:hover { color: var(--primary); }
+.filter-group-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+.filter-group-btn .badge {
+  background: var(--primary); color: white;
+  font-size: 10px; font-weight: 700;
+  min-width: 16px; height: 16px;
+  border-radius: 8px; padding: 0 4px;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.filter-group-btn .arrow { font-size: 9px; opacity: 0.5; transition: transform 0.2s; }
+.filter-group-btn.open .arrow { transform: rotate(180deg); }
+
+/* ドロップダウンパネル */
+.filter-dropdown {
+  display: none; position: absolute; top: calc(100% + 1px); left: 0;
+  min-width: 240px; background: var(--white);
+  border: 1px solid var(--border); border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+  padding: 14px; z-index: 300;
+}
+.filter-dropdown.right { left: auto; right: 0; }
+.filter-group-btn.open + .filter-dropdown { display: block; }
+.filter-dropdown h5 {
+  font-size: 11px; font-weight: 700; color: var(--text-faint);
+  letter-spacing: 0.5px; margin-bottom: 8px;
+}
+.dd-checks { display: flex; flex-direction: column; gap: 4px; }
+.dd-check {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 13px; color: var(--text-sub);
+  cursor: pointer; padding: 3px 4px; border-radius: 4px;
+  transition: background 0.1s;
+}
+.dd-check:hover { background: var(--pale); color: var(--primary); }
+.dd-check input { accent-color: var(--primary); width: 13px; height: 13px; }
+.dd-check .cnt { margin-left: auto; font-size: 11px; color: var(--text-faint); }
+.dd-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.dd-tag {
+  font-size: 12px; padding: 4px 12px;
+  border: 1px solid var(--border); border-radius: 14px;
+  color: var(--text-sub); cursor: pointer; transition: all 0.15s;
+}
+.dd-tag:hover, .dd-tag.on { border-color: var(--primary); color: var(--primary); background: var(--pale); }
+.dd-footer { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; }
+.dd-apply {
+  font-size: 12px; font-weight: 600; color: white;
+  background: var(--primary); padding: 5px 16px;
+  border-radius: 5px; border: none; cursor: pointer; font-family: inherit;
+}
+
+/* 右端のリセット・件数 */
+.filter-bar-right {
+  margin-left: auto; display: flex; align-items: center; gap: 12px;
+  padding: 0 0 0 16px; flex-shrink: 0;
+}
+.filter-reset-small {
+  font-size: 12px; color: var(--text-faint);
+  background: none; border: none; cursor: pointer;
+  font-family: inherit; transition: color 0.15s;
+}
+.filter-reset-small:hover { color: var(--primary); }
+
+/* アクティブフィルタピル */
+.active-pills {
+  display: flex; gap: 6px; flex-wrap: wrap;
+  padding: 8px 24px; background: #f8fbfc;
+  border-bottom: 1px solid var(--border);
+  max-width: 1200px; margin: 0 auto; width: 100%;
+  display: none;
+}
+.active-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 12px; font-weight: 500;
+  background: var(--pale); color: var(--primary-dark);
+  padding: 3px 10px; border-radius: 10px; cursor: pointer;
+  border: 1px solid #c8e8f0;
+}
+.active-pill::after { content: '×'; font-size: 10px; opacity: 0.6; }
+.active-pill:hover { background: #d0eef8; }
+
+/* ── RESULT META ── */
+.result-meta {
+  max-width: 1200px; margin: 0 auto;
+  padding: 14px 24px 0;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 12px; color: var(--text-faint);
+}
+.breadcrumb a { color: var(--primary); }
+.breadcrumb a:hover { text-decoration: underline; }
+.result-right { display: flex; align-items: center; gap: 14px; }
+.result-count { font-size: 13px; color: var(--text-sub); }
+.result-count strong { color: var(--primary); font-size: 17px; font-weight: 700; }
+.sort-tabs { display: flex; gap: 4px; }
+.sort-tab {
+  font-size: 12px; padding: 4px 12px; border-radius: 5px;
+  border: 1px solid var(--border); color: var(--text-sub);
+  cursor: pointer; background: var(--white); transition: all 0.15s;
+  font-family: inherit;
+}
+.sort-tab:hover, .sort-tab.active { border-color: var(--primary); color: var(--primary); background: var(--pale); }
+
+/* ── CARD GRID ── */
+.card-grid-wrap {
+  max-width: 1200px; margin: 0 auto;
+  padding: 16px 24px 60px;
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+/* ── COMPANY CARD（縦型） ── */
+.ccard {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: flex; flex-direction: column;
+  transition: all 0.25s;
+  cursor: pointer;
+  text-decoration: none; color: inherit;
+}
+.ccard:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
+  border-color: #bcd8e2;
+}
+
+/* サムネイル */
+.ccard-thumb {
+  position: relative; height: 148px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.ccard-thumb-bg {
+  position: absolute; inset: 0;
+}
+.ccard-thumb-bg.t1 { background: linear-gradient(140deg, #0f3040, #1d7a9a, #3cc0e0); }
+.ccard-thumb-bg.t2 { background: linear-gradient(140deg, #1a2040, #3a5a90, #6a8ec0); }
+.ccard-thumb-bg.t3 { background: linear-gradient(140deg, #3a2010, #8a5a2a, #c89050); }
+.ccard-thumb-bg.t4 { background: linear-gradient(140deg, #2a1535, #6a3a8a, #a060c0); }
+.ccard-thumb-bg.t5 { background: linear-gradient(140deg, #1a3520, #3a7a50, #60b080); }
+.ccard-thumb-bg.t6 { background: linear-gradient(140deg, #2a1010, #8a3535, #c06060); }
+/* play button hidden — thumbnails shown as photos */
+.ccard-play { display: none; }
+/* 左上バッジ */
+.ccard-top-left {
+  position: absolute; top: 8px; left: 8px; z-index: 3;
+  display: flex; flex-direction: column; gap: 4px;
+}
+/* video badge hidden */
+.ccard-video-badge { display: none; }
+/* 右上バッジ */
+.ccard-new {
+  position: absolute; top: 8px; right: 8px; z-index: 3;
+  background: #ef4444; color: white;
+  font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 3px;
+}
+/* ターゲットバッジ（左下） */
+.ccard-target {
+  position: absolute; bottom: 8px; left: 8px; z-index: 3;
+  font-size: 10px; font-weight: 700; padding: 2px 8px;
+  border-radius: 4px; color: white; backdrop-filter: blur(4px);
+}
+.ccard-target.hs { background: rgba(232,132,26,0.85); }
+.ccard-target.nc { background: rgba(46,167,200,0.85); }
+.ccard-target.tr { background: rgba(74,111,165,0.85); }
+
+/* ブックマーク（右下） */
+.ccard-bm {
+  position: absolute; bottom: 8px; right: 8px; z-index: 3;
+  width: 26px; height: 26px; border-radius: 5px;
+  background: rgba(255,255,255,0.85);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; cursor: pointer;
+  transition: background 0.15s;
+}
+.ccard-bm:hover { background: white; }
+
+/* 本文 */
+.ccard-body { padding: 12px 14px; flex: 1; display: flex; flex-direction: column; gap: 7px; }
+.ccard-company { font-size: 14px; font-weight: 700; color: var(--dark); line-height: 1.4; }
+.ccard-job { font-size: 12px; color: var(--text-sub); line-height: 1.5;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.ccard-meta {
+  display: flex; flex-wrap: wrap; gap: 6px 12px;
+  font-size: 11px; color: var(--text-faint);
+}
+.ccard-meta span { display: flex; align-items: center; gap: 3px; }
+.ccard-salary { font-size: 13px; font-weight: 700; color: var(--dark); }
+.ccard-salary em { font-style: normal; color: var(--primary); }
+.ccard-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.ccard-tag {
+  font-size: 10px; font-weight: 500; padding: 2px 7px;
+  border-radius: 4px; border: 1px solid;
+}
+.ccard-tag.green  { border-color: #86efac; color: #16a34a; background: #f0fdf4; }
+.ccard-tag.blue   { border-color: #93c5fd; color: #2563eb; background: #eff6ff; }
+.ccard-tag.orange { border-color: #fdba74; color: #ea580c; background: #fff7ed; }
+.ccard-tag.purple { border-color: #c4b5fd; color: #7c3aed; background: #f5f3ff; }
+.ccard-tag.cyan   { border-color: #67e8f9; color: #0e7490; background: #ecfeff; }
+.ccard-tag.gray   { border-color: var(--border); color: var(--text-sub); background: #f8fafc; }
+
+/* フッター */
+.ccard-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 14px 10px;
+  border-top: 1px solid #f0f4f6;
+  margin-top: auto;
+}
+.ccard-link {
+  font-size: 11px; font-weight: 600; color: var(--primary);
+  display: flex; align-items: center; gap: 3px;
+  transition: gap 0.2s;
+}
+.ccard-link:hover { gap: 7px; }
+.ccard-link::after { content: '→'; }
+.ccard-sub { font-size: 10px; color: var(--text-faint); }
+
+/* ── PAGINATION ── */
+.pagination {
+  display: flex; justify-content: center; align-items: center;
+  gap: 5px; margin-top: 28px;
+}
+.page-btn {
+  width: 34px; height: 34px; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 500;
+  border: 1px solid var(--border); background: var(--white);
+  color: var(--text-sub); cursor: pointer; transition: all 0.15s;
+  font-family: inherit;
+}
+.page-btn:hover { border-color: var(--primary); color: var(--primary); background: var(--pale); }
+.page-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+.page-btn.disabled { opacity: 0.35; pointer-events: none; }
+.page-ellipsis { font-size: 13px; color: var(--text-faint); }
+
+/* ── FOOTER ── */
+.footer { background: var(--pale); border-top: 2px solid var(--primary-pale); color: var(--text-sub); padding: 40px 24px 20px; }
+.footer-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 28px; padding-bottom: 24px;
+}
+.footer-logo-wrap { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.footer-logo-wrap svg { width: 28px; height: 28px; }
+.fl-en { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 800; color: var(--dark); letter-spacing: 1px; }
+.fl-en span { color: var(--primary); }
+.fl-ja { font-size: 8px; color: var(--text-sub); letter-spacing: 2px; }
+.footer p { font-size: 12px; line-height: 1.7; color: var(--text-sub); }
+.footer h5 { font-size: 11px; font-weight: 700; color: var(--primary-dark); margin-bottom: 8px; }
+.footer a { display: block; font-size: 12px; padding: 2px 0; color: var(--text-sub); transition: color 0.15s; }
+.footer a:hover { color: var(--primary-dark); }
+.footer-bottom {
+  max-width: 1200px; margin: 0 auto;
+  padding-top: 16px; border-top: 1px solid var(--border);
+  font-size: 11px; color: var(--text-faint);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .card-grid { grid-template-columns: repeat(2, 1fr); }
+  .nav { display: none; }
+}
+@media (max-width: 640px) {
+  .card-grid { grid-template-columns: 1fr; }
+  .search-bar-row { flex-wrap: wrap; }
+  .sb-field-loc { flex: 0 0 100%; }
+  .filter-bar-inner { gap: 0; }
+  .header-actions { display: none; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="nagaoka-workstyle-top.html" class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="8" fill="#2ea7c8"/><path d="M8 28L14 12h2.5l3.5 10.5L23.5 12H26l6 16h-3.2l-4.2-12-3.8 12h-2.4l-3.8-12-4.2 12H8z" fill="white"/></svg>
+      </div>
+      <div>
+        <div class="logo-text-en">NAGAOKA <span>WORKSTYLE</span></div>
+        <div class="logo-text-ja">長岡ワークスタイル</div>
+      </div>
+    </a>
+    <nav class="nav">
+      <a href="nagaoka-workstyle-top.html">トップ</a>
+      <a href="#" class="active">企業を探す</a>
+      <a href="#">職種から探す</a>
+      <a href="#">地図から探す</a>
+      <a href="#">イベント</a>
+      <a href="#">お役立ち情報</a>
+    </nav>
+    <div class="header-actions">
+      <a href="#" class="btn-outline">お問い合わせ</a>
+      <a href="#" class="btn-fill">ログイン</a>
+    </div>
+  </div>
+</header>
+
+<!-- SEARCH BAR -->
+<div class="search-bar-wrap">
+  <div class="search-bar-inner">
+    <div class="search-bar-row">
+      <div class="sb-field">
+        <label>フリーワード</label>
+        <input type="text" id="kwInput" placeholder="企業名・職種・スキル など">
+      </div>
+      <div class="sb-field">
+        <label>職種</label>
+        <select id="jobTypeSelect">
+          <option value="">すべての職種</option>
+          <option value="mfg">製造・ものづくり</option>
+          <option value="it">IT・エンジニア</option>
+          <option value="office">事務・管理</option>
+          <option value="sales">営業・販売</option>
+          <option value="medical">医療・福祉</option>
+          <option value="food">飲食・サービス</option>
+          <option value="const">建設・土木</option>
+          <option value="agri">農業・食品</option>
+          <option value="edu">教育・保育</option>
+        </select>
+      </div>
+      <div class="sb-field">
+        <label>雇用形態</label>
+        <select id="empTypeSelect">
+          <option value="">すべての雇用形態</option>
+          <option value="full">正社員</option>
+          <option value="new">新卒採用</option>
+          <option value="hs">高卒採用</option>
+          <option value="part">パート・アルバイト</option>
+          <option value="intern">インターン</option>
+          <option value="contract">契約社員</option>
+        </select>
+      </div>
+      <!-- 住所 + スライダー -->
+      <div class="sb-field sb-field-loc">
+        <label>住所・エリアから絞り込む</label>
+        <input type="text" class="loc-input" id="addrInput" placeholder="例：長岡駅、大手通1丁目…">
+        <div class="slider-wrap">
+          <span class="slider-val" id="sliderVal">半径 10 km</span>
+          <input type="range" id="distRange" min="1" max="30" value="10" step="1">
+          <span class="slider-max">30 km</span>
+        </div>
+      </div>
+      <button class="btn-search-bar" onclick="doSearch()">検索する</button>
+    </div>
+    <div class="search-tags">
+      <span>人気：</span>
+      <a href="nagaoka-workstyle-list.html?keyword=未経験OK">未経験OK</a>
+      <a href="nagaoka-workstyle-list.html?keyword=リモート可">リモート可</a>
+      <a href="nagaoka-workstyle-list.html?keyword=移住支援">移住支援</a>
+      <a href="nagaoka-workstyle-list.html?keyword=高卒採用">高卒採用</a>
+      <a href="nagaoka-workstyle-list.html?keyword=インターン">インターン</a>
+      <a href="nagaoka-workstyle-list.html?keyword=UIターン">UIターン</a>
+    </div>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar-wrap">
+  <div class="filter-bar-inner">
+
+    <!-- 業種 -->
+    <div class="filter-group">
+      <button class="filter-group-btn" onclick="toggleDrop(this)">
+        業種 <span class="arrow">▼</span>
+      </button>
+      <div class="filter-dropdown">
+        <div class="dd-checks">
+          <label class="dd-check"><input type="checkbox"> 製造・ものづくり <span class="cnt">42</span></label>
+          <label class="dd-check"><input type="checkbox"> IT・エンジニア <span class="cnt">18</span></label>
+          <label class="dd-check"><input type="checkbox"> 事務・管理 <span class="cnt">24</span></label>
+          <label class="dd-check"><input type="checkbox"> 営業・販売 <span class="cnt">31</span></label>
+          <label class="dd-check"><input type="checkbox"> 医療・福祉 <span class="cnt">27</span></label>
+          <label class="dd-check"><input type="checkbox"> 飲食・サービス <span class="cnt">19</span></label>
+          <label class="dd-check"><input type="checkbox"> 建設・土木 <span class="cnt">15</span></label>
+          <label class="dd-check"><input type="checkbox"> 農業・食品 <span class="cnt">12</span></label>
+          <label class="dd-check"><input type="checkbox"> 教育・保育 <span class="cnt">16</span></label>
+        </div>
+        <div class="dd-footer"><button class="dd-apply" onclick="closeDrop()">適用</button></div>
+      </div>
+    </div>
+
+    <!-- 対象 -->
+    <div class="filter-group">
+      <button class="filter-group-btn" onclick="toggleDrop(this)">
+        対象 <span class="arrow">▼</span>
+      </button>
+      <div class="filter-dropdown">
+        <div class="dd-checks">
+          <label class="dd-check"><input type="checkbox"> 🎒 高校生向け <span class="cnt">38</span></label>
+          <label class="dd-check"><input type="checkbox"> 🎓 新卒向け <span class="cnt">52</span></label>
+          <label class="dd-check"><input type="checkbox"> 💼 転職・UIターン <span class="cnt">61</span></label>
+        </div>
+        <div class="dd-footer"><button class="dd-apply" onclick="closeDrop()">適用</button></div>
+      </div>
+    </div>
+
+    <!-- 雇用形態 -->
+    <div class="filter-group">
+      <button class="filter-group-btn" onclick="toggleDrop(this)">
+        雇用形態 <span class="arrow">▼</span>
+      </button>
+      <div class="filter-dropdown">
+        <div class="dd-checks">
+          <label class="dd-check"><input type="checkbox"> 正社員 <span class="cnt">87</span></label>
+          <label class="dd-check"><input type="checkbox"> 新卒採用 <span class="cnt">52</span></label>
+          <label class="dd-check"><input type="checkbox"> 高卒採用 <span class="cnt">38</span></label>
+          <label class="dd-check"><input type="checkbox"> インターン <span class="cnt">24</span></label>
+          <label class="dd-check"><input type="checkbox"> パート・アルバイト <span class="cnt">31</span></label>
+          <label class="dd-check"><input type="checkbox"> 契約社員 <span class="cnt">18</span></label>
+        </div>
+        <div class="dd-footer"><button class="dd-apply" onclick="closeDrop()">適用</button></div>
+      </div>
+    </div>
+
+    <!-- 働き方 -->
+    <div class="filter-group">
+      <button class="filter-group-btn" onclick="toggleDrop(this)">
+        働き方・待遇 <span class="arrow">▼</span>
+      </button>
+      <div class="filter-dropdown" style="min-width:280px;">
+        <div class="dd-tags">
+          <span class="dd-tag" onclick="toggleTag(this)">未経験OK</span>
+          <span class="dd-tag" onclick="toggleTag(this)">リモート可</span>
+          <span class="dd-tag" onclick="toggleTag(this)">土日祝休み</span>
+          <span class="dd-tag" onclick="toggleTag(this)">年休120日〜</span>
+          <span class="dd-tag" onclick="toggleTag(this)">資格支援</span>
+          <span class="dd-tag" onclick="toggleTag(this)">寮あり</span>
+          <span class="dd-tag" onclick="toggleTag(this)">移住支援</span>
+          <span class="dd-tag" onclick="toggleTag(this)">女性活躍</span>
+          <span class="dd-tag" onclick="toggleTag(this)">職場見学可</span>
+          <span class="dd-tag" onclick="toggleTag(this)">副業OK</span>
+          <span class="dd-tag" onclick="toggleTag(this)">フレックス</span>
+        </div>
+        <div class="dd-footer"><button class="dd-apply" onclick="closeDrop()">適用</button></div>
+      </div>
+    </div>
+
+    <!-- 年収 -->
+    <div class="filter-group">
+      <button class="filter-group-btn" onclick="toggleDrop(this)">
+        年収 <span class="arrow">▼</span>
+      </button>
+      <div class="filter-dropdown">
+        <div class="dd-checks">
+          <label class="dd-check"><input type="checkbox"> 〜300万円</label>
+          <label class="dd-check"><input type="checkbox"> 300〜400万円</label>
+          <label class="dd-check"><input type="checkbox"> 400〜500万円</label>
+          <label class="dd-check"><input type="checkbox"> 500〜600万円</label>
+          <label class="dd-check"><input type="checkbox"> 600万円〜</label>
+        </div>
+        <div class="dd-footer"><button class="dd-apply" onclick="closeDrop()">適用</button></div>
+      </div>
+    </div>
+
+    <!-- 従業員規模 -->
+    <div class="filter-group">
+      <button class="filter-group-btn" onclick="toggleDrop(this)">
+        規模 <span class="arrow">▼</span>
+      </button>
+      <div class="filter-dropdown right">
+        <div class="dd-checks">
+          <label class="dd-check"><input type="checkbox"> 〜50名</label>
+          <label class="dd-check"><input type="checkbox"> 50〜100名</label>
+          <label class="dd-check"><input type="checkbox"> 100〜300名</label>
+          <label class="dd-check"><input type="checkbox"> 300名〜</label>
+        </div>
+        <div class="dd-footer"><button class="dd-apply" onclick="closeDrop()">適用</button></div>
+      </div>
+    </div>
+
+    <!-- 右端 -->
+    <div class="filter-bar-right">
+      <button class="filter-reset-small" onclick="resetFilters()">✕ リセット</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESULT META -->
+<div class="result-meta">
+  <nav class="breadcrumb">
+    <a href="nagaoka-workstyle-top.html">ホーム</a>
+    <span style="margin:0 4px;color:var(--border)">›</span>
+    <span>企業・求人を探す</span>
+  </nav>
+  <div class="result-right">
+    <div class="result-count"><strong id="resultCount">24</strong> 社が見つかりました</div>
+    <div class="sort-tabs">
+      <button class="sort-tab active" onclick="setSort(this)">新着順</button>
+      <button class="sort-tab" onclick="setSort(this)">給与高い順</button>
+      <button class="sort-tab" onclick="setSort(this)">従業員数順</button>
+    </div>
+  </div>
+</div>
+
+<!-- CARD GRID -->
+<div class="card-grid-wrap">
+  <div class="card-grid" id="cardGrid">
+
+    <!-- Card 1 -->
+    <a class="ccard" href="nagaoka-workstyle-detail.html?target=hs">
+      <div class="ccard-thumb">
+        <div class="ccard-thumb-bg t1"></div>
+        <div class="ccard-play">▶</div>
+        <div class="ccard-top-left">
+          <div class="ccard-video-badge">▶ 動画あり</div>
+        </div>
+        <div class="ccard-new">NEW</div>
+        <div class="ccard-target hs">高校生向け</div>
+        <div class="ccard-bm" onclick="event.preventDefault()">🔖</div>
+      </div>
+      <div class="ccard-body">
+        <div class="ccard-company">株式会社サンプル製作所</div>
+        <div class="ccard-job">精密部品の製造オペレーター・品質管理スタッフ</div>
+        <div class="ccard-meta">
+          <span>🏭 製造</span>
+          <span>📍 川東エリア</span>
+          <span>👥 120名</span>
+        </div>
+        <div class="ccard-salary">月給 <em>22万〜35万円</em></div>
+        <div class="ccard-tags">
+          <span class="ccard-tag green">未経験OK</span>
+          <span class="ccard-tag blue">高卒採用</span>
+          <span class="ccard-tag orange">資格支援</span>
+          <span class="ccard-tag gray">寮あり</span>
+        </div>
+      </div>
+      <div class="ccard-footer">
+        <div class="ccard-link">詳細を見る</div>
+        <div class="ccard-sub">設立 1985年</div>
+      </div>
+    </a>
+
+    <!-- Card 2 -->
+    <a class="ccard" href="nagaoka-workstyle-detail-nagaoka-tech.html?target=nc">
+      <div class="ccard-thumb">
+        <div class="ccard-thumb-bg t2"></div>
+        <div class="ccard-play">▶</div>
+        <div class="ccard-top-left">
+          <div class="ccard-video-badge">▶ 動画あり</div>
+        </div>
+        <div class="ccard-target nc">新卒向け</div>
+        <div class="ccard-bm" onclick="event.preventDefault()">🔖</div>
+      </div>
+      <div class="ccard-body">
+        <div class="ccard-company">長岡テクノロジーズ株式会社</div>
+        <div class="ccard-job">Webエンジニア・システム開発（新卒・第二新卒歓迎）</div>
+        <div class="ccard-meta">
+          <span>💻 IT</span>
+          <span>📍 長岡駅周辺</span>
+          <span>👥 45名</span>
+        </div>
+        <div class="ccard-salary">月給 <em>24万〜42万円</em></div>
+        <div class="ccard-tags">
+          <span class="ccard-tag blue">リモート可</span>
+          <span class="ccard-tag green">インターン</span>
+          <span class="ccard-tag purple">フレックス</span>
+          <span class="ccard-tag orange">研修充実</span>
+        </div>
+      </div>
+      <div class="ccard-footer">
+        <div class="ccard-link">詳細を見る</div>
+        <div class="ccard-sub">設立 2015年</div>
+      </div>
+    </a>
+
+    <!-- Card 3 -->
+    <a class="ccard" href="nagaoka-workstyle-detail-echigo-foods.html?target=tr">
+      <div class="ccard-thumb">
+        <div class="ccard-thumb-bg t3"></div>
+        <div class="ccard-play">▶</div>
+        <div class="ccard-top-left">
+          <div class="ccard-video-badge">▶ 動画あり</div>
+        </div>
+        <div class="ccard-target tr">転職向け</div>
+        <div class="ccard-bm" onclick="event.preventDefault()">🔖</div>
+      </div>
+      <div class="ccard-body">
+        <div class="ccard-company">越後フーズ株式会社</div>
+        <div class="ccard-job">食品製造・品質管理・営業（UIターン・中途歓迎）</div>
+        <div class="ccard-meta">
+          <span>🌾 食品</span>
+          <span>📍 川西エリア</span>
+          <span>👥 230名</span>
+        </div>
+        <div class="ccard-salary">月給 <em>25万〜48万円</em></div>
+        <div class="ccard-tags">
+          <span class="ccard-tag cyan">移住支援</span>
+          <span class="ccard-tag green">UIターン</span>
+          <span class="ccard-tag gray">年休125日</span>
+        </div>
+      </div>
+      <div class="ccard-footer">
+        <div class="ccard-link">詳細を見る</div>
+        <div class="ccard-sub">設立 1972年</div>
+      </div>
+    </a>
+
+    <!-- Card 4 -->
+    <a class="ccard" href="#">
+      <div class="ccard-thumb">
+        <div class="ccard-thumb-bg t4"></div>
+        <div class="ccard-play">▶</div>
+        <div class="ccard-top-left">
+          <div class="ccard-video-badge">▶ 動画あり</div>
+        </div>
+        <div class="ccard-new">NEW</div>
+        <div class="ccard-target nc">新卒向け</div>
+        <div class="ccard-bm" onclick="event.preventDefault()">🔖</div>
+      </div>
+      <div class="ccard-body">
+        <div class="ccard-company">長岡ケアサービス株式会社</div>
+        <div class="ccard-job">介護福祉士・ケアワーカー（未経験大歓迎）</div>
+        <div class="ccard-meta">
+          <span>🏥 医療福祉</span>
+          <span>📍 長岡駅周辺</span>
+          <span>👥 85名</span>
+        </div>
+        <div class="ccard-salary">月給 <em>21万〜32万円</em>＋手当</div>
+        <div class="ccard-tags">
+          <span class="ccard-tag green">未経験OK</span>
+          <span class="ccard-tag purple">女性活躍</span>
+          <span class="ccard-tag orange">資格支援</span>
+        </div>
+      </div>
+      <div class="ccard-footer">
+        <div class="ccard-link">詳細を見る</div>
+        <div class="ccard-sub">設立 2003年</div>
+      </div>
+    </a>
+
+    <!-- Card 5 -->
+    <a class="ccard" href="#">
+      <div class="ccard-thumb">
+        <div class="ccard-thumb-bg t5"></div>
+        <div class="ccard-play">▶</div>
+        <div class="ccard-top-left">
+          <div class="ccard-video-badge">▶ 動画あり</div>
+        </div>
+        <div class="ccard-target hs">高校生向け</div>
+        <div class="ccard-bm" onclick="event.preventDefault()">🔖</div>
+      </div>
+      <div class="ccard-body">
+        <div class="ccard-company">信濃川建設株式会社</div>
+        <div class="ccard-job">施工管理・現場スタッフ（高卒採用・女性歓迎）</div>
+        <div class="ccard-meta">
+          <span>🏗️ 建設</span>
+          <span>📍 栃尾エリア</span>
+          <span>👥 68名</span>
+        </div>
+        <div class="ccard-salary">月給 <em>20万〜38万円</em></div>
+        <div class="ccard-tags">
+          <span class="ccard-tag blue">高卒採用</span>
+          <span class="ccard-tag purple">女性活躍</span>
+          <span class="ccard-tag cyan">職場見学可</span>
+        </div>
+      </div>
+      <div class="ccard-footer">
+        <div class="ccard-link">詳細を見る</div>
+        <div class="ccard-sub">設立 1974年</div>
+      </div>
+    </a>
+
+    <!-- Card 6 -->
+    <a class="ccard" href="#">
+      <div class="ccard-thumb">
+        <div class="ccard-thumb-bg t6"></div>
+        <div class="ccard-top-left">
+          <div class="ccard-video-badge" style="background:rgba(0,0,0,0.4)">📷 写真</div>
+        </div>
+        <div class="ccard-target tr">転職向け</div>
+        <div class="ccard-bm" onclick="event.preventDefault()">🔖</div>
+      </div>
+      <div class="ccard-body">
+        <div class="ccard-company">株式会社越後電機工業</div>
+        <div class="ccard-job">電気設備の設計・施工エンジニア（経験者優遇）</div>
+        <div class="ccard-meta">
+          <span>⚡ 製造</span>
+          <span>📍 川東エリア</span>
+          <span>👥 155名</span>
+        </div>
+        <div class="ccard-salary">月給 <em>28万〜55万円</em></div>
+        <div class="ccard-tags">
+          <span class="ccard-tag orange">経験者優遇</span>
+          <span class="ccard-tag gray">土日祝休み</span>
+          <span class="ccard-tag cyan">移住支援</span>
+        </div>
+      </div>
+      <div class="ccard-footer">
+        <div class="ccard-link">詳細を見る</div>
+        <div class="ccard-sub">設立 1961年</div>
+      </div>
+    </a>
+
+    <!-- Card 7 -->
+    <a class="ccard" href="#">
+      <div class="ccard-thumb">
+        <div class="ccard-thumb-bg t2"></div>
+        <div class="ccard-play">▶</div>
+        <div class="ccard-top-left">
+          <div class="ccard-video-badge">▶ 動画あり</div>
+        </div>
+        <div class="ccard-target nc">新卒向け</div>
+        <div class="ccard-bm" onclick="event.preventDefault()">🔖</div>
+      </div>
+      <div class="ccard-body">
+        <div class="ccard-company">栃尾てまり工房</div>
+        <div class="ccard-job">伝統工芸デザイナー・商品企画スタッフ</div>
+        <div class="ccard-meta">
+          <span>🎨 製造</span>
+          <span>📍 栃尾エリア</span>
+          <span>👥 22名</span>
+        </div>
+        <div class="ccard-salary">月給 <em>20万〜28万円</em></div>
+        <div class="ccard-tags">
+          <span class="ccard-tag green">未経験OK</span>
+          <span class="ccard-tag purple">女性活躍</span>
+          <span class="ccard-tag gray">土日休み</span>
+        </div>
+      </div>
+      <div class="ccard-footer">
+        <div class="ccard-link">詳細を見る</div>
+        <div class="ccard-sub">設立 1952年</div>
+      </div>
+    </a>
+
+    <!-- Card 8 -->
+    <a class="ccard" href="#">
+      <div class="ccard-thumb">
+        <div class="ccard-thumb-bg t5"></div>
+        <div class="ccard-play">▶</div>
+        <div class="ccard-top-left">
+          <div class="ccard-video-badge">▶ 動画あり</div>
+        </div>
+        <div class="ccard-new">NEW</div>
+        <div class="ccard-target tr">転職向け</div>
+        <div class="ccard-bm" onclick="event.preventDefault()">🔖</div>
+      </div>
+      <div class="ccard-body">
+        <div class="ccard-company">越後雪国農園</div>
+        <div class="ccard-job">農業スタッフ・農産物加工・営業（UIターン歓迎）</div>
+        <div class="ccard-meta">
+          <span>🌾 農業</span>
+          <span>📍 中之島エリア</span>
+          <span>👥 34名</span>
+        </div>
+        <div class="ccard-salary">月給 <em>19万〜30万円</em>＋住宅手当</div>
+        <div class="ccard-tags">
+          <span class="ccard-tag cyan">移住支援</span>
+          <span class="ccard-tag green">UIターン</span>
+          <span class="ccard-tag gray">寮あり</span>
+        </div>
+      </div>
+      <div class="ccard-footer">
+        <div class="ccard-link">詳細を見る</div>
+        <div class="ccard-sub">設立 2008年</div>
+      </div>
+    </a>
+
+    <!-- Card 9 -->
+    <a class="ccard" href="#">
+      <div class="ccard-thumb">
+        <div class="ccard-thumb-bg t1"></div>
+        <div class="ccard-top-left">
+          <div class="ccard-video-badge" style="background:rgba(0,0,0,0.4)">📷 写真</div>
+        </div>
+        <div class="ccard-target nc">新卒向け</div>
+        <div class="ccard-bm" onclick="event.preventDefault()">🔖</div>
+      </div>
+      <div class="ccard-body">
+        <div class="ccard-company">NaDeC BASE 株式会社</div>
+        <div class="ccard-job">コミュニティマネージャー・イベント企画スタッフ</div>
+        <div class="ccard-meta">
+          <span>🏢 サービス</span>
+          <span>📍 長岡駅周辺</span>
+          <span>👥 18名</span>
+        </div>
+        <div class="ccard-salary">月給 <em>21万〜33万円</em></div>
+        <div class="ccard-tags">
+          <span class="ccard-tag blue">リモート可</span>
+          <span class="ccard-tag green">未経験OK</span>
+          <span class="ccard-tag purple">フレックス</span>
+        </div>
+      </div>
+      <div class="ccard-footer">
+        <div class="ccard-link">詳細を見る</div>
+        <div class="ccard-sub">設立 2018年</div>
+      </div>
+    </a>
+
+  </div><!-- /card-grid -->
+
+  <!-- ページネーション -->
+  <div class="pagination">
+    <button class="page-btn disabled">◀</button>
+    <button class="page-btn active">1</button>
+    <button class="page-btn" onclick="setPage(this)">2</button>
+    <button class="page-btn" onclick="setPage(this)">3</button>
+    <span class="page-ellipsis">…</span>
+    <button class="page-btn" onclick="setPage(this)">8</button>
+    <button class="page-btn" onclick="setPage(this)">▶</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo-wrap">
+        <svg viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="8" fill="#2ea7c8"/><path d="M8 28L14 12h2.5l3.5 10.5L23.5 12H26l6 16h-3.2l-4.2-12-3.8 12h-2.4l-3.8-12-4.2 12H8z" fill="white"/></svg>
+        <div><div class="fl-en">NAGAOKA <span>WORKSTYLE</span></div><div class="fl-ja">長岡ワークスタイル</div></div>
+      </div>
+      <p>新潟県長岡市の企業・仕事情報ポータルサイト。<br>あなたの「働く」を応援します。</p>
+    </div>
+    <div><h5>求職者の方</h5><a href="#">企業を探す</a><a href="#">職種から探す</a><a href="#">地図から探す</a><a href="#">イベント情報</a></div>
+    <div><h5>企業の方</h5><a href="#">掲載のご案内</a><a href="#">企業ログイン</a><a href="#">お問い合わせ</a></div>
+    <div><h5>サイトについて</h5><a href="#">運営者情報</a><a href="#">プライバシーポリシー</a><a href="#">よくある質問</a></div>
+  </div>
+  <div class="footer-bottom">© 2026 NAGAOKA WORKSTYLE / 長岡ワークスタイル</div>
+</footer>
+
+<script>
+// ── スライダー ──
+var dr = document.getElementById('distRange');
+var sv = document.getElementById('sliderVal');
+function updateSlider() {
+  var v = dr.value;
+  sv.textContent = '半径 ' + v + ' km';
+  var pct = ((v - 1) / 29) * 100;
+  dr.style.background =
+    'linear-gradient(to right,#4fc0d8 0%,#4fc0d8 ' + pct + '%,rgba(255,255,255,0.2) ' + pct + '%)';
+}
+dr.addEventListener('input', updateSlider);
+updateSlider();
+
+// ── フィルタドロップダウン ──
+function toggleDrop(btn) {
+  var isOpen = btn.classList.contains('open');
+  // 全部閉じる
+  document.querySelectorAll('.filter-group-btn.open').forEach(function(b) {
+    b.classList.remove('open');
+    b.querySelector('.arrow').textContent = '▼';
+  });
+  if (!isOpen) {
+    btn.classList.add('open');
+    btn.querySelector('.arrow').textContent = '▲';
+  }
+}
+function closeDrop() {
+  document.querySelectorAll('.filter-group-btn.open').forEach(function(b) {
+    b.classList.remove('open');
+    b.querySelector('.arrow').textContent = '▼';
+  });
+}
+// 外クリックで閉じる
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.filter-group')) closeDrop();
+});
+
+function toggleTag(el) { el.classList.toggle('on'); }
+
+// ── ソート ──
+function setSort(btn) {
+  document.querySelectorAll('.sort-tab').forEach(function(t) { t.classList.remove('active'); });
+  btn.classList.add('active');
+}
+
+// ── ページネーション ──
+function setPage(btn) {
+  document.querySelectorAll('.page-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── リセット ──
+function resetFilters() {
+  document.querySelectorAll('.dd-check input').forEach(function(cb) { cb.checked = false; });
+  document.querySelectorAll('.dd-tag').forEach(function(t) { t.classList.remove('on'); });
+  document.querySelectorAll('.filter-group-btn .badge').forEach(function(b) { b.remove(); });
+  document.getElementById('kwInput').value = '';
+  document.getElementById('jobTypeSelect').value = '';
+  document.getElementById('empTypeSelect').value = '';
+  document.getElementById('addrInput').value = '';
+  dr.value = 10; updateSlider();
+  document.getElementById('resultCount').textContent = '24';
+}
+
+// ── 検索 ──
+function doSearch() {
+  var n = Math.floor(Math.random() * 40) + 5;
+  document.getElementById('resultCount').textContent = n;
+  window.scrollTo({ top: document.querySelector('.filter-bar-wrap').offsetTop - 64, behavior: 'smooth' });
+}
+
+// ── URLパラメータ受け取り（トップページから連携）──
+(function() {
+  var p = new URLSearchParams(window.location.search);
+  if (p.get('keyword'))  document.getElementById('kwInput').value       = p.get('keyword');
+  if (p.get('job_type')) document.getElementById('jobTypeSelect').value = p.get('job_type');
+  if (p.get('emp_type')) document.getElementById('empTypeSelect').value = p.get('emp_type');
+  if (p.get('addr'))     document.getElementById('addrInput').value     = p.get('addr');
+  if (p.get('dist'))     { dr.value = p.get('dist'); updateSlider(); }
+})();
+</script>
+</body>
+</html>
